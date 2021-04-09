@@ -21,13 +21,14 @@
 
 .login-form {
     z-index: 1;
-    width: 36vw;
-    height: 28vw;
+    width: 34vw;
+    height: 25vw;
     margin: 0 auto;
     border-radius: 1vw;
     box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
     border: solid 1px #fff;
     background-color: #ffffffa8;
+    text-align:center;
 }
 
 .login-form .login-tit {
@@ -41,8 +42,8 @@
 
 .login-form .google {
     width: 74%;
-    height: 3.2vw;
-    margin: 4vw 0 0.4vw;
+    height: 2.6vw;
+    margin: 3.5vw 0 0.4vw;
     border-radius: 4vw;
     box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
     border: solid 0.2px #f2f2f2;
@@ -58,7 +59,7 @@
 
 .login-form .kakao {  
     width: 74%;
-    height: 3.2vw;
+    height: 2.6vw;
     margin: 0.6vw 0 1vw;
     border-radius: 4vw;
     box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
@@ -74,19 +75,19 @@
 }
 
 .login-form .google img {
-    height: 2.2vw;
-    padding-top: 0.2vw;
+    height: 1.9vw;
+    padding-top: 0.3vw;
 }
 
 .login-form .kakao img {
-    height: 3.1vw;
+    height: 2.6vw;
 }
 
 .login-form .privacy {
     height: 4vw;
     margin: 0 auto;
-    margin-top: 3vw;
-    font-size: 0.8vw;
+    margin-top: 2.5vw;
+    font-size: 0.75vw;
     text-align: center;
     color: #999999;
 }
