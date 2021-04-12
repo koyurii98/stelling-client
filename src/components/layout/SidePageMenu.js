@@ -4,7 +4,6 @@ import { List,ListItem } from '@material-ui/core';
 const SidePageMenu = (props) => {
   const { test, item } = props;
   const pageList = item.pageList;
-  console.log(pageList);
 
   return(
      <div className={test}>
