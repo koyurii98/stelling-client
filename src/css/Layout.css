@@ -34,7 +34,7 @@
 
 /*사이드메뉴*/
 .sideMenu{
-  width: 260px;
+  width: 230px;
   height: 100%;
   box-shadow: 0 0 1px 2px #75757527;
   background-color: #ffffff;
@@ -44,13 +44,13 @@
   z-index: 10;
 }
 .sidePageMenu-open{
-  margin-left: 260px;
+  margin-left: 230px;
   z-index: 9;
   -webkit-animation-name: openMenu;
   -webkit-animation-duration: 0.7s;
   animation-name: openMenu;
   animation-duration: 0.7s;
-  width: 260px;
+  width: 230px;
   height: 100%;
   box-shadow: 0 0 1px 2px #75757527;
   background-color: #ffffff;
@@ -65,7 +65,7 @@
   -webkit-animation-duration: 0.7s;
   animation-name: closeMenu;
   animation-duration: 0.7s;
-  width: 260px;
+  width: 230px;
   height: 100%;
   box-shadow: 0 0 1px 2px #75757527;
   background-color: #ffffff;
@@ -76,15 +76,15 @@
 .sideMenu-Logo{
   margin-top: 60px;
   margin-bottom: 20px;
-  width: 260px;
+  width: 230px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 35.4px;
 }
 .sideMenu-Logo>img{
-  width: 110px;
-  height: 35.4px;
+  width: 100px;
+  height: 30px;
 }
 .sideMenu-Profile{
   justify-content: center;
@@ -93,15 +93,15 @@
 }
 .sideMenu-Profile-img{
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background-color: #e6e6e6;
   border-radius: 50%;
 }
 .sideMenu-Profile-fr{
   margin-bottom: 30px;
-  width: 90px;
-  height: 90px;
+  width: 67px;
+  height: 67px;
   background-image: linear-gradient(#7ef049aa, #46ce69);
   border-radius: 50%;
   justify-content: center;
@@ -111,21 +111,20 @@
 .sideMenu-Btn{
   position: absolute;
   bottom: 0;
-  width: 260px;
-  height: 50px;
+  width: 230px;
+  height: 37px;
   display: flex;
   justify-content: center;
   align-items: center;
   color:#46ce69;
   background-color: #f1fff0;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 14px;
   cursor: pointer;
 }
 
 .sideMenuItem, .sidePageMenu-tit, .sideMenuItem-select{
   width: 100%;
-  height: 50px;
+  height: 37px;
   text-align: left;
   display: flex;
   align-items: center;
@@ -133,6 +132,10 @@
   border-top: 1px solid #f1f1f1;
   cursor: pointer;
   border: none;
+}
+.sideMenuItem>p{
+  font-weight: 600;
+  font-size: 14px;
 }
 .sideMenuItem:hover{
   background-color: #f1fff0;
@@ -142,8 +145,8 @@
 }
 .sideMenuItem>span, .sidePageMenu-tit>span {
   margin-left: 20px;
-  font-weight: 500;
-  color: #222222;
+  font-weight: 600;
+  color: #353535;
 }
 
 .sidePageMenu-tit{
@@ -159,15 +162,28 @@
 .sidePageMenu-tit>span{
   color:rgb(75, 75, 75);
 }
+
+.SidePageMenu-text{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+  align-items: center;
+}
+.SidePageMenu-text-date{
+  font-size: 10px;
+  color:#5e5e5e;
+}
 /*sidemenu-page close animation*/
 @keyframes openMenu {
   from { margin-left: 0%; }
-  to { margin-left: 260px; }
+  to { margin-left: 230px; }
 }
 
 /*sidemenu-page open animation*/
 @keyframes closeMenu {
-  from { margin-left: 260px; }
+  from { margin-left: 230px; }
   to { margin-left: 0%; }
 }
 
