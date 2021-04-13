@@ -1,5 +1,6 @@
 @import '../css/Layout.css';
 @import '../css/Home.css';
+@import './Component.css';
 
 body {
   /* height: 100%;

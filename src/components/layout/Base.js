@@ -70,8 +70,8 @@ const Base = (props) => {
     <div className="base">
       <div className="header">
         <div className="header-Icons">
-          <HomeIcon className="header-Icon"/>
-          <PowerSettingsNewIcon className="header-Icon"/>
+          <HomeIcon className="header-Icon" style={{fontSize:"20px"}}/>
+          <PowerSettingsNewIcon className="header-Icon" style={{fontSize:"20px"}}/>
         </div>
       </div>
       <div className="base-layout">
@@ -89,7 +89,7 @@ const Base = (props) => {
               subj.map((data,i)=>{
                 return <ListItem
                     key={i}
-                    className="sideMenu-Items"
+                    style={{height:"45px"}}
                     button
                     selected={selectedIndex === i}
                     onClick={() => handleListItemClick(data,i)}

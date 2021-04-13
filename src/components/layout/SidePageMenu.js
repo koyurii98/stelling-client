@@ -10,7 +10,7 @@ const SidePageMenu = (props) => {
       <div className="sidePageMenu-tit">
         <span>{item.name}</span>
       </div>
-      <List component="nav" aria-label="secondary mailbox folder">
+      <List component="nav" aria-label="secondary mailbox folder" style={{padding:0}}>
         {
           pageList && pageList.map((menuItem,i)=>{
             return <ListItem
@@ -18,7 +18,7 @@ const SidePageMenu = (props) => {
                 button
                 // selected={selectedIndex === i}
                 // onClick={() => handleListItemClick(i, data)}
-                style={{margin:0}}
+                style={{height:"45px"}}
               >
               <div className="SidePageMenu-text">
                 <span>{menuItem.title}</span>

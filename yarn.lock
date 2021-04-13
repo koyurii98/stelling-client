@@ -1709,6 +1709,13 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+"@toast-ui/react-calendar@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@toast-ui/react-calendar/-/react-calendar-1.0.5.tgz#277443e12d2beab4de5cb117705fc06834e995a9"
+  integrity sha512-eG4BtdF5LvIHEyTlwZbWnLlL+GScLiWktRNV0A3L73oBFfJ5BQUNC/TRR13wfaJjXIvWYdV80ZYD75q7ilWznw==
+  dependencies:
+    tui-calendar "^1.12.5"
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -10877,7 +10884,7 @@ tty-browserify@0.0.0:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
 
-tui-calendar@^1.13.0:
+tui-calendar@^1.12.5:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tui-calendar/-/tui-calendar-1.13.0.tgz#e391dffb9d3c125516f6bfb8d3d76b37dc3c9242"
   integrity sha512-gF/9aD4xa8oXgYV6wgMhA0PELPvuCoht/E6sKqQdKoU/jllGLIOip1WaAJmxn5/mLS3HwgdhhscY6J+9FEhBww==
