@@ -19,15 +19,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #dfdfdfaf;
+  background-color: #f1f1f1af;
   color:rgb(160, 160, 160);
   border-radius: 20px;
-  width: 90%;
-  height: 28px;
-  font-size: 14px;
+  width: 50%;
+  height: 25px;
+  font-size: 12px;
   margin-top: 10px;
 }
 .addbtn:hover{
   background-color: #dfdfdfe7;
   color:rgb(136, 136, 136);
+}
+
+.box{
+  box-shadow: 0px 0px 3px #dcdcdc;
+  background-color: #ffff;
+  border-radius: 5px;
 }

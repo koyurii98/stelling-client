@@ -31,7 +31,7 @@ const TodoList = () => {
           { edit ? "목록저장":" 목록수정" }
         </div>
       </div>
-      <div className="Home-TodoList Home-box">
+      <div className="Home-TodoList box">
        
         <div className="Home-TodoList-list">
           {

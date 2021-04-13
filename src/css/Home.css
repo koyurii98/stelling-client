@@ -32,7 +32,7 @@
 }
 /* 캘린더 영역 */
 .Home-Calendar{
-  width: 870px;
+  width: 63vw;;
   height: 450px;
   margin-right: 20px;
 }
@@ -41,17 +41,18 @@
 .Home-TodoList{
   display: flex;
   flex-direction: column;
-  width: 270px;
+  width: 17vw;
   height: 450px;
   text-align: left;
 }
 .Home-TodoList-tit{
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: 500;
 }
 .Home-TodoList-list{
   width: 90%;
   height: 330px;
-  padding: 15px 15px 15px 15px;
+  padding: 15px 20px 15px 20px;
 }
 .Home-TodoList-Item{
   width: 100%;
@@ -66,14 +67,14 @@
 
 .Home-TodoList-Item-ctn{
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 12px;
   align-content: center;
   cursor: pointer;
   justify-content: center;
   align-items: center;
 }
 .Home-TodoList-Btn {
-  margin-left: 12px;
+  margin-left: 25%;
 }
 .textline{
   text-decoration: line-through;
@@ -88,13 +89,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 500;
   height: 30px;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 10px;
+  width: 82vw;
 }
 .Home-Memo{
   margin-top: 10px;
-  height: 150px;
+  height: 14vh;
   padding: 15px;
+  font-size: 12px;
+  width: 80vw;
 }

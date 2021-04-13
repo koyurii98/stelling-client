@@ -14,12 +14,12 @@ const Memo = () => {
   return(
     <div>
       <div className="Home-Memo-Header">
-        <span>MEMO</span>
+        <span>Memo</span>
         <div className="Home-Header-btn color-Btn" onClick={clickEdit}>
           { edit ? "목록저장":" 목록수정" }
         </div>
       </div>
-      <div className="Home-Memo Home-box">
+      <div className="Home-Memo box">
         <span>메모장</span>
       </div>
     </div>
