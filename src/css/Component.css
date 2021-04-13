@@ -2,14 +2,32 @@
 
 .color-Btn{
   border-radius: 20px;
-  background-color: #e0ffde8f;
+  background-color: #c7ffc37a;
   color: #46ce69;
   justify-content: center;
   align-items: center;
   display: flex;
   font-weight: 600;
-  border: 1px solid #46ce682a;
+  cursor: pointer;
+  /* border: 1px solid #23df5213; */
 }
 .color-Btn:hover{
-  background-color: #c7ffc37a;
+  background-color: #c6f5c38f;
+}
+
+.addbtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dfdfdfaf;
+  color:rgb(160, 160, 160);
+  border-radius: 20px;
+  width: 90%;
+  height: 28px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.addbtn:hover{
+  background-color: #dfdfdfe7;
+  color:rgb(136, 136, 136);
 }
