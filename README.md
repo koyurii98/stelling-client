@@ -1,4 +1,3 @@
 ## Stelling-Client
 - react.js
-- kim, ko
-hello
+- kim, ko  
