@@ -1,24 +1,24 @@
 /*헤더*/
 .header{
   width: 100%;
-  height: 33px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16);
+  height: 2.2vw;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%);
   position: fixed;
   background-color: #ffffff;
   z-index: 100;
 }
 .header-Icons{
   position: fixed;
-  right: 5px;
+  right: 0.4vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  top: 7px;
+  top: 0.4vw;
 }
 .header-Icon{
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
   cursor: pointer;
   color: #5e5e5e;
 }
@@ -33,7 +33,7 @@
 
 /*사이드메뉴*/
 .sideMenu{
-  width: 230px;
+  width: 15vw;
   height: 100vh;
   box-shadow: 0 0 1px 2px #75757527;
   background-color: #ffffff;
@@ -43,13 +43,13 @@
   z-index: 10;
 }
 .sidePageMenu-open{
-  margin-left: 230px;
+  margin-left: 15vw;
   z-index: 9;
   -webkit-animation-name: openMenu;
   -webkit-animation-duration: 0.7s;
   animation-name: openMenu;
   animation-duration: 0.7s;
-  width: 230px;
+  width: 14vw;
   height: 100%;
   box-shadow: 0 0 1px 2px #75757527;
   background-color: #ffffff;
@@ -64,7 +64,7 @@
   -webkit-animation-duration: 0.7s;
   animation-name: closeMenu;
   animation-duration: 0.7s;
-  width: 230px;
+  width: 14vw;
   height: 100%;
   box-shadow: 0 0 1px 2px #75757527;
   background-color: #ffffff;
@@ -73,13 +73,13 @@
   position: fixed;
 }
 .sideMenu-Logo{
-  margin-top: 70px;
-  margin-bottom: 25px;
-  width: 230px;
+  margin-top: 4vw;
+  margin-bottom: 1.2vw;
+  width: 15vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35.4px;
+  height: 2vw;
 }
 .sideMenu-Logo>img{
   width: 45%;
@@ -91,15 +91,15 @@
 }
 .sideMenu-Profile-img{
   position: relative;
-  width: 67px;
-  height: 67px;
+  width: 4.4vw;
+  height: 4.4vw;
   background-color: #e6e6e6;
   border-radius: 50%;
 }
 .sideMenu-Profile-fr{
-  margin-bottom: 30px;
-  width: 75px;
-  height: 75px;
+  margin-bottom: 1.8vw;
+  width: 4.8vw;
+  height: 4.8vw;
   background-image: linear-gradient(#7ef049aa, #46ce69);
   border-radius: 50%;
   justify-content: center;
@@ -109,21 +109,23 @@
 .sideMenu-Btn{
   position: absolute;
   bottom: 0;
-  width: 230px;
-  height: 45px;
+  width: 15vw;
+  height: 3.2vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  color:#46ce69;
+  color: #46ce69;
   background-color: #f1fff0;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 1vw;
+  font-weight: 500;
   cursor: pointer;
 }
-
+.sideMenu-Btn:hover {
+  background-color: #c6f5c38f;
+}
 .sideMenuItem, .sidePageMenu-tit, .sideMenuItem-select{
   width: 100%;
-  height: 45px;
+  height: 2.8vw;
   text-align: left;
   display: flex;
   align-items: center;
@@ -134,7 +136,7 @@
 }
 .sideMenuItem>p{
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1vw;
 }
 .sideMenuItem:hover{
   background-color: #f1fff0;
@@ -143,13 +145,13 @@
   background-color: #f1fff0;
 }
 .sideMenuItem>span, .sidePageMenu-tit>span {
-  margin-left: 20px;
+  margin-left: 1.04vw;
 }
 
 .sidePageMenu-tit{
   border-top: none;
   border-bottom: 1px solid #f1f1f1;
-  margin-top: 35px;
+  margin-top: 2.2vw;
   background-color: #f1fff0;
   justify-content: space-between;
   display: flex;
@@ -157,8 +159,9 @@
   align-items: center;
 }
 .sidePageMenu-tit>span{
-  color:rgb(75, 75, 75);
+  color: rgb(75, 75, 75);
   font-weight: 600;
+  font-size: 1vw;
 }
 
 .SidePageMenu-text{
@@ -166,32 +169,50 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: 0.8vw;
   align-items: center;
 }
-.SidePageMenu-text-date{
-  font-size: 10px;
-  color:#5e5e5e;
+.SidePageMenu-text>span {
+  font-size:0.8vw;
+}
+.SidePageMenu-text>span.SidePageMenu-text-date{
+  font-size: 0.6vw;
+  color:#aaa;
 }
 /*sidemenu-page close animation*/
 @keyframes openMenu {
   from { margin-left: 0%; }
-  to { margin-left: 230px; }
+  to { margin-left: 15vw; }
 }
 
 /*sidemenu-page open animation*/
 @keyframes closeMenu {
-  from { margin-left: 230px; }
+  from { margin-left: 15vw; }
   to { margin-left: 0%; }
 }
 
 /* content */
 .contents{
-  margin-left: 210px;
-  width:90vw;
+  margin-left: 15vw;
+  width: 90vw;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: #f8f8f8;
   display: flex;
+}
+
+.MuiList-padding {
+  padding-top: 0 !important;
+  padding-bottom: 0.6vw !important;
+}
+
+.MuiListItem-gutters {
+  padding-left: 1vw !important;
+  padding-right: 1vw !important;
+}
+.MuiListItem-root {
+  padding-top: 0.6vw !important;
+  padding-bottom: 0.6vw !important;
+  font-size: 0.9vw;
 }

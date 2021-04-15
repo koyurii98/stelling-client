@@ -18,7 +18,7 @@ const SidePageMenu = (props) => {
                 button
                 // selected={selectedIndex === i}
                 // onClick={() => handleListItemClick(i, data)}
-                style={{height:"45px"}}
+                style={{height:"2.8vw"}}
               >
               <div className="SidePageMenu-text">
                 <span>{menuItem.title}</span>
