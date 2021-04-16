@@ -10,19 +10,19 @@ import { requestGet } from './utils/requestHelper';
 import { SERVER_URL } from './env_config';
 import { AppContext } from './context/index';
 import LoadMask from './components/LoadMask';
+import axios from 'axios';
 
 function App() {
   const { dispatchLoadMask, userLogin } = useContext(AppContext);
 
   const getAuth = useCallback( async (token) =>{
-    const { res, err } = await requestGet(SERVER_URL+"user/token",{ },dispatchLoadMask, token);
-    if(err){
-      console.log(err.message);
-    }
-    if(res){
-      const data = res.data;
-      userLogin(data,token);
-    }
+    const data = await axios.get(`${SERVER_URL}user/token`, {
+      headers: {
+        "authorization": token
+      }
+    });
+
+    console.log(data);
   },[userLogin, dispatchLoadMask]);
 
   useEffect(()=>{

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import HomeIcon from '@material-ui/icons/Home';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import PersonIcon from '@material-ui/icons/Person';
@@ -57,7 +57,7 @@ const subj =  [
 ]
 
 const Base = (props) => {
-  const { dispatchLoadMask, openAlert, userLogout, user } = useState(AppContext);
+  const { dispatchLoadMask, openAlert, userLogout, user } = useContext(AppContext);
   const [ test, setTest ] = useState('');
   const [selectedIndex, setSelectedIndex] = useState('');
   const [item,setItem] = useState([]);

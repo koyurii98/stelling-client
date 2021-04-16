@@ -30,7 +30,7 @@ export const requestGet = async (url, params, dispatchLoadMask, token) => {
 };
 
 // POST.
-export const requestPost = async (url, params, dispatchLoadMask) => {
+export const requestPost = async (url, params, dispatchLoadMask,token) => {
   let responseData = null;
   let error = null;
 
@@ -39,15 +39,14 @@ export const requestPost = async (url, params, dispatchLoadMask) => {
   };
 
   try {
-    const response = await axios.post(url, params, { timeout: 200000 });
+    const response = await axios.post(url, params, { 
+      Authorization:token,
+      timeout: 200000
+    });
     responseData = response?.data;
   } catch(e) {
     error = e;
-    if (e.response.status === 500) {
-      error.message = e.response.data ? e.response.data : e.message;
-    } else {
-      error.message = '요청 중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.';
-    }
+    console.log(e.message);
   } finally {
     if(dispatchLoadMask){
       setTimeout(()=> dispatchLoadMask({ type: LOADMASK_OFF }), 500);
@@ -70,11 +69,7 @@ export const requestPut = async (url, params, dispatchLoadMask) => {
     responseData = response?.data;
   } catch(e) {
     error = e;
-    if (e.response.status === 500) {
-      error.message = e.response.data ? e.response.data : e.message;
-    } else {
-      error.message = '요청 중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.';
-    }
+    console.log(e.message);
   } finally {
     if(dispatchLoadMask){
       setTimeout(() => dispatchLoadMask({ type: LOADMASK_OFF }), 500);
@@ -98,11 +93,7 @@ export const requestDelete = async (url, params, dispatchLoadMask) => {
     responseData = response?.data;
   } catch(e) {
     error = e;
-    if (e.response.status === 500) {
-      error.message = e.response.data ? e.response.data : e.message;
-    } else {
-      error.message = '요청 중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.';
-    }
+    console.log(e.message);
   } finally {
     if(dispatchLoadMask) {
       setTimeout(() => dispatchLoadMask({ type: LOADMASK_OFF }), 500);
