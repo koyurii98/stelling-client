@@ -8,7 +8,7 @@ import Base from '../src/components/layout/Base';
 import { getQueryString }  from '../src/utils/getQueryString';
 import { requestGet } from './utils/requestHelper';
 import { SERVER_URL } from './env_config';
-import { AppContext, AppProvider } from './context/index';
+import { AppContext } from './context/index';
 import LoadMask from './components/LoadMask';
 
 function App() {
@@ -36,26 +36,24 @@ function App() {
 
   return (
     <div className="App">
-      <AppProvider>
-        <BrowserRouter>
-          <React.Suspense fullback={LoadMask}>
-          <Route exact path="/">
-            <Base>
-              <Home/>
-            </Base> 
-          </Route> {/* '/'는 모든곳에 사용되기때문에 구분하기위해 exact 사용  path는 url 경로 */}
-          <Route path="/view">
-            <View/>
-          </Route>
-          <Route path="/write" >
-            <Write/>  
-          </Route> 
-          <Route path="/login">
-            <Login/>
-          </Route>
-          </React.Suspense>
-        </BrowserRouter>
-      </AppProvider>
+      <BrowserRouter>
+        <React.Suspense fullback={LoadMask}>
+        <Route exact path="/">
+          <Base>
+            <Home/>
+          </Base> 
+        </Route> {/* '/'는 모든곳에 사용되기때문에 구분하기위해 exact 사용  path는 url 경로 */}
+        <Route path="/view">
+          <View/>
+        </Route>
+        <Route path="/write" >
+          <Write/>  
+        </Route> 
+        <Route path="/login">
+          <Login/>
+        </Route>
+        </React.Suspense>
+      </BrowserRouter>
     </div>
   );
 }
