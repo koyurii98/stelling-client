@@ -124,7 +124,6 @@ const Base = (props) => {
         <SidePageMenu item={item} test={test}/>
         <div className="contents">
           {props.children}
-
         </div>
       </div>
     </div>
