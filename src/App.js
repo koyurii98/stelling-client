@@ -11,19 +11,18 @@ import { SERVER_URL } from './env_config';
 import { AppContext } from './context/index';
 
 function App() {
-  const { dispatchLoadMask } = useContext(AppContext);
+  const { dispatchLoadMask, userLogin } = useContext(AppContext);
 
-  const getAuth = useCallback( async (tk) =>{
-    const { res, err } = await requestGet(SERVER_URL+"user/token",{ },dispatchLoadMask, tk);
+  const getAuth = useCallback( async (token) =>{
+    const { res, err } = await requestGet(SERVER_URL+"user/token",{ },dispatchLoadMask, token);
     if(err){
       console.log(err.message);
     }
     if(res){
-      const localStorage = window.localStorage;
-      localStorage.setItem("stelling", tk);
-      console.log(res);
+      const data = res.data;
+      userLogin(data,token);
     }
-  },[]);
+  },[userLogin, dispatchLoadMask]);
 
   useEffect(()=>{
     const state = getQueryString("state");

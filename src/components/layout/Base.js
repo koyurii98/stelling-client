@@ -1,8 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import HomeIcon from '@material-ui/icons/Home';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import PersonIcon from '@material-ui/icons/Person';
 import SidePageMenu from './SidePageMenu';
 import { List,ListItem } from '@material-ui/core';
+import { requestPost, requestGet } from '../../utils/requestHelper';
+import { SERVER_URL } from '../../env_config';
+import { AppContext } from '../../context/index'; 
+
 
 const subj =  [ 
   { 
@@ -52,6 +57,7 @@ const subj =  [
 ]
 
 const Base = (props) => {
+  const { dispatchLoadMask, openAlert, userLogout, user } = useState(AppContext);
   const [ test, setTest ] = useState('');
   const [selectedIndex, setSelectedIndex] = useState('');
   const [item,setItem] = useState([]);
@@ -66,12 +72,24 @@ const Base = (props) => {
     }
   },[test,selectedIndex]);
 
+  const onClickLogout = useCallback( async () =>{
+    const { res, err } = await requestPost(SERVER_URL+"user/logout",{ },dispatchLoadMask, user.token);
+    if(err){
+      console.log(err.message);
+    }
+    if(res){
+      openAlert(res.data);
+      userLogout();
+    }
+  },[dispatchLoadMask, user, userLogout, openAlert]);
+
   return(
     <div className="base">
       <div className="header">
         <div className="header-Icons">
           <HomeIcon className="header-Icon" style={{fontSize:"1.3vw"}}/>
-          <PowerSettingsNewIcon className="header-Icon" style={{fontSize:"1.3vw"}}/>
+          <PersonIcon className="header-Icon" style={{fontSize:"1.3vw"}}/>
+          <PowerSettingsNewIcon className="header-Icon" style={{fontSize:"1.3vw"}}  onClick={onClickLogout}/>
         </div>
       </div>
       <div className="base-layout">

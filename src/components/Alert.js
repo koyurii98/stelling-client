@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from 'react';
 
-const Alert = () => {
+const Alert = props => {
+  const { message } = props;
 
   return(
     <div>
-      {/*Alert*/}
+      {message}
     </div>
 
   )

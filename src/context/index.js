@@ -40,6 +40,16 @@ export const AppProvider = props => {
     dispatchModal({ type: MODAL_CLOSE, edit:false });
   }, [dispatchModal]);
 
+  const userLogin = useCallback((data, token)=> {
+    localStorage.setItem("stelling", token);
+    dispatchUser({ type:USER_LOGIN, data:data, token:token});
+  },[dispatchUser, USER_LOGIN]);
+
+  const userLogout = useCallback(()=>{
+    localStorage.removeItem("stelling")
+    dispatchUser({ type:USER_LOGOUT });
+  },[dispatchUser, USER_LOGOUT]);
+
   // 모든 컨텍스트 값.
   const values = {
     openAlert,
@@ -48,8 +58,10 @@ export const AppProvider = props => {
     openModal,
     closeModal,
     dispatchLoadMask,
+    userLogin,
+    userLogout,
+    user,
   };
-
   return (
     <AppContext.Provider value={values}>
       { alert.show && <Alert message={alert.message}/> }
