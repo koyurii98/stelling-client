@@ -9,7 +9,7 @@ export const initialModalState = {
   callback:"",
 };
 
-export const modalReducer = (state = initialModalState, action) =>{
+export const ModalReducer = (state = initialModalState, action) =>{
   switch (action.type) {
     case MODAL_OPEN:
       return {

@@ -1,10 +1,9 @@
 export const LOADMASK_ON = 'LOADMASK_ON';
-
 export const LOADMASK_OFF = 'LOADMASK_OFF';
 
 
 
-export const loadmaskReducer = (state = initialLoadMaskState, action) =>{
+export const LoadMaskReducer = (state , action) =>{
   switch (action.type) {
     case LOADMASK_ON:
       return true

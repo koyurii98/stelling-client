@@ -1,6 +1,7 @@
 export const ALERT_OPEN = 'ALERT_OPEN';
-
+export const ALERT_C_OPEN = 'ALERT_C_OPEN';
 export const ALERT_CLOSE = 'ALERT_CLOSE';
+
 
 export const initialAlertState = {
   show:false,
@@ -10,7 +11,7 @@ export const initialAlertState = {
   confirmFunc:null,
 };
 
-export const alertReducer = (state = initialAlertState, action) =>{
+export const AlertReducer = (state = initialAlertState, action) =>{
   switch (action.type) {
     case ALERT_OPEN:
       return {

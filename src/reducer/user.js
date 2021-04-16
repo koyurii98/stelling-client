@@ -8,7 +8,7 @@ export const initialUserState = {
   data:null,
 };
 
-export const userReducer = (state = initialUserState, action) =>{
+export const UserReducer = (state = initialUserState, action) =>{
   switch (action.type) {
     case USER_LOGIN:
       return {

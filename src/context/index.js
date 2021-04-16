@@ -1,12 +1,13 @@
 import React, { createContext, useReducer, useCallback } from "react";
-import { LoadMaskReducer} from '../reducer/LoadMask';
-import { AlertReducer,initialAlertState, ALERT_OPEN, ALERT_CLOSE } from '../reducer/Alert';
-import { ModalReducer, initialModalState, MODAL_OPEN, MODAL_CLOSE } from '../reducer/Modal';
-import { UserReducer, initialUserState, USER_LOGIN, USER_LOGOUT } from '../reducer/User';
+import { LoadMaskReducer } from '../reducer/loadmask';
+import { AlertReducer,initialAlertState, ALERT_OPEN, ALERT_CLOSE, ALERT_C_OPEN } from '../reducer/alert';
+import { ModalReducer, initialModalState, MODAL_OPEN, MODAL_CLOSE } from '../reducer/modal';
+import { UserReducer, initialUserState, USER_LOGIN, USER_LOGOUT } from '../reducer/user';
 import LoadMask from '../components/LoadMask';
 import Alert from '../components/Alert';
-import Modals from '../components/modals';
-import LoadMask from '../components/LoadMask';
+import Modal from '../components/modals';
+
+export const AppContext = createContext({});
 
 export const AppProvider = props => {
   const [ loadMask, dispatchLoadMask ] = useReducer(LoadMaskReducer, false);
@@ -55,7 +56,7 @@ export const AppProvider = props => {
       { loadMask && <LoadMask/> }
       {
         modal.show && 
-        <Modals
+        <Modal
           show={modal.show}
           name={modal.name}/>
       }
