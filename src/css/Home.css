@@ -68,13 +68,16 @@
   padding-bottom: 0.57vw;
   cursor: pointer;
 }
+.Home-TodoList-Item-Input{
+  border: none;
+  box-shadow: 0px 1px 0px rgb(206, 206, 206);
+  margin: 0px;
+  padding: 2px;
+}
 .Home-TodoList-Item-cnt {
   font-size: 0.84vw;
 }
-.Home-TodoList-Item-cnt input {
-  width: 0.9vw;
-  height: 0.9vw;
-}
+
 .Home-TodoList-Item-ctn{
   margin-left: 0.7vw;
   font-size: 0.84vw;

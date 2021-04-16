@@ -20,7 +20,7 @@ const Memo = () => {
         </div>
       </div>
       <div className="Home-Memo box">
-        <span>메모장</span>
+      { edit ? <textarea></textarea>:<span>텍스트</span> }
       </div>
     </div>
 
