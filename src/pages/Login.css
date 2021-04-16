@@ -2,17 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width:70vw;
+    width:70vh;
     margin:0 auto;
     text-align:center;
     font-family: 'Noto Sans CJK KR', Noto Sans KR, sans-serif;
 }
 
 .logo {
-    width: 12vw;
+    width: 19vh;
     margin: 0 auto;
-    padding: 3vw;
-    padding-top: 6vw;
+    padding: 6vh;
+    padding-top: 10vh;
 }
 
 .logo img {
@@ -24,10 +24,10 @@
 
 .login-form {
     z-index: 1;
-    width: 34vw;
-    height: 25vw;
+    width: 68vh;
+    height: 53vh;
     margin: 0 auto;
-    border-radius: 1vw;
+    border-radius: 2vh;
     box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
     border: solid 1px #fff;
     background-color: #ffffffa8;
@@ -36,8 +36,8 @@
 
 .login-form .login-tit {
     margin: 0 auto;
-    margin-top: 3vw;
-    font-size: 2vw;
+    margin-top: 5vh;
+    font-size: 4vh;
     font-weight: bold;
     text-align: center;
     color: #222222;
@@ -45,9 +45,9 @@
 
 .login-form .google {
     width: 74%;
-    height: 2.6vw;
-    margin: 3.5vw 0 0.4vw;
-    border-radius: 4vw;
+    height: 5.5vh;
+    margin: 7vh 0 0.4vh 0;
+    border-radius: 6vh;
     box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
     border: solid 0.2px #f2f2f2;
     background-color: #ffffff;
@@ -62,9 +62,9 @@
 
 .login-form .kakao {  
     width: 74%;
-    height: 2.6vw;
-    margin: 0.6vw 0 1vw;
-    border-radius: 4vw;
+    height: 5.5vh;
+    margin: 1vh 0 3vh;
+    border-radius: 6vh;
     box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
     border: solid 0.2px #fbe300;
     background-color: #fbe300;
@@ -78,19 +78,19 @@
 }
 
 .login-form .google img {
-    height: 1.9vw;
-    padding-top: 0.3vw;
+    height: 3.8vh;
+    padding-top: 0.6vh;
 }
 
 .login-form .kakao img {
-    height: 2.6vw;
+    height: 5.3vh;
 }
 
 .login-form .privacy {
-    height: 4vw;
+    height: 6vh;
     margin: 0 auto;
-    margin-top: 2.5vw;
-    font-size: 0.75vw;
+    margin-top: 5vh;
+    font-size: 1.5vh;
     text-align: center;
     color: #999999;
 }
@@ -121,8 +121,8 @@
 }
 
 .modal .pri-tit {
-    padding-bottom: 0.8vw;
-    font-size: 1.6vw;
+    padding-bottom: 1.6vh;
+    font-size: 3vh;
     font-weight: bold;
     text-align: center;
     color: #222222;
@@ -135,18 +135,20 @@
 }
   
 .modal__content {
-    border-radius: 1vw;
+    border-radius: 2vh;
     position: relative;
-    width: 32vw;
-    height: 36vw;
+    width: 65vh;
+    height: 75vh;
     background: #fff;
-    padding: 1vw 2vw;
+    padding: 2vh 3vh;
 }
 
 .modal__content .pri-content {
     overflow: auto;
-    height: 32.8vw;
-    text-align: center;
+    height: 68.6vh;
+    font-size: 1.6vh;
+    font-weight: 300;
+    text-align: left;
 }
 .pri-content::-webkit-scrollbar {
     width: 10px;
@@ -164,12 +166,12 @@
 
 .modal__close {
     position: absolute;
-    top: 1vw;
-    right: 1vw;
+    top: 2vh;
+    right: 2vh;
     text-decoration: none;
 }
 .modal__close img {
-    width:1.8vw;
+    width: 3vh;
 }
 
 /**** 개인정보 처리 방침 모달창 css 끝****/
