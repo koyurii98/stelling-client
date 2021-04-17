@@ -19,7 +19,7 @@ export const ModalReducer = (state = initialModalState, action) =>{
         callback:action.callback,
       };
     case MODAL_CLOSE:
-      return state;
+      return initialModalState;
     default:
       return state;
   }

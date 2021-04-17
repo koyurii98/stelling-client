@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'; 
+import { BrowserRouter, Route, useHistory } from 'react-router-dom'; 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import View from './pages/View';
@@ -10,28 +10,29 @@ import { requestGet } from './utils/requestHelper';
 import { SERVER_URL } from './env_config';
 import { AppContext } from './context/index';
 import LoadMask from './components/LoadMask';
-import axios from 'axios';
 
 function App() {
   const { dispatchLoadMask, userLogin } = useContext(AppContext);
+  const token = window.localStorage.getItem("stelling");
 
   const getAuth = useCallback( async (token) =>{
-    const data = await axios.get(`${SERVER_URL}user/token`, {
-      headers: {
-        "authorization": token
-      }
-    });
-
-    console.log(data);
+    const {res,err} = await requestGet(`${SERVER_URL}user/token`, {}, dispatchLoadMask, token);
+    if(err){
+      console.log(err.message);
+    }
+    if(res){
+      console.log(res);
+      userLogin(res.data,token);
+    };
   },[userLogin, dispatchLoadMask]);
 
   useEffect(()=>{
     const state = getQueryString("state");
-    if(state === "success") {
-      const tokenQst = getQueryString("token");
-      const token  = decodeURI(tokenQst);
-      getAuth(token);
-    }
+      if(state === "success") {
+        const tokenQst = getQueryString("token");
+        const token  = decodeURI(tokenQst);
+        getAuth(token);
+      }
   },[getAuth]);
 
   return (
@@ -39,9 +40,13 @@ function App() {
       <BrowserRouter>
         <React.Suspense fullback={LoadMask}>
         <Route exact path="/">
-          <Base>
-            <Home/>
-          </Base> 
+          {token?
+            <Base>
+              <Home/>
+            </Base> 
+            :
+            <Login/>
+          }
         </Route> {/* '/'는 모든곳에 사용되기때문에 구분하기위해 exact 사용  path는 url 경로 */}
         <Route path="/view">
           <View/>
@@ -49,9 +54,6 @@ function App() {
         <Route path="/write" >
           <Write/>  
         </Route> 
-        <Route path="/login">
-          <Login/>
-        </Route>
         </React.Suspense>
       </BrowserRouter>
     </div>

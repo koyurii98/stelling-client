@@ -28,7 +28,7 @@ export const AlertReducer = (state = initialAlertState, action) =>{
       confirmFunc:action.confirmFunc,
     }
     case ALERT_CLOSE:
-      return state;
+      return initialAlertState;
     default:
       return state;
   }

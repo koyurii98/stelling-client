@@ -9,7 +9,6 @@
   display: flex;
   font-weight: 500;
   cursor: pointer;
-  /* border: 1px solid #23df5213; */
   padding-bottom: 0.12vw;
 }
 .color-Btn:hover{
@@ -37,6 +36,26 @@
   box-shadow: 0px 0px 3px #dcdcdc;
   background-color: #ffff;
   border-radius: 0.4vw;
+}
+
+/*modal, alert btn color */
+.Btn-color-green{
+  background-color: #84ffa363;
+  color: #46ce69;
+}
+
+.Btn-color-green:hover{
+  background-color: #84ffa36b;
+  color: #2db14e;
+}
+
+.Btn-color-gray{
+  background-color: #e9e9e96b;
+  color: #929292;
+}
+.Btn-color-gray:hover{
+  background-color: #d6d6d694;
+  color: #757575;
 }
 
 /*spinner*/
@@ -90,3 +109,56 @@
     stroke-dashoffset: -124;
   }
 }
+
+/*Alert*/
+.Alert-box{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content:"center";
+  align-items:"center";
+  background-color: rgba(0, 0, 0, 0.425);
+  z-index: 100;
+}
+.Alert{
+  margin: 0px auto;
+  position: relative;
+  top: 32%;
+  width: 30vw;
+  height: 30vh;
+  background-color: #ffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.363);
+}
+.Alert-Header{
+  color: #525252;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid rgb(236, 236, 236);
+  font-size: 16px;
+}
+.Alert-Body{
+  padding: 12px;
+  font-size: 13px;
+  color: #525252;
+  border-bottom: 1px solid rgb(236, 236, 236);
+  min-height: 80px;
+}
+.Alert-Footer{
+  position: absolute;
+  right: 0;
+  align-items: center;
+  padding: 12px;
+  font-size: 13px;
+  color: #525252;
+}
+.Alert-Btn{
+  width: 70px;
+  height: 30px;
+  border: none;
+  border-radius: 7px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+

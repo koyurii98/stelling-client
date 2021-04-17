@@ -16,13 +16,13 @@ export const AppProvider = props => {
   const [ user, dispatchUser ] = useReducer(UserReducer, initialUserState);
 
   // 기본 알러트. 
-  const openAlert = useCallback((message, error) => {
-    dispatchAlert({ type: ALERT_OPEN, message, error });
+  const openAlert = useCallback((content, error) => {
+    setTimeout(() =>dispatchAlert({ type: ALERT_OPEN, content, error }), 500);
   },[dispatchAlert]);
   
   // 컨펌 알러트.
   const openConfirmAlert = useCallback((content, confirmFunc) => {
-    dispatchAlert({ type: ALERT_C_OPEN, content, confirmFunc });
+    setTimeout(() =>dispatchAlert({ type: ALERT_C_OPEN, content, confirmFunc }), 500);
   }, [dispatchAlert]);
 
   // 알러트 닫기.
@@ -61,10 +61,12 @@ export const AppProvider = props => {
     userLogin,
     userLogout,
     user,
+    alert,
+    modal,
   };
   return (
     <AppContext.Provider value={values}>
-      { alert.show && <Alert message={alert.message}/> }
+      { alert.show && <Alert/> }
       { loadMask && <LoadMask/> }
       {
         modal.show && 

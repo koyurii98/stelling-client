@@ -7,7 +7,7 @@ import { List,ListItem } from '@material-ui/core';
 import { requestPost, requestGet } from '../../utils/requestHelper';
 import { SERVER_URL } from '../../env_config';
 import { AppContext } from '../../context/index'; 
-
+import { Link } from 'react-router-dom';
 
 const subj =  [ 
   { 
@@ -73,22 +73,29 @@ const Base = (props) => {
   },[test,selectedIndex]);
 
   const onClickLogout = useCallback( async () =>{
-    const { res, err } = await requestPost(SERVER_URL+"user/logout",{ },dispatchLoadMask, user.token);
+    const token = window.localStorage.getItem("stelling");
+    const { res, err } = await requestPost(SERVER_URL+"user/logout", { } , dispatchLoadMask, token);
     if(err){
       console.log(err.message);
     }
     if(res){
-      openAlert(res.data);
+      openAlert("로그아웃 되었습니다.");
       userLogout();
     }
   },[dispatchLoadMask, user, userLogout, openAlert]);
 
+  const onClickMy = useCallback(async ()=>{
+
+  })
+ 
   return(
     <div className="base">
       <div className="header">
         <div className="header-Icons">
-          <HomeIcon className="header-Icon" style={{fontSize:"1.3vw"}}/>
-          <PersonIcon className="header-Icon" style={{fontSize:"1.3vw"}}/>
+          <Link to='/'>
+            <HomeIcon className="header-Icon" style={{fontSize:"1.3vw"}}/>
+          </Link>
+          <PersonIcon className="header-Icon" style={{fontSize:"1.3vw"}} onClick={onClickMy}/>
           <PowerSettingsNewIcon className="header-Icon" style={{fontSize:"1.3vw"}}  onClick={onClickLogout}/>
         </div>
       </div>

@@ -6,10 +6,10 @@ import './Login.css';
 const Login = () => {
   const oAuthLogin = useCallback((w)=>{
     if(w === "google"){
-      window.location.href=SERVER_URL+'user/google';
+      window.location.href = SERVER_URL+'user/google';
     }
     if(w === "kakao"){
-      window.location.href=SERVER_URL+'user/kakao';
+      window.location.href = SERVER_URL+'user/kakao';
     }
   },[]); 
 

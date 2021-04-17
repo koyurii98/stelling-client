@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LOADMASK_ON, LOADMASK_OFF } from '../reducer/loadmask';
 // GET.
-export const requestGet = async (url, params, dispatchLoadMask, token) => {
+export const requestGet = async (url,params, dispatchLoadMask, token) => {
   let responseData = null;
   let error = null;
 
@@ -10,11 +10,10 @@ export const requestGet = async (url, params, dispatchLoadMask, token) => {
   };
 
   try {
-    const response = await axios.get(url, {
-      headers:{
-        Authorization:token,
+    const response = await axios.get(url,{
+      headers: {
+        "authorization": token
       },
-      params, 
       timeout: 200000
     });
     responseData = response?.data;
@@ -40,7 +39,9 @@ export const requestPost = async (url, params, dispatchLoadMask,token) => {
 
   try {
     const response = await axios.post(url, params, { 
-      Authorization:token,
+      headers: {
+        "authorization": token,
+      },
       timeout: 200000
     });
     responseData = response?.data;
@@ -56,7 +57,7 @@ export const requestPost = async (url, params, dispatchLoadMask,token) => {
 };
 
 // PUT.
-export const requestPut = async (url, params, dispatchLoadMask) => {
+export const requestPut = async (url, params, dispatchLoadMask,token) => {
   let responseData = null;
   let error = null;
 
@@ -65,7 +66,12 @@ export const requestPut = async (url, params, dispatchLoadMask) => {
   };
 
   try {
-    const response = await axios.put(url, params, { timeout: 200000 });
+    const response = await axios.put(url, params,{
+      headers: {
+        "authorization": token
+      },
+      timeout: 200000
+    });
     responseData = response?.data;
   } catch(e) {
     error = e;
@@ -80,7 +86,7 @@ export const requestPut = async (url, params, dispatchLoadMask) => {
 };
 
 // DELETE.
-export const requestDelete = async (url, params, dispatchLoadMask) => {
+export const requestDelete = async (url, params, dispatchLoadMask,token) => {
   let responseData = null;
   let error = null;
 
@@ -89,7 +95,12 @@ export const requestDelete = async (url, params, dispatchLoadMask) => {
   };
 
   try {
-    const response = await axios.delete(url, { params, timeout: 200000 });
+    const response = await axios.delete(url,params,{
+      headers: {
+        "authorization": token
+      },
+      timeout: 200000
+    });
     responseData = response?.data;
   } catch(e) {
     error = e;
