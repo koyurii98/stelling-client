@@ -148,16 +148,24 @@
   margin-left: 1.04vw;
 }
 
+.tit-close{
+  display: none;
+}
+
+.tit-open{
+  display: flex;
+}
+
 .sidePageMenu-tit{
   border-top: none;
   border-bottom: 1px solid #f1f1f1;
-  margin-top: 2.2vw;
+  margin-top: 2.4vw;
   background-color: #f1fff0;
   justify-content: space-between;
-  display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 .sidePageMenu-tit>span{
   color: rgb(75, 75, 75);
   font-weight: 600;

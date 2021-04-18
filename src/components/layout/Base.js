@@ -61,13 +61,16 @@ const Base = (props) => {
   const [ test, setTest ] = useState('');
   const [selectedIndex, setSelectedIndex] = useState('');
   const [item,setItem] = useState([]);
+  const [ titleCss, setTitleCss] = useState('sidePageMenu-tit tit-close');
 
   const handleListItemClick = useCallback(( data, idx ) => {
     setSelectedIndex(idx);
     if(selectedIndex===idx && test==='sidePageMenu-open'){
       setTest('sidePageMenu-close');
+      setTitleCss('sidePageMenu-tit tit-close');
     }else{
       setTest('sidePageMenu-open');
+      setTitleCss('sidePageMenu-tit tit-open')
       setItem(data);
     }
   },[test,selectedIndex]);
@@ -129,7 +132,7 @@ const Base = (props) => {
             <span>과목 편집</span>
           </div>
         </div>
-        <SidePageMenu item={item} test={test}/>
+        <SidePageMenu item={item} test={test} titleCss={titleCss}/>
         <div className="contents">
           {props.children}
         </div>
