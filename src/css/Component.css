@@ -237,6 +237,7 @@
   border-radius: 0.8vh;
 }
 
+/*모달 애니메이션*/
 @keyframes animateModal {
   0% {
     top: -20vh;
