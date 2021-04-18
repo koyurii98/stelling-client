@@ -2,12 +2,12 @@ import React from 'react';
 import { List,ListItem } from '@material-ui/core';
 
 const SidePageMenu = (props) => {
-  const { test, item } = props;
+  const { test, item, menuTit } = props;
   const pageList = item.pageList;
 
   return(
      <div className={test}>
-      <div className="sidePageMenu-tit">
+      <div className={menuTit}>
         <span>{item.name}</span>
       </div>
       <List component="nav" aria-label="secondary mailbox folder" style={{padding:0}}>

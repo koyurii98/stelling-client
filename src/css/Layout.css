@@ -5,7 +5,7 @@
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%);
   position: fixed;
   background-color: #ffffff;
-  z-index: 100;
+  z-index: 99;
 }
 .header-Icons{
   position: fixed;
@@ -151,13 +151,21 @@
 .sidePageMenu-tit{
   border-top: none;
   border-bottom: 1px solid #f1f1f1;
-  margin-top: 2.2vw;
+  margin-top: 2.3vw;
   background-color: #f1fff0;
   justify-content: space-between;
-  display: flex;
   flex-direction: row;
   align-items: center;
 }
+
+.tit-Open{
+  display: flex;
+}
+
+.tit-Close{
+  display: none;
+}
+
 .sidePageMenu-tit>span{
   color: rgb(75, 75, 75);
   font-weight: 600;
