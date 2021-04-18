@@ -22,7 +22,7 @@ const Test = props => {
         </ModalBody>
         <ModalFooter>
             <button className="modal-cancel">취소</button>
-            <button className="modal-ok">확인</button>
+            <button className="modal-ok">저장</button>
         </ModalFooter>
     </Modal>
   )
