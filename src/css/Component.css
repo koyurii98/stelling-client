@@ -46,6 +46,10 @@
   border-radius: 5px;
   margin-left: 10px;
   font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .Btn-color-green{
@@ -131,6 +135,7 @@
   z-index: 100;
 }
 .Alert{
+  z-index: 100;
   margin: 0px auto;
   position: relative;
   top: 32%;
@@ -177,7 +182,7 @@
   justify-content:"center";
   align-items:"center";
   background-color: rgba(0, 0, 0, 0.425);
-  z-index: 100;
+  z-index: 99;
   display: flex;
   justify-content: center;
   align-items: center;

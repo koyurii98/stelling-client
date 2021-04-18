@@ -1,6 +1,7 @@
 @import '../css/Layout.css';
 @import '../css/Home.css';
 @import './Component.css';
+@import './modal.css';
 
 body {
   /* height: 100%;
