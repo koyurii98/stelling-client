@@ -30,10 +30,10 @@ export const AppProvider = props => {
     dispatchAlert({ type: ALERT_CLOSE })
   }, [dispatchAlert]);
   
-  // 모달 열기.
-  const openModal = useCallback((name, options, callback) => {
-    dispatchModal({ type: MODAL_OPEN, name, options, callback });
-  }, [dispatchModal]);
+  // // 모달 열기.
+  // const openModal = useCallback((name, options, callback) => {
+  //   dispatchModal({ type: MODAL_OPEN, name, options, callback });
+  // }, [dispatchModal]);
 
   // 모달 닫기.
   const closeModal = useCallback(() => {
@@ -55,7 +55,7 @@ export const AppProvider = props => {
     openAlert,
     openConfirmAlert,
     closeAlert,
-    openModal,
+    dispatchModal,
     closeModal,
     dispatchLoadMask,
     userLogin,
