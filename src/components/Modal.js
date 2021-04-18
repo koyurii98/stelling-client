@@ -1,8 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { AppContext } from '../context';
 
 export const Modal = props =>{
-  const { closeModal } = useContext(AppContext);
+
+
+
+
   return(
   <div className="Modal-box">
     <div className="Modal">

@@ -160,7 +160,6 @@
   -webkit-animation-fill-mode:forwards;
 }
 
-
 .Alert-Header{
   font-weight: 600;
   color: #6e6e6e;
@@ -174,17 +173,15 @@
   font-size: 1.7vh;
   color: #525252;
   border-bottom: 1px solid rgb(236, 236, 236);
-  min-height: 12vh;
+  min-height: 10vh;
 }
 .Alert-Footer{
+  padding: 12px;
+  font-size: 13px;
+  color: #525252;
   position: absolute;
   right: 0;
-  align-items: center;
-  padding: 10px;
-  font-size: 12px;
-  color: #525252;
 }
-
 
 /*Modal*/
 .Modal-box{
@@ -207,6 +204,24 @@
   box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.363);
   width: 500px;
   max-height: 700px;
+  z-index: 100;
+  animation-name: animateModal;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode:forwards;
+}
+.Modal-close{
+  margin: 0px auto;
+  background-color: #ffff;
+  border-radius: 7px;
+  box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.363);
+  width: 500px;
+  max-height: 700px;
+  z-index: 100;
+  animation-name: closeModal;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode:forwards;
 }
 .Modal-Header{
   color: #525252;
@@ -232,14 +247,7 @@
   font-size: 13px;
   color: #525252;
   display: flex;
-  justify-content: space-between;
-}
-.Alert-Footer .modal-ok {
-  width: 10vh;
-  height: 3.6vh;
-  background-color: #7ee577;
-  border: 0;
-  border-radius: 0.8vh;
+  float: right;
 }
 
 /*모달 애니메이션*/

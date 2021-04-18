@@ -2,10 +2,17 @@ import React, { useCallback, useContext, useState } from 'react';
 import { AppContext } from '../context/index';
 const Alert = props => {
   const { alert, closeAlert } = useContext(AppContext);
+  const [ alertCls, setAlertCls]=useState('Alert');
+
+  const onClickConfirm = useCallback(()=>{
+    setAlertCls('Alert-close')
+    closeAlert();
+  },[setAlertCls, closeAlert]);
+
 
   return(
     <div className="Alert-box">
-      <div className="Alert">
+      <div className={alertCls}>
         <div className="Alert-Header">
           {alert.err?"오류":"알림"}
         </div>
@@ -17,7 +24,7 @@ const Alert = props => {
             alert.cencleAble &&
               <button className="MA-Btn Btn-color-gray" onCick={closeAlert}>취소</button>
           }
-          <button className="MA-Btn Btn-color-green" onClick={alert.cencleAble ? alert.confirmFunc : closeAlert }>확인</button>
+          <button className="MA-Btn Btn-color-green" onClick={alert.cencleAble ? alert.confirmFunc : onClickConfirm }>확인</button>
         </div>
       </div>
     </div>
