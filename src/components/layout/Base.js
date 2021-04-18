@@ -67,7 +67,7 @@ const Base = (props) => {
     setSelectedIndex(idx);
     if(selectedIndex===idx && test==='sidePageMenu-open'){
       setTest('sidePageMenu-close');
-      setMenuTit('sidePageMenu-tit tit-Close')
+      setTimeout(()=>setMenuTit('sidePageMenu-tit tit-Close'),500);
 
     }else{
       setTest('sidePageMenu-open');

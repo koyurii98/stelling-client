@@ -9,7 +9,16 @@ const WeekCalendar = () => {
         <span>00's Schedule</span>
       </div>
       <div className="Home-Calendar box">
-        {/**캘린더영역 */}
+        <Calendar
+          taskView={false}
+          defaultView='week'
+          scheduleView={['time']}
+          week={{
+            daynames: ['일','월', '화', '수', '목', '금', '토'],
+            startDayOfWeek: 0,
+            narrowWeekend: true
+          }}
+          className="Home-Calendar-Calendar"/>
       </div>
     </div>
   )

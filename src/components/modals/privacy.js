@@ -3,7 +3,7 @@ import { AppContext } from '../../context';
 import { Modal, ModalHeader, ModalFooter, ModalBody } from '../Modal'; 
 
 const Privacy = () => {
-  const { modal, closeModal } = useContext(AppContext);
+  const { modal, closeModal } = useContext(AppContext);  
   
   return(
     <Modal className="Modal-box">

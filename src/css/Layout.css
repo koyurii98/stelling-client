@@ -44,7 +44,7 @@
 }
 .sidePageMenu-open{
   margin-left: 15vw;
-  z-index: 9;
+  z-index: 1;
   -webkit-animation-name: openMenu;
   -webkit-animation-duration: 0.7s;
   animation-name: openMenu;
@@ -59,7 +59,7 @@
 }
 
 .sidePageMenu-close{
-  z-index: 0;
+  z-index: 1;
   -webkit-animation-name: closeMenu;
   -webkit-animation-duration: 0.7s;
   animation-name: closeMenu;

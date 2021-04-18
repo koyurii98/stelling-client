@@ -36,8 +36,12 @@
 /* 캘린더 영역 */
 .Home-Calendar{
   width: 64.4vw;
-  height: 28.4vw;
+  max-height: 28.4vw;
   margin-right: 0.8vw;
+  overflow: scroll;
+}
+.Home-Calendar-Calendar{
+  min-height: 23vh;
 }
 
 /* 투두리스트 영역 */

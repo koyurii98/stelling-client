@@ -3,10 +3,6 @@ import React, { useCallback, useState } from 'react';
 const Memo = () => {
   const [ edit, setEdit ] = useState(false);
 
-  // const handleChange = (event) => {
-  //   setState({ ...state, [event.target.name]: event.target.checked });
-  // };
-  
   const clickEdit = useCallback(()=>{
     setEdit(!edit);
   },[edit]);
