@@ -40,26 +40,25 @@ function App() {
 
 	return (
 		<div className="App">
-			<BrowserRouter>
-				<React.Suspense fullback={LoadMask}>
-					<Route exact path="/">
-						{token ? (
-							<Base>
-								<Home />
-							</Base>
-						) : (
-							<Login />
-						)}
-					</Route>{" "}
-					{/* '/'는 모든곳에 사용되기때문에 구분하기위해 exact 사용  path는 url 경로 */}
-					<Route path="/view">
-						<View />
-					</Route>
-					<Route path="/write">
-						<Write />
-					</Route>
-				</React.Suspense>
-			</BrowserRouter>
+         <BrowserRouter>
+            <React.Suspense fullback={LoadMask}>
+               <Route exact path="/">
+                  <Base>
+                     <Home />
+                  </Base>
+               </Route>{" "}
+               {/* '/'는 모든곳에 사용되기때문에 구분하기위해 exact 사용  path는 url 경로 */}
+               <Route path="/view">
+                  <View />
+               </Route>
+               <Route path="/write">
+                  <Write />
+               </Route>
+               <Route path="/login">
+                  <Login/>
+               </Route>
+            </React.Suspense>
+         </BrowserRouter>
 		</div>
 	);
 }
