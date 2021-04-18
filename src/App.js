@@ -9,16 +9,17 @@ import { requestGet } from "./utils/requestHelper";
 import { SERVER_URL } from "./env_config";
 import { AppContext } from "./context/index";
 import LoadMask from "./components/LoadMask";
+import { MODAL_OPEN } from './reducer/modal';
 
 function App() {
-	const { dispatchLoadMask, userLogin } = useContext(AppContext);
+	const { dispatchLoadMask, userLogin, user, dispatchModal, openAlert } = useContext(AppContext);
 	const token = window.localStorage.getItem("stelling");
 
 	const getAuth = useCallback(
 		async token => {
 			const { res, err } = await requestGet(`${SERVER_URL}user/token`, {}, dispatchLoadMask, token);
 			if (err) {
-				console.log(err.message);
+				openAlert(err.message,true);
 			}
 			if (res) {
 				console.log(res);
@@ -35,6 +36,12 @@ function App() {
 			const token = urls.searchParams.get("token");
 			const parse = decodeURIComponent(token);
 			getAuth(parse);
+		}
+	}, [getAuth]);
+
+	useEffect(() => {
+		if(!user.name){
+			dispatchModal({ type: MODAL_OPEN, name:'mypage', edit:false });
 		}
 	}, [getAuth]);
 

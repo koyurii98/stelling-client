@@ -4,10 +4,11 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import PersonIcon from '@material-ui/icons/Person';
 import SidePageMenu from './SidePageMenu';
 import { List,ListItem } from '@material-ui/core';
-import { requestPost, requestGet } from '../../utils/requestHelper';
+import { requestPost } from '../../utils/requestHelper';
 import { SERVER_URL } from '../../env_config';
 import { AppContext } from '../../context/index'; 
 import { Link } from 'react-router-dom';
+import { MODAL_OPEN } from '../../reducer/modal';
 
 const subj =  [ 
   { 
@@ -57,7 +58,7 @@ const subj =  [
 ]
 
 const Base = (props) => {
-  const { dispatchLoadMask, openAlert, userLogout, user, openModal } = useContext(AppContext);
+  const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal } = useContext(AppContext);
   const [ test, setTest ] = useState('');
   const [selectedIndex, setSelectedIndex] = useState('');
   const [item,setItem] = useState([]);
@@ -80,7 +81,7 @@ const Base = (props) => {
     const token = window.localStorage.getItem("stelling");
     const { res, err } = await requestPost(SERVER_URL+"user/logout", { } , dispatchLoadMask, token);
     if(err){
-      console.log(err.message);
+      openAlert(err.message,true);
     }
     if(res){
       openAlert("로그아웃 되었습니다.");
@@ -89,9 +90,8 @@ const Base = (props) => {
   },[dispatchLoadMask, user, userLogout, openAlert]);
 
   const onClickMy = useCallback(async ()=>{
-    const cont = "하이루루";
-    openModal('test',cont);
-  },[openModal])
+    dispatchModal({ type: MODAL_OPEN, name:'mypage', edit:true });
+  },[dispatchModal])
  
   return(
     <div className="base">
