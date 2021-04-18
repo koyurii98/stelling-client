@@ -4,8 +4,8 @@ import { AppContext } from '../context';
 export const Modal = props =>{
   const { closeModal } = useContext(AppContext);
   return(
-  <div className="Alert-box" onClick={closeModal}>
-    <div className="Alert">
+  <div className="Modal-box">
+    <div className="Modal">
         {props.children}
       </div>
     </div>
@@ -30,7 +30,7 @@ export const ModalBody = props => {
 
 export const ModalFooter = props => {
   return(
-    <div className="Alert-Footer">
+    <div className="Modal-Footer">
         {props.children}
     </div>
   )

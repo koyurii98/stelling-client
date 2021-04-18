@@ -175,16 +175,17 @@
   align-items:"center";
   background-color: rgba(0, 0, 0, 0.425);
   z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Modal{
   margin: 0px auto;
-  position: relative;
-  top: 32%;
-  width: 30vw;
-  height: 30vh;
   background-color: #ffff;
   border-radius: 7px;
   box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.363);
+  width: 500px;
+  max-height: 700px;
 }
 .Modal-Header{
   color: #525252;
@@ -199,9 +200,13 @@
   color: #525252;
   border-bottom: 1px solid rgb(236, 236, 236);
   min-height: 80px;
+  max-height: 500px;
+  overflow: scroll;
 }
 .Modal-Footer{
   padding: 12px;
   font-size: 13px;
   color: #525252;
+  display: flex;
+  justify-content: space-between;
 }

@@ -97,6 +97,7 @@
 
 .login-form .privacy .pri_detail {
     color:#555;
+    text-decoration: underline;
 }
 
 /**** 로그인 폼 css 끝 ****/
@@ -105,74 +106,12 @@
 
 /**** 개인정보 처리 방침 모달창 css ****/
 
-.modal {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(77, 77, 77, .7);
-    transition: all .4s;
-}
-
-.modal .pri-tit {
-    padding-bottom: 1.6vh;
-    font-size: 3vh;
-    font-weight: bold;
-    text-align: center;
-    color: #222222;
-}
-
-  
-.modal:target {
-    visibility: visible;
-    opacity: 1;
-}
-  
-.modal__content {
-    border-radius: 2vh;
-    position: relative;
-    width: 65vh;
-    height: 75vh;
-    background: #fff;
-    padding: 2vh 2.4vh;
-}
-
-.modal__content .pri-content {
-    overflow: auto;
-    height: 68.6vh;
-    font-size: 1.6vh;
+.pri-content {
+    font-size: 1.5vh;
     font-weight: 300;
     padding-left: 1.2vh;
     text-align: left;
-}
-.pri-content::-webkit-scrollbar {
-    width: 10px;
-  }
-.pri-content::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-}
-.pri-content::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 10px;
-}
-
-.modal__close {
-    position: absolute;
-    top: 2vh;
-    right: 2vh;
-    text-decoration: none;
-}
-.modal__close img {
-    width: 3vh;
+    padding: 10px;
 }
 
 /**** 개인정보 처리 방침 모달창 css 끝****/
