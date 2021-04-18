@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Privacy from './privacy';
+import Test from './test';
+import { AppContext } from '../../context/index';
 
 const Modal = props => {
-  const { name, show } = props;
-  switch(name){
+  const { modal } = useContext(AppContext);
+  switch(modal.name){
     case 'privacy' : 
-      return <Privacy show={show} /> ;
+      return <Privacy/> ;
+    case 'test':
+      return <Test/>
     default :
       return;
   }

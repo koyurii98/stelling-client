@@ -22,7 +22,7 @@ export const requestGet = async (url,params, dispatchLoadMask, token) => {
     console.log(e.message);
   } finally {
     if(dispatchLoadMask){
-      setTimeout(() => dispatchLoadMask({ type: LOADMASK_OFF }), 1000);
+      setTimeout(() => dispatchLoadMask({ type: LOADMASK_OFF }), 500);
     };
   }
   return { res: responseData, err:error };
@@ -107,7 +107,7 @@ export const requestDelete = async (url, params, dispatchLoadMask,token) => {
     console.log(e.message);
   } finally {
     if(dispatchLoadMask) {
-      setTimeout(() => dispatchLoadMask({ type: LOADMASK_OFF }), 500);
+      setTimeout(() => dispatchLoadMask({ type: LOADMASK_OFF }), 300);
     };
   }
 

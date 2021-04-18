@@ -3,10 +3,6 @@ import { AppContext } from '../context/index';
 const Alert = props => {
   const { alert, closeAlert } = useContext(AppContext);
 
-  console.log(alert.show);
-  const onClickAlert =()=>{
-    closeAlert();
-  }
   return(
     <div className="Alert-box">
       <div className="Alert">
@@ -19,9 +15,9 @@ const Alert = props => {
         <div className="Alert-Footer">
           {
             alert.cencleAble &&
-              <button className="Alert-Btn Btn-color-gray" onCick={closeAlert}>취소</button>
+              <button className="MA-Btn Btn-color-gray" onCick={closeAlert}>취소</button>
           }
-          <button className="Alert-Btn Btn-color-green" onClick={alert.cencleAble ? alert.confirmFunc : onClickAlert }>확인</button>
+          <button className="MA-Btn Btn-color-green" onClick={alert.cencleAble ? alert.confirmFunc : closeAlert }>확인</button>
         </div>
       </div>
     </div>

@@ -57,7 +57,7 @@ const subj =  [
 ]
 
 const Base = (props) => {
-  const { dispatchLoadMask, openAlert, userLogout, user } = useContext(AppContext);
+  const { dispatchLoadMask, openAlert, userLogout, user, openModal } = useContext(AppContext);
   const [ test, setTest ] = useState('');
   const [selectedIndex, setSelectedIndex] = useState('');
   const [item,setItem] = useState([]);
@@ -85,8 +85,9 @@ const Base = (props) => {
   },[dispatchLoadMask, user, userLogout, openAlert]);
 
   const onClickMy = useCallback(async ()=>{
-
-  })
+    const cont = "하이루루";
+    openModal('test',cont);
+  },[openModal])
  
   return(
     <div className="base">
