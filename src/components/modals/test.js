@@ -1,18 +1,20 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalFooter, ModalBody } from '../Modal'; 
 
-const Test = props => {  
+
+const Test = props => {
+
   return(
-    <Modal className="Alert-box">
-      <ModalHeader>
-          <p>모달헤더임다</p>
-      </ModalHeader>
-      <ModalBody>
-          <p>모달몸텅임다</p>
-      </ModalBody>
-      <ModalFooter>
-          <p>모달푸터임다</p>
-      </ModalFooter>
+    <Modal className="modal-box">
+        <ModalHeader>
+            <div className="modal-tit">알림</div>
+        </ModalHeader>
+        <ModalBody>
+            <div className="modal-content">modal content text</div>
+        </ModalBody>
+        <ModalFooter>
+            <button className="modal-ok">확인</button>
+        </ModalFooter>
     </Modal>
   )
 }

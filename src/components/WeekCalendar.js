@@ -9,11 +9,7 @@ const WeekCalendar = () => {
         <span>00's Schedule</span>
       </div>
       <div className="Home-Calendar box">
-        <Calendar
-          taskView={false}
-          height="10px"
-          className="Home-Calendar-Week"
-        />
+        {/**캘린더영역 */}
       </div>
     </div>
   )
