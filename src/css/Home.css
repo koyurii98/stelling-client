@@ -79,6 +79,9 @@
   padding: 2px;
   font-size: 0.84vw;
 }
+.Home-TodoList-Item-Input:hover {
+  color: gray;
+}
 .Home-TodoList-Item-cnt {
   font-size: 0.84vw;
 }

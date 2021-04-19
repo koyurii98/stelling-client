@@ -203,25 +203,29 @@ const TodoList = () => {
 			</div>
 			<div className="Home-TodoList box">
 				<div className="Home-TodoList-list">
-					{TodoListData.map((data, i) => {
-						return (
-							<div className="Home-TodoList-Item" key={i}>
-								{edit ? (
-									<div className="Home-TodoList-Item-cnt" style={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
-										<input type="text" onClick={() => selectedItemClick(data.id)} onChange={e => todoListValueOnChange(e, data.id)} className="Home-TodoList-Item-Input" value={data.content} />
-										<CancelIcon onClick={() => deleteTodo(data.id)} className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />
-									</div>
-								) : (
-									<div className="Home-TodoList-Item-cnt">
-										<input onChange={e => todoListCheckChange(data.id, data.success, e)} type="checkbox" id={`checkedTodo-${data.id}`} checked={data.success === "Y"} />
-										<label className={data.success === "Y" ? "Home-TodoList-Item-ctn textline" : "Home-TodoList-Item-ctn"} htmlFor={`checkedTodo-${data.id}`}>
-											{data.content}
-										</label>
-									</div>
-								)}
-							</div>
-						);
-					})}
+					{
+						TodoListData[0] ? TodoListData.map((data, i) => {
+							return (
+								<div className="Home-TodoList-Item" key={i}>
+									{edit ? (
+										<div className="Home-TodoList-Item-cnt" style={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
+											<input type="text" onClick={() => selectedItemClick(data.id)} onChange={e => todoListValueOnChange(e, data.id)} className="Home-TodoList-Item-Input" value={data.content} />
+											<CancelIcon onClick={() => deleteTodo(data.id)} className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />
+										</div>
+									) : (
+										<div className="Home-TodoList-Item-cnt">
+											<input onChange={e => todoListCheckChange(data.id, data.success, e)} type="checkbox" id={`checkedTodo-${data.id}`} checked={data.success === "Y"} />
+											<label className={data.success === "Y" ? "Home-TodoList-Item-ctn textline" : "Home-TodoList-Item-ctn"} htmlFor={`checkedTodo-${data.id}`}>
+												{data.content}
+											</label>
+										</div>
+									)}
+								</div>
+							);
+						})
+						:
+						<div className="Home-TodoList-Item Home-TodoList-Item-cnt">아래 버튼을 눌러 할일을 추가해보세요!</div>
+					}
 					{TodoListData.length < 10 && (
 						<div className="Home-TodoList-Btn addbtn" onClick={addTodo}>
 							Add TodoList +

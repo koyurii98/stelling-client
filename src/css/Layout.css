@@ -157,6 +157,9 @@
 	background-color: rgba(0, 0, 0, 0);
 	font-size: 0.9vw;
 }
+.sideMenu-edit-input:hover {
+	color: gray;
+}
 
 .sidePageMenu-tit {
 	border-top: none;
