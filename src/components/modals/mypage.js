@@ -37,7 +37,7 @@ const Mypage = props => {
 				return openAlert(err.message, true);
 			}
 			if (res) {
-				dispatchUser({type:USER_LOGIN, data:res.data})
+				dispatchUser({type:USER_LOGIN, data:res.data});
 				closeModal();
 			}
 		}

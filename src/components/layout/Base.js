@@ -10,8 +10,10 @@ import { AppContext } from "../../context/index";
 import { Link } from "react-router-dom";
 import { MODAL_OPEN } from "../../reducer/modal";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { useHistory } from 'react-router-dom';
 
 const Base = props => {
+	const history = useHistory();
 	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal } = useContext(AppContext);
 	const [test, setTest] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState("");
@@ -65,8 +67,9 @@ const Base = props => {
 		if (res) {
 			openAlert("로그아웃 되었습니다.");
 			userLogout();
+			history.replace("/");
 		}
-	}, [dispatchLoadMask, userLogout, openAlert]);
+	}, [dispatchLoadMask, history, userLogout, openAlert]);
 
 	const onClickMy = useCallback(async () => {
 		dispatchModal({ type: MODAL_OPEN, name: "mypage", edit: true });
