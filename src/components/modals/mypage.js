@@ -3,16 +3,17 @@ import { AppContext } from "../../context";
 import { Modal, ModalHeader, ModalFooter, ModalBody } from "../Modal";
 import { requestPut } from "../../utils/requestHelper";
 import { SERVER_URL } from "../../env_config";
+import { USER_LOGIN } from "../../reducer/user";
 
 const Mypage = props => {
-	const { modal, closeModal, user, dispatchLoadMask, openAlert } = useContext(AppContext);
+	const { modal, closeModal, user, dispatchLoadMask, openAlert, dispatchUser } = useContext(AppContext);
 	const [myInfo, setMyInfo] = useState({ name: "", profile: "" });
 
 	useEffect(() => {
 		if (modal.edit) {
 			setMyInfo({
-				name: user.name,
-				profile: user.profile,
+				name: user.data.name,
+				profile: user.data.profile,
 			});
 		}
 	}, [modal, user]);
@@ -32,11 +33,11 @@ const Mypage = props => {
 				return openAlert(err.message, true);
 			}
 			if (res) {
-				console.log(res);
+				dispatchUser({type:USER_LOGIN, data:res.data})
 				closeModal();
 			}
 		}
-	}, [dispatchLoadMask, openAlert, myInfo, closeModal]);
+	}, [dispatchLoadMask, openAlert, myInfo, closeModal,dispatchUser]);
 
 	const onChange = useCallback(
 		e => {
@@ -65,7 +66,7 @@ const Mypage = props => {
 				</div>
 				<div className="profile-name">
 					<span>이름</span>
-					<input onChange={onChange} className="input-name" placeholder="이름을 입력해주세요"></input>
+					<input onChange={onChange} value={myInfo.name} className="input-name" placeholder="이름을 입력해주세요"></input>
 				</div>
 			</ModalBody>
 			<ModalFooter>

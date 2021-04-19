@@ -72,6 +72,7 @@ export const AppProvider = props => {
 		user,
 		alert,
 		modal,
+		dispatchUser,
 	};
 	return (
 		<AppContext.Provider value={values}>

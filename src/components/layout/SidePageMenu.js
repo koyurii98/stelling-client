@@ -12,7 +12,7 @@ const SidePageMenu = (props) => {
       </div>
       <List component="nav" aria-label="secondary mailbox folder" style={{padding:0}}>
         {
-          pageList ? pageList.map((menuItem,i)=>{
+           pageList && pageList.map((menuItem,i)=>{
             return <ListItem
                 key={i}
                 button
@@ -26,8 +26,6 @@ const SidePageMenu = (props) => {
               </div>
             </ListItem>
           })
-          :
-          <ListItem style={{ fontSize: "0.76vw" }}>아직 페이지가 없습니다. 페이지를 추가해보세요.</ListItem>
         }
       </List>
     </div>

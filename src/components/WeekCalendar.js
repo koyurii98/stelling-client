@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Calendar from '@toast-ui/react-calendar';
 import 'tui-calendar/dist/tui-calendar.css';
+import { AppContext } from '../context';
 
 const WeekCalendar = () => {
+  const { user } = useContext(AppContext);
   return(
     <div>
       <div className="Home-Header">
-        <span>00's Schedule</span>
+        <span>{user.data.name}'s Schedule</span>
       </div>
       <div className="Home-Calendar box">
         <Calendar

@@ -1,36 +1,48 @@
-import React, { useCallback, useState, useContext, useEffect } from 'react';
+import React, { useCallback, useState, useContext, useEffect, memo } from 'react';
 import { AppContext } from "../context/index";
 import { SERVER_URL } from '../env_config';
-import { requestGet } from '../utils/requestHelper';
+import { requestGet, requestPut } from '../utils/requestHelper';
 
 const Memo = () => {
 	const { dispatchLoadMask, openAlert, user } = useContext(AppContext);
   const [ edit, setEdit ] = useState(false);
-  // const [ memo, setMemo ] = useState("");
+  const [ memoData, setMemoData ] = useState('');
+  const [ memoValue, setMemoValue ] = useState('');
 
-  const memoInit = useCallback( async () => {
-    try {
-      const { res, err } = await requestGet(`${SERVER_URL}memo`, {}, dispatchLoadMask, user.token);
-    
-      if(err) {
-        throw new Error(err);
-      }
-
-      if(res?.result) {
-        console.log(res.data);
-      }
-    } catch(err) {
-      openAlert(err.message);
+  const getMemo = useCallback(async()=>{
+    const { res, err } = await requestGet(`${SERVER_URL}memo/one`, {} ,dispatchLoadMask, user.token);
+    if(err){
+      openAlert(err.message,true);
     }
-  }, [openAlert, dispatchLoadMask, user]);
-
-  useEffect(() => {
-    memoInit();
-  }, [memoInit]);
-
-  const clickEdit = useCallback(()=>{
+    if(res){
+      setMemoData(res.data.content);
+    }
+  },[dispatchLoadMask, user]);
+  
+  const clickEdit = useCallback(async()=>{
     setEdit(!edit);
-  },[edit]);
+    
+    if(edit){
+      const { res, err } = await requestPut(`${SERVER_URL}memo`, {
+        content: memoValue,
+      } ,dispatchLoadMask, user.token);
+      if(err){
+        openAlert(err.message,true);
+      }
+      if(res){
+        console.log(res.data);
+        setMemoData(res.data.content);
+      }
+    }
+  },[ edit, memoValue, dispatchLoadMask, user, openAlert ]);
+
+	const onChangeHandler = useCallback((e) => {
+    setMemoValue(e.target.value);
+  }, [setMemoValue]);
+
+  useEffect(()=>{
+    getMemo();
+  },[getMemo])
 
   return(
     <div>
@@ -41,7 +53,21 @@ const Memo = () => {
         </div>
       </div>
       <div className="Home-Memo box">
-      { edit ? <textarea className="Home-Memo-Textarea" placeholder={"이곳에 메모를 작성해보세요!"}></textarea>:<span></span> }
+      { edit ? 
+          <textarea className="Home-Memo-input" placeholder="클릭하여 메모를 입력해주세요"
+          onChange={onChangeHandler}
+          value={memoValue}
+          id="memoValue"></textarea>
+          :
+          <p>
+          { memoData ===""?
+            memoData:
+            <div>
+              <span>&#128523;</span>
+              <span style={{fontSize:"0.9vw"}}>아직 메모가 없어요! 중요한 내용을 기록해보세요!</span>
+            </div>
+          }</p> 
+        }
       </div>
     </div>
 
