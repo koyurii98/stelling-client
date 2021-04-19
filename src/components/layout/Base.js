@@ -251,7 +251,7 @@ const Base = props => {
 						</div>
 					)}
 					<div className="sideMenu-Btn" onClick={editBtnClick}>
-						<span>{edit ? "수정 적용" : "편집 모드"}</span>
+						<span>{edit ? "과목 저장" : "과목 편집"}</span>
 					</div>
 				</div>
 				<SidePageMenu item={item} test={test} menuTit={menuTit} />

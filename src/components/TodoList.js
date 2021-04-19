@@ -224,7 +224,7 @@ const TodoList = () => {
 							);
 						})
 						:
-						<div className="Home-TodoList-Item Home-TodoList-Item-cnt">아래 버튼을 눌러 할일을 추가해보세요!</div>
+						<div className="Home-TodoList-Item Home-TodoList-Item-cnt">&#128071;아래 버튼을 눌러 할일을 추가해보세요!</div>
 					}
 					{TodoListData.length < 10 && (
 						<div className="Home-TodoList-Btn addbtn" onClick={addTodo}>

@@ -15,23 +15,25 @@ const Memo = () => {
       openAlert(err.message,true);
     }
     if(res){
-      setMemoData(res.data.content);
+      setMemoData(res.data);
+      if(edit){
+        setMemoValue(res.data.content);
+      }
     }
-  },[dispatchLoadMask, user]);
+  },[dispatchLoadMask, user, setMemoValue]);
   
   const clickEdit = useCallback(async()=>{
     setEdit(!edit);
-    
     if(edit){
       const { res, err } = await requestPut(`${SERVER_URL}memo`, {
         content: memoValue,
+        id:memoData.id,
       } ,dispatchLoadMask, user.token);
       if(err){
         openAlert(err.message,true);
       }
       if(res){
-        console.log(res.data);
-        setMemoData(res.data.content);
+        setMemoData(res.data);
       }
     }
   },[ edit, memoValue, dispatchLoadMask, user, openAlert ]);
@@ -60,13 +62,14 @@ const Memo = () => {
           id="memoValue"></textarea>
           :
           <p>
-          { memoData ===""?
-            memoData:
+          { memoData.content !== ""?
+            <p style={{fontSize:"0.84vw",padding:"0.7vh"}}>{ memoData.content }</p>:
             <div>
               <span>&#128523;</span>
               <span style={{fontSize:"0.9vw"}}>아직 메모가 없어요! 중요한 내용을 기록해보세요!</span>
             </div>
-          }</p> 
+          }
+          </p> 
         }
       </div>
     </div>

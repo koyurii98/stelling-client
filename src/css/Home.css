@@ -71,6 +71,7 @@
   padding-top: 0.57vw;
   padding-bottom: 0.57vw;
   cursor: pointer;
+  color: #5e5e5e;
 }
 .Home-TodoList-Item-Input{
   border: none;
@@ -124,12 +125,12 @@
   margin-top: 0.5vw;
   height: 16vh;
   padding: 0.8vw;
-  font-size: 0.8vw;
+  font-size: 0.84vw;
   width: 81vw;
 }
 .Home-Memo>p{
   text-align: left;
-  font-size: 0.8vw;
+  font-size: 0.84vw;
 }
 .Home-Memo>p>div{
   text-align: center;
@@ -155,7 +156,7 @@
   border: none;
   width: 80vw;
   height: 14.7vh;
-  font-size: 0.8vw;
+  font-size: 0.84vw;
   resize: none;
   background-color: none;
   color: #5e5e5e;
