@@ -61,6 +61,7 @@
   width: 90%;
   height: 26.4vw;
   padding: 0.8vw 1.2vw 0.8vw 1.2vw;
+  overflow-y: auto;
 }
 .Home-TodoList-Item{
   width: 100%;
