@@ -148,6 +148,7 @@
 	animation-name: animateModal;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
 	-webkit-animation-fill-mode: forwards;
 }
 
@@ -198,6 +199,7 @@
 	z-index: 100;
 	animation-name: animateModal;
 	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
 	animation-timing-function: ease-out;
 	-webkit-animation-fill-mode: forwards;
 }
