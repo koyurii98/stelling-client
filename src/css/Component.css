@@ -26,6 +26,7 @@
 	height: 1.8vw;
 	font-size: 0.76vw;
 	margin-top: 0.8vw;
+	cursor: pointer;
 }
 .addbtn:hover {
 	background-color: #dfdfdfe7;
