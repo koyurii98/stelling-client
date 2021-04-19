@@ -7,14 +7,17 @@ import { USER_LOGIN } from "../../reducer/user";
 
 const Mypage = props => {
 	const { modal, closeModal, user, dispatchLoadMask, openAlert, dispatchUser } = useContext(AppContext);
-	const [myInfo, setMyInfo] = useState({ name: "", profile: "" });
+	const [myInfo, setMyInfo] = useState({ name: "", profile: null, preview: null });
 
 	useEffect(() => {
-		if (modal.edit) {
-			setMyInfo({
-				name: user.data.name,
-				profile: user.data.profile,
-			});
+		if(user?.data) {
+			if (modal.edit) {
+				setMyInfo({
+					name: user.data.name,
+					profile: user.data.profile,
+					preview: user.data.profile
+				});
+			}
 		}
 	}, [modal, user]);
 
@@ -41,14 +44,18 @@ const Mypage = props => {
 	}, [dispatchLoadMask, openAlert, myInfo, closeModal,dispatchUser]);
 
 	const addUpdateProfile = useCallback((e)=>{
-		console.log("profile change")
-		// setMyInfo({...myInfo, profile:e.target.files[0]})
-		console.log(e.target.files[0]);
-	},[myInfo]);
+		if(!e.target?.files || !e.target.files[0]) {
+			return openAlert("선택된 파일이 없습니다.");
+		}
+
+		const file = e.target.files[0];
+		const preview = URL.createObjectURL(file);
+
+		setMyInfo({ ...myInfo, profile: file, preview });
+	},[myInfo, openAlert]);
 
 	const onChange = useCallback(
 		e => {
-			console.log(e.target.value);
 			setMyInfo({ ...myInfo, name: e.target.value });
 		},
 		[myInfo],
@@ -69,9 +76,9 @@ const Mypage = props => {
 					</div>
 				)}
 				<div className="profile-img">
-					<input type="file" id="profile" value={myInfo.profile}></input>
+					<input type="file" id="profile" onChange={addUpdateProfile} onClick={e => e.target.value = null}></input>
 					<label htmlFor="profile">
-						<img alt="img" src={myInfo.profile ? myInfo.profile : "./img/user.png"} onChange={addUpdateProfile}></img>
+						<img alt="img" src={myInfo.preview ? myInfo.preview : "./img/user.png"} style={{ cursor: "pointer" }}></img>
 					</label>
 				</div>
 				<div className="profile-name">

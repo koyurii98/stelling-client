@@ -11,54 +11,6 @@ import { Link } from "react-router-dom";
 import { MODAL_OPEN } from "../../reducer/modal";
 import CancelIcon from "@material-ui/icons/Cancel";
 
-// const subj = [
-// 	{
-// 		name: "국어",
-// 		key: "ko",
-// 		pageList: [
-// 			{ title: "국어1주차", content: "국어1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "국어1주차", content: "국어1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "국어1주차", content: "국어1주차 내용입니다람쥐", date: "2021-04-01" },
-// 		],
-// 	},
-// 	{
-// 		name: "수학",
-// 		key: "su",
-// 		pageList: [
-// 			{ title: "수학1주차", content: "수학1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "수학1주차", content: "수학1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "수학1주차", content: "수학1주차 내용입니다람쥐", date: "2021-04-01" },
-// 		],
-// 	},
-// 	{
-// 		name: "과학",
-// 		key: "ga",
-// 		pageList: [
-// 			{ title: "과학1주차", content: "과학1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "과학1주차", content: "과학1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "과학1주차", content: "과학1주차 내용입니다람쥐", date: "2021-04-01" },
-// 		],
-// 	},
-// 	{
-// 		name: "사회",
-// 		key: "sa",
-// 		pageList: [
-// 			{ title: "사회1주차", content: "사회1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "사회1주차", content: "사회1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "사회1주차", content: "사회1주차 내용입니다람쥐", date: "2021-04-01" },
-// 		],
-// 	},
-// 	{
-// 		name: "한국사",
-// 		key: "han",
-// 		pageList: [
-// 			{ title: "한국사1주차", content: "한국사1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "한국사1주차", content: "한국사1주차 내용입니다람쥐", date: "2021-04-01" },
-// 			{ title: "한국사1주차", content: "한국사1주차 내용입니다람쥐", date: "2021-04-01" },
-// 		],
-// 	},
-// ];
-
 const Base = props => {
 	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal } = useContext(AppContext);
 	const [test, setTest] = useState("");
@@ -228,7 +180,7 @@ const Base = props => {
 					</div>
 					<div className="sideMenu-Profile">
 						<div className="sideMenu-Profile-fr">
-							<img src="../img/user.png" className="sideMenu-Profile-img" alt="profile" />
+							<img src={user?.data?.profile ? user.data.profile : "../img/user.png"} className="sideMenu-Profile-img" alt="profile" />
 						</div>
 					</div>
 					<List className="sideMenu-Menu" component="nav" aria-label="secondary mailbox folder">
