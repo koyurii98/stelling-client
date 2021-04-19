@@ -5,18 +5,6 @@ import { SERVER_URL } from "../env_config";
 import { requestGet, requestPost, requestPut, requestDelete } from "../utils/requestHelper";
 import moment from "moment";
 
-// const Todolist = [
-// 	{ id: 0, content: "과제하기1", success: false },
-// 	{ id: 1, content: "과제하기2", success: true },
-// 	{ id: 2, content: "과제하기3", success: true },
-// 	{ id: 3, content: "과제하기4", success: true },
-// 	{ id: 4, content: "과제하기5", success: false },
-// 	{ id: 5, content: "과제하기6", success: true },
-// 	{ id: 6, content: "과제하기7", success: false },
-// 	{ id: 7, content: "과제하기8", success: true },
-// 	{ id: 8, content: "과제하기9", success: false },
-// ];
-
 const TodoList = () => {
 	const { dispatchLoadMask, openAlert, user } = useContext(AppContext);
 	const [TodoListData, setTodoListData] = useState([]);
@@ -224,7 +212,7 @@ const TodoList = () => {
 							);
 						})
 						:
-						<div className="Home-TodoList-Item Home-TodoList-Item-cnt">&#128071;아래 버튼을 눌러 할일을 추가해보세요!</div>
+						<div className="Home-TodoList-Item Home-TodoList-Item-cnt" style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",textAlign:"center"}}>&#128071;아래 버튼을 눌러<br/> 할일을 추가해보세요!</div>
 					}
 					{TodoListData.length < 10 && (
 						<div className="Home-TodoList-Btn addbtn" onClick={addTodo}>

@@ -38,7 +38,7 @@
   width: 64.4vw;
   max-height: 28.4vw;
   margin-right: 0.8vw;
-  overflow: scroll;
+  overflow:hidden;
 }
 .Home-Calendar-Calendar{
   min-height: 23vh;
@@ -129,11 +129,11 @@
   font-size: 0.84vw;
   width: 81vw;
 }
-.Home-Memo>p{
+.Home-Memo-Null>p{
   text-align: left;
   font-size: 0.84vw;
 }
-.Home-Memo>p>div{
+.Home-Memo-Null>div{
   text-align: center;
   font-size: 2vw;
   display: flex;

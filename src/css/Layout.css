@@ -88,6 +88,7 @@
 	justify-content: center;
 	align-items: center;
 	display: flex;
+
 }
 .sideMenu-Profile-img {
 	position: relative;
@@ -95,6 +96,8 @@
 	height: 4.4vw;
 	background-color: #e6e6e6;
 	border-radius: 50%;
+  object-fit: cover;
+
 }
 .sideMenu-Profile-fr {
 	margin-bottom: 1.8vw;

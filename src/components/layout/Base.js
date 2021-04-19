@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import HomeIcon from "@material-ui/icons/Home";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import PersonIcon from "@material-ui/icons/Person";
 import SidePageMenu from "./SidePageMenu";
 import { List, ListItem } from "@material-ui/core";
 import { requestDelete, requestGet, requestPost, requestPut } from "../../utils/requestHelper";
@@ -172,7 +171,6 @@ const Base = props => {
 					<Link to="/">
 						<HomeIcon className="header-Icon" style={{ fontSize: "1.3vw" }} />
 					</Link>
-					<PersonIcon className="header-Icon" style={{ fontSize: "1.3vw" }} onClick={onClickMy} />
 					<PowerSettingsNewIcon className="header-Icon" style={{ fontSize: "1.3vw" }} onClick={onClickLogout} />
 				</div>
 			</div>
@@ -182,7 +180,7 @@ const Base = props => {
 						<img src="../img/stelling_logo.png" alt="logo" />
 					</div>
 					<div className="sideMenu-Profile">
-						<div className="sideMenu-Profile-fr">
+						<div className="sideMenu-Profile-fr" onClick={onClickMy}>
 							<img src={user?.data?.profile ? user.data.profile : "../img/user.png"} className="sideMenu-Profile-img" alt="profile" />
 						</div>
 					</div>
@@ -197,7 +195,7 @@ const Base = props => {
 								);
 							})
 							:
-							<ListItem>아래 버튼을 눌러 그룹을 추가해보세요!</ListItem>
+							<ListItem style={{display:"flex", justifyContent:"center", alignItems:"center", textAlign:"center", color:"#5e5e5e", fontSize:"0.9vw"}}>&#128071;아래 버튼을 눌러<br/> 할일을 추가해보세요!</ListItem>
 						}
 					</List>
 					{edit && (

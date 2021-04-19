@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -9,10 +9,10 @@ import Base from "../src/components/layout/Base";
 // import { SERVER_URL } from "./env_config";
 import { AppContext } from "./context/index";
 import LoadMask from "./components/LoadMask";
-// import { MODAL_OPEN } from "./reducer/modal";
+import { MODAL_OPEN } from "./reducer/modal";
 
 function App() {
-	const { user } = useContext(AppContext);
+	const { user, dispatchModal } = useContext(AppContext);
 	// const token = window.localStorage.getItem("stelling");
 
 	// const getAuth = useCallback(
@@ -39,11 +39,11 @@ function App() {
 	// 	}
 	// }, [getAuth]);
 
-	// useEffect(() => {
-	// 	if (!user.name) {
-	// 		dispatchModal({ type: MODAL_OPEN, name: "mypage", edit: false });
-	// 	}
-	// }, [getAuth]);
+	useEffect(() => {
+		if (user.token && !user.data.name) {
+			dispatchModal({ type: MODAL_OPEN, name: "mypage", edit: false });
+		}
+	}, [dispatchModal, user]);
 
 	return (
 		<div className="App">

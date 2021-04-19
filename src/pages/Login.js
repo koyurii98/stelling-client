@@ -3,9 +3,10 @@ import { AppContext } from "../context";
 import { SERVER_URL } from "../env_config";
 import { requestGet } from "../utils/requestHelper";
 import "./Login.css";
+import { MODAL_OPEN } from "../reducer/modal";
 
 const Login = () => {
-	const { openModal, userLogin, openAlert, dispatchLoadMask } = useContext(AppContext);
+	const { userLogin, openAlert, dispatchLoadMask, dispatchModal } = useContext(AppContext);
 
 	const oAuthLogin = useCallback(w => {
 		if (w === "google") {
@@ -17,8 +18,8 @@ const Login = () => {
 	}, []);
 
 	const onClickPrivacy = useCallback(() => {
-		openModal("privacy");
-	}, [openModal]);
+		dispatchModal({ type: MODAL_OPEN, name:"privacy"});
+	}, [dispatchModal]);
 
 	const userAuth = useCallback(
 		async token => {

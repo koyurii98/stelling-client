@@ -14,20 +14,19 @@ const Memo = () => {
     if(err){
       openAlert(err.message,true);
     }
-    if(res){
+    if(res.data){
       setMemoData(res.data);
-      if(edit){
-        setMemoValue(res.data.content);
-      }
+      setMemoValue(res.data.content);
     }
-  },[dispatchLoadMask, user, setMemoValue, edit, openAlert]);
+  },[dispatchLoadMask, user, setMemoValue, openAlert]);
   
   const clickEdit = useCallback(async()=>{
     setEdit(!edit);
+    console.log(memoData);
     if(edit){
       const { res, err } = await requestPut(`${SERVER_URL}memo`, {
         content: memoValue,
-        id:memoData.id,
+        id:memoData && memoData.id,
       } ,dispatchLoadMask, user.token);
       if(err){
         openAlert(err.message,true);
@@ -61,15 +60,12 @@ const Memo = () => {
           value={memoValue}
           id="memoValue"></textarea>
           :
-          <p>
-          { memoData.content !== ""?
+          <div className="Home-Memo-Null">
+          { memoData && memoData.content !== ""?
             <p style={{fontSize:"0.84vw",padding:"0.7vh"}}>{ memoData.content }</p>:
-            <div>
-              <span>&#128523;</span>
-              <span style={{fontSize:"0.9vw"}}>아직 메모가 없어요! 중요한 내용을 기록해보세요!</span>
-            </div>
+            <span style={{fontSize:"0.9vw"}}>아직 메모가 없어요! 메모수정 버튼을 눌러 중요한 내용을 기록해보세요!</span>
           }
-          </p> 
+          </div> 
         }
       </div>
     </div>
