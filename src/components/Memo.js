@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext, useEffect, memo } from 'react';
+import React, { useCallback, useState, useContext, useEffect } from 'react';
 import { AppContext } from "../context/index";
 import { SERVER_URL } from '../env_config';
 import { requestGet, requestPut } from '../utils/requestHelper';
@@ -20,7 +20,7 @@ const Memo = () => {
         setMemoValue(res.data.content);
       }
     }
-  },[dispatchLoadMask, user, setMemoValue]);
+  },[dispatchLoadMask, user, setMemoValue, edit, openAlert]);
   
   const clickEdit = useCallback(async()=>{
     setEdit(!edit);
@@ -36,7 +36,7 @@ const Memo = () => {
         setMemoData(res.data);
       }
     }
-  },[ edit, memoValue, dispatchLoadMask, user, openAlert ]);
+  },[ edit, memoValue, dispatchLoadMask, user, openAlert, memoData ]);
 
 	const onChangeHandler = useCallback((e) => {
     setMemoValue(e.target.value);
