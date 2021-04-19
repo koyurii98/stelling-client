@@ -36,12 +36,13 @@ const Mypage = props => {
 			if (err) {
 				return openAlert(err.message, true);
 			}
-			if (res) {
-				dispatchUser({type:USER_LOGIN, data:res.data});
+			if (res.data) {
 				closeModal();
+				dispatchUser({type:USER_LOGIN, data:res.data});
+				openAlert("프로필등록이 완료되었습니다.");
 			}
 		}
-	}, [openAlert, myInfo, closeModal,dispatchUser]);
+	}, [openAlert, myInfo, closeModal, dispatchUser ]);
 
 	const addUpdateProfile = useCallback((e)=>{
 		if(!e.target.files || !e.target.files[0]) {
