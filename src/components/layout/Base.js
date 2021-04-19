@@ -232,14 +232,18 @@ const Base = props => {
 						</div>
 					</div>
 					<List className="sideMenu-Menu" component="nav" aria-label="secondary mailbox folder">
-						{groups.map((data, i) => {
-							return (
-								<ListItem key={i} style={{ height: "2.8vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }} button={!edit} selected={selectedIndex === i} onClick={() => (edit ? null : handleListItemClick(data, i))}>
-									{edit ? <input className="sideMenu-edit-input" type="text" value={data.title} onClick={() => selectGroupItem(data.id)} onChange={e => onChangeGroupValue(e, data.id)} /> : <p>{data.title}</p>}
-									{edit && <CancelIcon onClick={() => groupDelete(data.id)} className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />}
-								</ListItem>
-							);
-						})}
+						{
+							groups[0] ? groups.map((data, i) => {
+								return (
+									<ListItem key={i} style={{ height: "2.8vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }} button={!edit} selected={selectedIndex === i} onClick={() => (edit ? null : handleListItemClick(data, i))}>
+										{edit ? <input className="sideMenu-edit-input" type="text" value={data.title} onClick={() => selectGroupItem(data.id)} onChange={e => onChangeGroupValue(e, data.id)} /> : <p>{data.title}</p>}
+										{edit && <CancelIcon onClick={() => groupDelete(data.id)} className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />}
+									</ListItem>
+								);
+							})
+							:
+							<ListItem>아래 버튼을 눌러 그룹을 추가해보세요!</ListItem>
+						}
 					</List>
 					{edit && (
 						<div className="Home-TodoList-Btn addbtn" onClick={groupAdd}>
@@ -247,7 +251,7 @@ const Base = props => {
 						</div>
 					)}
 					<div className="sideMenu-Btn" onClick={editBtnClick}>
-						<span>{edit ? "편집 해제" : "편집 모드"}</span>
+						<span>{edit ? "수정 적용" : "편집 모드"}</span>
 					</div>
 				</div>
 				<SidePageMenu item={item} test={test} menuTit={menuTit} />
