@@ -6,7 +6,7 @@ import { SERVER_URL } from "../../env_config";
 import { USER_LOGIN } from "../../reducer/user";
 
 const Mypage = props => {
-	const { modal, closeModal, user, dispatchLoadMask, openAlert, dispatchUser } = useContext(AppContext);
+	const { modal, closeModal, user, openAlert, dispatchUser } = useContext(AppContext);
 	const [myInfo, setMyInfo] = useState({ name: "", profile: null, preview: null });
 
 	useEffect(() => {
@@ -32,7 +32,7 @@ const Mypage = props => {
 			forms.append("name", myInfo.name);
 			forms.append("profile", myInfo.profile);
 
-			const { res, err } = await requestPut(`${SERVER_URL}user/`, forms, dispatchLoadMask, token);
+			const { res, err } = await requestPut(`${SERVER_URL}user/`, forms, null, token);
 			if (err) {
 				return openAlert(err.message, true);
 			}
@@ -41,10 +41,10 @@ const Mypage = props => {
 				closeModal();
 			}
 		}
-	}, [dispatchLoadMask, openAlert, myInfo, closeModal,dispatchUser]);
+	}, [openAlert, myInfo, closeModal,dispatchUser]);
 
 	const addUpdateProfile = useCallback((e)=>{
-		if(!e.target?.files || !e.target.files[0]) {
+		if(!e.target.files || !e.target.files[0]) {
 			return openAlert("선택된 파일이 없습니다.");
 		}
 
@@ -76,7 +76,7 @@ const Mypage = props => {
 					</div>
 				)}
 				<div className="profile-img">
-					<input type="file" id="profile" onChange={addUpdateProfile} onClick={e => e.target.value = null}></input>
+					<input type="file" id="profile" onChange={addUpdateProfile}></input>
 					<label htmlFor="profile">
 						<img alt="img" src={myInfo.preview ? myInfo.preview : "./img/user.png"} style={{ cursor: "pointer" }}></img>
 					</label>
