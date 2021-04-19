@@ -7,6 +7,7 @@ export const initialModalState = {
   name:"",
   options:"",
   callback:"",
+  edit:false,
 };
 
 export const ModalReducer = (state = initialModalState, action) =>{
@@ -17,6 +18,7 @@ export const ModalReducer = (state = initialModalState, action) =>{
         name:action.name,
         options:action.options,
         callback:action.callback,
+        edit:action.edit,
       };
     case MODAL_CLOSE:
       return initialModalState;

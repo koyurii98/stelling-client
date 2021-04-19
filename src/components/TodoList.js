@@ -1,75 +1,240 @@
-import React, { useState, useCallback } from 'react';
-import CancelIcon from '@material-ui/icons/Cancel';
+import React, { useState, useCallback, useContext, useEffect } from "react";
+import CancelIcon from "@material-ui/icons/Cancel";
+import { AppContext } from "../context/index";
+import { SERVER_URL } from "../env_config";
+import { requestGet, requestPost, requestPut, requestDelete } from "../utils/requestHelper";
+import moment from "moment";
 
-const Todolist = [
-  {id:0, content:"과제하기1", success:false},
-  {id:1, content:"과제하기2", success:true}, 
-  {id:2, content:"과제하기3", success:true},
-  {id:3, content:"과제하기4", success:true}, 
-  {id:4, content:"과제하기5", success:false}, 
-  {id:5, content:"과제하기6", success:true}, 
-  {id:6, content:"과제하기7", success:false}, 
-  {id:7, content:"과제하기8", success:true}, 
-  {id:8, content:"과제하기9", success:false}, 
-]
+// const Todolist = [
+// 	{ id: 0, content: "과제하기1", success: false },
+// 	{ id: 1, content: "과제하기2", success: true },
+// 	{ id: 2, content: "과제하기3", success: true },
+// 	{ id: 3, content: "과제하기4", success: true },
+// 	{ id: 4, content: "과제하기5", success: false },
+// 	{ id: 5, content: "과제하기6", success: true },
+// 	{ id: 6, content: "과제하기7", success: false },
+// 	{ id: 7, content: "과제하기8", success: true },
+// 	{ id: 8, content: "과제하기9", success: false },
+// ];
 
 const TodoList = () => {
-  const [TodoListData, setTodoListData] = useState(Todolist);
-  const [ edit, setEdit ] = useState(false);
-  const clickEdit = useCallback(()=>{
-    setEdit(!edit);
-  },[edit]);
+	const { dispatchLoadMask, openAlert, user } = useContext(AppContext);
+	const [TodoListData, setTodoListData] = useState([]);
+	const [edit, setEdit] = useState(false);
+	const [selectedItem, setSelectedItem] = useState(0);
 
-  const addTodo = useCallback(()=>{
-    const init = {
-      content:"",
-      success:"",
-    }
-    setTodoListData(TodoListData.concat(init));
-  },[]);
+	const todoInit = useCallback(async () => {
+		try {
+			const { res, err } = await requestGet(`${SERVER_URL}todo`, {}, dispatchLoadMask, user.token);
 
+			if (err) {
+				throw new Error(err);
+			}
 
-  return(
-    <div>
-      <div className="Home-Header">
-      <p className="Home-TodoList-tit">Todo List</p>
-        <div className="Home-Header-btn color-Btn" onClick={clickEdit}>
-          { edit ? "목록저장":" 목록수정" }
-        </div>
-      </div>
-      <div className="Home-TodoList box">
-       
-        <div className="Home-TodoList-list">
-          { Todolist.map((data,i)=>{
-              return <div className="Home-TodoList-Item" key={i}>
-               
-                {
-                  edit ?
-                  <>
-                    <div className="Home-TodoList-Item-cnt" style={{display:"flex", justifyContent:"space-between", width:"95%"}}>
-                      <input className="Home-TodoList-Item-Input" value={data.content}></input>
-                      <CancelIcon className="Home-TodoList-Icon" style={{fontSize:"15px",color:"#afafaf"}}/>
-                    </div>
-                  </>:
-                  <div className="Home-TodoList-Item-cnt">
-                   <input type="checkbox" id="checkedTodo" checked={data.success}/>
-                   <label className={ data.success ? "Home-TodoList-Item-ctn textline" : "Home-TodoList-Item-ctn" } htmlFor="checkedTodo">{data.content}</label>
-                 </div>
-                }
-              </div>
-            })
-          }
-          { Todolist.length < 10 &&
-            <div className="Home-TodoList-Btn addbtn" onClick={addTodo}>
-              Add TodoList +
-            </div>
-          }
-        </div>
-      </div>
-    </div>
+			if (res?.result) {
+				setTodoListData(res.data);
+			}
+		} catch (err) {
+			openAlert(err.message);
+		}
+	}, [openAlert, dispatchLoadMask, user]);
 
-  
-  )
-}
+	useEffect(() => {
+		todoInit();
+	}, [todoInit]);
+
+	const addTodo = useCallback(async () => {
+		try {
+			const { res, err } = await requestPost(
+				`${SERVER_URL}todo`,
+				{
+					content: "new todo list item",
+					start: moment().format("YYYY-MM-DD"),
+					end: moment().format("YYYY-MM-DD"),
+					success: "N",
+				},
+				null,
+				user.token,
+			);
+
+			if (err) {
+				throw new Error(err);
+			}
+
+			if (res?.result) {
+				setTodoListData(
+					TodoListData.concat({
+						...res.data,
+					}),
+				);
+			}
+		} catch (err) {
+			openAlert(err.message);
+		}
+	}, [TodoListData, openAlert, user]);
+
+	const updateTodo = useCallback(async () => {
+		try {
+			const { err } = await requestPut(
+				`${SERVER_URL}todo/multiple`,
+				{
+					todos: TodoListData,
+				},
+				null,
+				user.token,
+			);
+
+			if (err) {
+				throw new Error(err);
+			}
+		} catch (err) {
+			openAlert(err.message);
+		}
+	}, [openAlert, TodoListData, user]);
+
+	const deleteTodo = useCallback(
+		async id => {
+			try {
+				const { err } = await requestDelete(`${SERVER_URL}todo?id=${id}`, {}, null, user.token);
+
+				if (err) {
+					throw new Error(err);
+				}
+
+				const filterdItems = TodoListData.filter(value => value.id !== id);
+
+				setTodoListData(filterdItems);
+			} catch (err) {
+				openAlert(err.message);
+			}
+		},
+		[openAlert, TodoListData, user],
+	);
+
+	const todoListValueOnChange = useCallback(
+		(e, id) => {
+			if (id || selectedItem) {
+				const editTodo = TodoListData.map(value => {
+					if ((id || selectedItem) === value.id) {
+						return {
+							...value,
+							content: e.target.value,
+						};
+					}
+
+					return {
+						...value,
+					};
+				});
+
+				setTodoListData(editTodo);
+			}
+		},
+		[selectedItem, TodoListData],
+	);
+
+	const todoListCheckChange = useCallback(
+		async (id, success, e) => {
+			try {
+				if (e.target.id || id) {
+					let values = {};
+
+					const editTodo = TodoListData.map(value => {
+						if (id === value.id) {
+							values = { ...value, success: success === "Y" ? "N" : "Y" };
+							return {
+								...value,
+								success: success === "Y" ? "N" : "Y",
+							};
+						}
+
+						return {
+							...value,
+						};
+					});
+
+					const { res, err } = await requestPut(
+						`${SERVER_URL}todo`,
+						{
+							...values,
+						},
+						null,
+						user.token,
+					);
+
+					if (err) {
+						throw new Error(err);
+					}
+
+					if (res?.result) {
+						setTodoListData(editTodo);
+					}
+				}
+			} catch (err) {
+				openAlert(err.message);
+			}
+		},
+		[TodoListData, openAlert, user],
+	);
+
+	const selectedItemClick = useCallback(id => {
+		setSelectedItem(id);
+	}, []);
+
+	const clickEdit = useCallback(async () => {
+		try {
+			if (edit) {
+				updateTodo();
+			}
+		} catch (err) {
+			openAlert(err.message);
+		} finally {
+			setEdit(!edit);
+		}
+	}, [edit, openAlert, updateTodo]);
+
+	return (
+		<div>
+			<div className="Home-Header">
+				<p className="Home-TodoList-tit">Todo List</p>
+				<div className="Home-Header-btn color-Btn" onClick={clickEdit}>
+					{edit ? "목록저장" : " 목록수정"}
+				</div>
+			</div>
+			<div className="Home-TodoList box">
+				<div className="Home-TodoList-list">
+					{
+						TodoListData[0] ? TodoListData.map((data, i) => {
+							return (
+								<div className="Home-TodoList-Item" key={i}>
+									{edit ? (
+										<div className="Home-TodoList-Item-cnt" style={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
+											<input type="text" onClick={() => selectedItemClick(data.id)} onChange={e => todoListValueOnChange(e, data.id)} className="Home-TodoList-Item-Input" value={data.content} />
+											<CancelIcon onClick={() => deleteTodo(data.id)} className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />
+										</div>
+									) : (
+										<div className="Home-TodoList-Item-cnt">
+											<input onChange={e => todoListCheckChange(data.id, data.success, e)} type="checkbox" id={`checkedTodo-${data.id}`} checked={data.success === "Y"} />
+											<label className={data.success === "Y" ? "Home-TodoList-Item-ctn textline" : "Home-TodoList-Item-ctn"} htmlFor={`checkedTodo-${data.id}`}>
+												{data.content}
+											</label>
+										</div>
+									)}
+								</div>
+							);
+						})
+						:
+						<div className="Home-TodoList-Item Home-TodoList-Item-cnt">&#128071;아래 버튼을 눌러 할일을 추가해보세요!</div>
+					}
+					{TodoListData.length < 10 && (
+						<div className="Home-TodoList-Btn addbtn" onClick={addTodo}>
+							Add TodoList +
+						</div>
+					)}
+				</div>
+			</div>
+		</div>
+	);
+};
 
 export default TodoList;

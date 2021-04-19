@@ -1,228 +1,234 @@
 /*btn css*/
 
-.color-Btn{
-  border-radius: 20px;
-  background-color: #c7ffc37a;
-  color: #46ce69;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  font-weight: 500;
-  cursor: pointer;
-  padding-bottom: 0.12vw;
+.color-Btn {
+	border-radius: 20px;
+	background-color: #c7ffc37a;
+	color: #46ce69;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-weight: 500;
+	cursor: pointer;
+	padding-bottom: 0.12vw;
 }
-.color-Btn:hover{
-  background-color: #c6f5c38f;
-}
-
-.addbtn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f1f1f1af;
-  color: rgb(160, 160, 160);
-  border-radius: 2vw;
-  width: 50%;
-  height: 1.8vw;
-  font-size: 0.76vw;
-  margin-top: 0.8vw;
-}
-.addbtn:hover{
-  background-color: #dfdfdfe7;
-  color:rgb(136, 136, 136);
+.color-Btn:hover {
+	background-color: #c6f5c38f;
 }
 
-.box{
-  box-shadow: 0px 0px 3px #dcdcdc;
-  background-color: #ffff;
-  border-radius: 0.4vw;
+.addbtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f1f1f1af;
+	color: rgb(160, 160, 160);
+	border-radius: 2vw;
+	width: 50%;
+	height: 1.8vw;
+	font-size: 0.76vw;
+	margin-top: 0.8vw;
+	cursor: pointer;
+}
+.addbtn:hover {
+	background-color: #dfdfdfe7;
+	color: rgb(136, 136, 136);
+}
+
+.box {
+	box-shadow: 0px 0px 3px #dcdcdc;
+	background-color: #ffff;
+	border-radius: 0.4vw;
 }
 
 /*modal, alert btn & color */
-.MA-Btn{
-  width: 10vh;
-  height: 4vh;
-  border: none;
-  border-radius: 0.8vh;
-  font-size: 1.6vh;
+.MA-Btn {
+	width: 70px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	margin-left: 10px;
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
-.Btn-color-green{
-  background: rgb(198 246 175);
+.Btn-color-green {
+	background-color: #84ffa363;
+	color: #46ce69;
 }
 
-.Btn-color-green:focus{ 	
-  border: none;
-  outline:none;
-  }
-
-.Btn-color-green:hover{
-  background: rgb(175, 243, 143);
+.Btn-color-green:hover {
+	background-color: #84ffa36b;
+	color: #2db14e;
 }
 
-.Btn-color-gray{
-  background-color: #e9e9e96b;
-  color: #929292;
+.Btn-color-gray {
+	background-color: #e9e9e96b;
+	color: #929292;
 }
-.Btn-color-gray:hover{
-  background-color: #d6d6d694;
-  color: #757575;
+.Btn-color-gray:hover {
+	background-color: #d6d6d694;
+	color: #757575;
 }
 
 /*spinner*/
 
-.spinner-box{
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  justify-content:"center";
-  align-items:"center";
-  background-color: rgba(0, 0, 0, 0.425);
-  z-index: 1000;
+.spinner-box {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	justify-content: "center";
+	align-items: "center";
+	background-color: rgba(0, 0, 0, 0.425);
+	z-index: 1000;
 }
 
 .spinner {
-  animation: rotate 2s linear infinite;
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -25px 0 0 -25px;
-  width: 50px;
-  height: 50px;
-  z-index: 1001;
+	animation: rotate 2s linear infinite;
+	z-index: 2;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -25px 0 0 -25px;
+	width: 50px;
+	height: 50px;
+	z-index: 1001;
 }
 
 .spinner-path {
-  stroke: #4ce272;
-  stroke-linecap: round;
-  animation: dash 1.5s ease-in-out infinite;
-  z-index: 1000;
+	stroke: #4ce272;
+	stroke-linecap: round;
+	animation: dash 1.5s ease-in-out infinite;
+	z-index: 1000;
 }
 
 @keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 @keyframes dash {
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
-  }
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
 }
 
 /*Alert*/
-.Alert-box{
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content:center;
-  align-items:center;
-  background-color: rgba(0, 0, 0, 0.425);
-  z-index: 100;
-  animation-name: animateModal;
-  animation-duration: 0.4s;
-  animation-timing-function: ease-out;
-  -webkit-animation-fill-mode:forwards;
+.Alert-box {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.425);
+	z-index: 200;
 }
-.Alert{
-  margin: 0px auto;
-  position: relative;
-  top: 32%;
-  width: 30vw;
-  height: 27.6vh;
-  background-color: #ffff;
-  border-radius: 0.8vh;
-  box-shadow: 0px 0px 10px rgb(75 75 75 / 36%);
+.Alert {
+	z-index: 199;
+	margin: 0px auto;
+	position: relative;
+	top: 32%;
+	width: 30vw;
+	height: 27.6vh;
+	background-color: #ffff;
+	border-radius: 0.8vh;
+	box-shadow: 0px 0px 10px rgb(75 75 75 / 36%);
+	animation-name: animateModal;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
 }
 
-.Alert-Header{
-  font-weight: 600;
-  color: #6e6e6e;
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid rgb(236, 236, 236);
-  font-size: 16px;
+.Alert-Header {
+	font-weight: 600;
+	color: #6e6e6e;
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid rgb(236, 236, 236);
+	font-size: 16px;
 }
-.Alert-Body{
-  padding: 1.5vh 2vh;
-  font-size: 1.7vh;
-  color: #525252;
-  border-bottom: 1px solid rgb(236, 236, 236);
-  min-height: 10vh;
+.Alert-Body {
+	padding: 1.5vh 2vh;
+	font-size: 1.7vh;
+	color: #525252;
+	border-bottom: 1px solid rgb(236, 236, 236);
+	min-height: 10vh;
 }
-.Alert-Footer{
-  padding: 12px;
-  font-size: 13px;
-  color: #525252;
-  position: absolute;
-  right: 0;
+.Alert-Footer {
+	padding: 12px;
+	font-size: 13px;
+	color: #525252;
+	position: absolute;
+	right: 0;
 }
 
 /*Modal*/
-.Modal-box{
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content:"center";
-  align-items:"center";
-  background-color: rgba(0, 0, 0, 0.425);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.Modal-box {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: "center";
+	align-items: "center";
+	background-color: rgba(0, 0, 0, 0.425);
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.Modal{
-  margin: 0px auto;
-  background-color: #ffff;
-  border-radius: 7px;
-  box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.363);
-  width: 500px;
-  max-height: 700px;
-  z-index: 100;
-  animation-name: animateModal;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-in;
-  -webkit-animation-fill-mode:forwards;
+.Modal {
+	margin: 0px auto;
+	background-color: #ffff;
+	border-radius: 7px;
+	box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.363);
+	width: 500px;
+	max-height: 700px;
+	z-index: 100;
+	animation-name: animateModal;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+	-webkit-animation-fill-mode: forwards;
 }
 
-.Modal-Header{
-  color: #525252;
-  padding: 1.5vh 2vh;
-  text-align: left;
-  border-bottom: 1px solid rgb(236, 236, 236);
-  font-size: 2.2vh;
+.Modal-Header {
+	color: #6d6d6d;
+	padding: 1.5vh 2vh;
+	text-align: left;
+	border-bottom: 1px solid rgb(236, 236, 236);
+	font-size: 2.2vh;
 }
 .Modal-Header .modal-tit {
-  font-weight: 600;
+	font-weight: 600;
 }
-.Modal-Body{
-  padding: 1.5vh 2vh;
-  font-size: 1.7vh;
-  color: #525252;
-  border-bottom: 1px solid rgb(236, 236, 236);
-  max-height: 500px;
-  overflow: scroll;
-  min-height: 12vh;
+.Modal-Body {
+	padding: 1.5vh 2vh;
+	font-size: 1.7vh;
+	color: #525252;
+	border-bottom: 1px solid rgb(236, 236, 236);
+	max-height: 500px;
+	overflow: scroll;
+	min-height: 12vh;
 }
-.Modal-Footer{
-  padding: 12px;
-  font-size: 13px;
-  color: #525252;
-  display: flex;
-  float: right;
+.Modal-Footer {
+	padding: 12px;
+	font-size: 13px;
+	color: #525252;
+	display: flex;
+	float: right;
 }
 .modal-ok {
   width: 10vh;
@@ -286,10 +292,12 @@
 
 /*모달 애니메이션*/
 @keyframes animateModal {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
+	0% {
+		top: -20vh;
+		opacity: 0;
+	}
+	100% {
+		top: 0;
+		opacity: 1;
+	}
 }

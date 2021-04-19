@@ -36,8 +36,12 @@
 /* 캘린더 영역 */
 .Home-Calendar{
   width: 64.4vw;
-  height: 28.4vw;
+  max-height: 28.4vw;
   margin-right: 0.8vw;
+  overflow: scroll;
+}
+.Home-Calendar-Calendar{
+  min-height: 23vh;
 }
 
 /* 투두리스트 영역 */
@@ -57,6 +61,7 @@
   width: 90%;
   height: 26.4vw;
   padding: 0.8vw 1.2vw 0.8vw 1.2vw;
+  overflow-y: auto;
 }
 .Home-TodoList-Item{
   width: 100%;
@@ -67,12 +72,17 @@
   padding-top: 0.57vw;
   padding-bottom: 0.57vw;
   cursor: pointer;
+  color: #5e5e5e;
 }
 .Home-TodoList-Item-Input{
   border: none;
-  box-shadow: 0px 1px 0px rgb(206, 206, 206);
+  outline: none;
   margin: 0px;
   padding: 2px;
+  font-size: 0.84vw;
+}
+.Home-TodoList-Item-Input:hover {
+  color: gray;
 }
 .Home-TodoList-Item-cnt {
   font-size: 0.84vw;
@@ -116,9 +126,25 @@
   margin-top: 0.5vw;
   height: 16vh;
   padding: 0.8vw;
-  font-size: 0.8vw;
+  font-size: 0.84vw;
   width: 81vw;
 }
+.Home-Memo>p{
+  text-align: left;
+  font-size: 0.84vw;
+}
+.Home-Memo>p>div{
+  text-align: center;
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 16vh;
+  color: #919191;
+}
+
+
 .Home-memo-btn {
   width: 4.6vw;
   height: 1.8vw;
@@ -126,4 +152,14 @@
   position: relative;
   right: 0;
   margin-bottom: 0.35vw;
+}
+.Home-Memo-input{
+  border: none;
+  width: 80vw;
+  height: 14.7vh;
+  font-size: 0.84vw;
+  resize: none;
+  background-color: none;
+  color: #5e5e5e;
+  padding: 0.8vh;
 }
