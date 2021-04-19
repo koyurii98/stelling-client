@@ -27,6 +27,7 @@ const Mypage = props => {
 			const forms = new FormData();
 
 			forms.append("name", myInfo.name);
+			forms.append("profile", myInfo.profile);
 
 			const { res, err } = await requestPut(`${SERVER_URL}user/`, forms, dispatchLoadMask, token);
 			if (err) {
@@ -38,6 +39,12 @@ const Mypage = props => {
 			}
 		}
 	}, [dispatchLoadMask, openAlert, myInfo, closeModal,dispatchUser]);
+
+	const addUpdateProfile = useCallback((e)=>{
+		console.log("profile change")
+		// setMyInfo({...myInfo, profile:e.target.files[0]})
+		console.log(e.target.files[0]);
+	},[myInfo]);
 
 	const onChange = useCallback(
 		e => {
@@ -62,7 +69,10 @@ const Mypage = props => {
 					</div>
 				)}
 				<div className="profile-img">
-					<img alt="img" src={user.img ? user.img : "./img/user.png"}></img>
+					<input type="file" id="profile" value={myInfo.profile}></input>
+					<label htmlFor="profile">
+						<img alt="img" src={myInfo.profile ? myInfo.profile : "./img/user.png"} onChange={addUpdateProfile}></img>
+					</label>
 				</div>
 				<div className="profile-name">
 					<span>이름</span>

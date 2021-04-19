@@ -3,14 +3,18 @@
   .profile-img{
     width: 10vh;
     height: 10vh;
+    margin: 2vh auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-img>label>img{
+    height: 11.1vh;
+    width: 11.1vh;
     border: 0.6vh solid #4fe674a9;
     border-radius: 20vh;
-    margin: 2vh auto;
   }
-  .profile-img>img{
-    height: 10vh;
-    width: 10vh;
-  }
+  
   .profile-first{
     display: flex;
     flex-direction: column;
@@ -47,13 +51,14 @@
   }
   .profile-name .input-name {
     border: none;
-    border-bottom: 0.4vh solid rgb(207, 207, 207);
-    width: 28vh;
+    border-bottom: 0.3vh solid rgb(207, 207, 207);
+    width: 20vh;
     height: 4vh;
     margin-top: 0.7vh;
     margin-bottom: 0.7vh;
     padding-left: 1vh;
     padding-top: 0.4vh;
     font-size: 1.8vh;
+    text-align: left;
   }
   
