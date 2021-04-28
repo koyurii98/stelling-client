@@ -73,6 +73,7 @@
     float: right;
     outline: none;
     font-family: NotoSansKr;
+    resize: none;
 }
 .btns {
     display: inline-block;
