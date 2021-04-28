@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Calendar from '@toast-ui/react-calendar';
 import 'tui-calendar/dist/tui-calendar.css';
 import { AppContext } from '../context';
+import moment from 'moment';
 
 const WeekCalendar = () => {
   const { user } = useContext(AppContext);
@@ -11,7 +12,19 @@ const WeekCalendar = () => {
         <span>{user.data.name}'s Schedule</span>
       </div>
       <div className="Home-Calendar box">
-        <Calendar
+      <Calendar
+        height="900px"
+        disableClick={false}
+        isReadOnly={false}
+        month={{
+          startDayOfWeek: 0
+        }}
+        scheduleView
+        useDetailPopup
+        useCreationPopup
+        taskView={false}
+      />
+        {/* <Calendar
           taskView={false}
           defaultView='week'
           scheduleView={['time']}
@@ -20,7 +33,7 @@ const WeekCalendar = () => {
             startDayOfWeek: 0,
             narrowWeekend: true
           }}
-          className="Home-Calendar-Calendar"/>
+          className="Home-Calendar-Calendar"/> */}
       </div>
     </div>
   )
