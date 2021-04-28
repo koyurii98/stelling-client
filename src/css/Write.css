@@ -4,10 +4,9 @@
     background-color: #f8f8f8;
 }
 #content {
-    float: right;
-    width: 165vh;
+    width: 96%;
     height: 100vh;
-    margin-right: 4vh;
+    margin: 0 auto;
 }
 .title {
     display: inline-block;
@@ -15,7 +14,7 @@
 .title_btns {
     display: block;
     margin: 2vh 0;
-    margin-top: 6.6vh;
+    margin-top: 4%;
 }
 .write-tit{
     display: inline-block;
@@ -62,7 +61,7 @@
 .input-content {
     display: block;
     width: 100%;
-    height: 76vh;
+    height: 75.2%;
     border-radius: 1vh;
     margin-top: 2.4vh;
     padding: 1.6vh 0vh 0vh 1.8vh;
