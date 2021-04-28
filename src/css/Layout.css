@@ -118,13 +118,16 @@
 	justify-content: center;
 	align-items: center;
 	color: #46ce69;
-	background-color: #f1fff0;
+	background-color: #60e38140;
 	font-size: 1vw;
 	font-weight: 500;
 	cursor: pointer;
+	transition: 0.25s;
 }
 .sideMenu-Btn:hover {
-	background-color: #c6f5c38f;
+	transition: 0.25s;
+    background-color: #64d882;
+    color:#fff;
 }
 .sideMenuItem,
 .sidePageMenu-tit,

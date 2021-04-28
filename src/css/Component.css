@@ -27,10 +27,12 @@
 	font-size: 0.76vw;
 	margin-top: 0.8vw;
 	cursor: pointer;
+	transition: 0.25s;
 }
 .addbtn:hover {
 	background-color: #dfdfdfe7;
 	color: rgb(136, 136, 136);
+	transition: 0.25s;
 }
 
 .box {
@@ -54,22 +56,26 @@
 }
 
 .Btn-color-green {
-	background-color: #84ffa363;
-	color: #46ce69;
+	transition: 0.25s;
+	background-color: #60e38140;
+    color: #46ce69;
 }
 
 .Btn-color-green:hover {
-	background-color: #84ffa36b;
-	color: #2db14e;
+	transition: 0.25s;
+    background-color: #64d882;
+    color:#fff;
 }
 
 .Btn-color-gray {
-	background-color: #e9e9e96b;
-	color: #929292;
+	transition: 0.25s;
+	background-color: #6e6e6e29;
+    color: #858585;
 }
 .Btn-color-gray:hover {
-	background-color: #d6d6d694;
-	color: #757575;
+	transition: 0.25s;
+    background-color: #6e6e6ead;
+    color:#fff;
 }
 
 /*spinner*/

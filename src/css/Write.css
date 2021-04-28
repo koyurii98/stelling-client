@@ -1,7 +1,7 @@
 #wrap {
     width: 100%;
     height: 100vh;
-    background-color: #f8f8f8;;
+    background-color: #f8f8f8;
 }
 #content {
     float: right;
@@ -15,6 +15,7 @@
 .title_btns {
     display: block;
     margin: 2vh 0;
+    margin-top: 6.6vh;
 }
 .write-tit{
     display: inline-block;
@@ -29,45 +30,64 @@
     font-size: 2vh;
     color: #a2a2a2;
 }
+
+.input-content::-webkit-input-placeholder {
+    color:#aaa;
+}
+.input-content::-ms-input-placeholder {
+    color:#aaa;
+}
+.input-title::-webkit-input-placeholder {
+    color:#aaa;
+}
+.input-title::-ms-input-placeholder {
+    color:#aaa;
+}
+
 .input-title {
     display: block;
     width: 100%;
     height: 5vh;
     border-radius: 1vh;
-    padding: 0.5vh 0vh 0vh 1.2vh;
+    padding: 0.3vh 0vh 0vh 1.8vh;
     font-size:1.8vh;
     box-sizing: border-box;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #f6f6f6;
     background-color: #ffffff;
     float: right;
+    outline: none;
 }
 
 .input-content {
     display: block;
     width: 100%;
-    height: 80vh;
+    height: 76vh;
     border-radius: 1vh;
     margin-top: 2.4vh;
-    padding: 0.5vh 0vh 0vh 1.2vh;
+    padding: 1.6vh 0vh 0vh 1.8vh;
     box-sizing: border-box;
     font-size:1.8vh;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #f6f6f6;
     background-color: #ffffff;
     float: right;
+    outline: none;
+    font-family: NotoSansKr;
 }
 .btns {
     display: inline-block;
     float:right;
+    margin-top: 0.3vh;
 }
 .btns .cancel {
+    transition: 0.25s;
     display: inline-block;
     width: 11vh;
     height: 3.6vh;
     border: 0;
     border-radius: 3vh;
-    background-color: #6e6e6e40;
+    background-color: #6e6e6e29;
     font-size: 1.8vh;
     color: #858585;
     margin-right: 2vh;
@@ -82,23 +102,26 @@
     height: 3.6vh;
     border: 0;
     border-radius: 3vh;
-    background-color: #46ce6933;
+    background-color: #60e38140;
     font-size: 1.8vh;
     color: #46ce69;
     text-align: center;
     padding-top: 0.3vh;
     box-sizing: border-box;
+    transition: 0.25s;
 }
 .btns a {
     text-decoration: none;
 }
 
 .btns .write-ok:hover{
-    background-color: #46ce69;
+    transition: 0.25s;
+    background-color: #64d882;
     color:#fff;
 }
 
 .btns .cancel:hover {
+    transition: 0.25s;
     background-color: #6e6e6ead;
     color:#fff;
 }

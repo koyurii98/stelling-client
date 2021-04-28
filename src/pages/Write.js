@@ -18,7 +18,7 @@ const Write = () => {
         </div>
 
         <input className="input-title" placeholder="제목을 입력해주세요."></input>
-        <input className="input-content" placeholder="내용을 입력해주세요."></input>
+        <textarea className="input-content" placeholder="내용을 입력해주세요."></textarea>
       </div>
     </div>
   )
