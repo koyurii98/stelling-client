@@ -5,7 +5,7 @@
 }
 #content {
     width: 96%;
-    height: 100vh;
+    height: 90%;
     margin: 0 auto;
 }
 .title {
@@ -13,8 +13,8 @@
 }
 .title_btns {
     display: block;
-    margin: 2vh 0;
-    margin-top: 4%;
+    margin: 1.6% 0;
+    margin-top: 4.2%;
 }
 .write-tit{
     display: inline-block;
@@ -30,12 +30,6 @@
     color: #a2a2a2;
 }
 
-.input-content::-webkit-input-placeholder {
-    color:#aaa;
-}
-.input-content::-ms-input-placeholder {
-    color:#aaa;
-}
 .input-title::-webkit-input-placeholder {
     color:#aaa;
 }
@@ -61,7 +55,7 @@
 .input-content {
     display: block;
     width: 100%;
-    height: 75.2%;
+    height: 83%;
     border-radius: 1vh;
     margin-top: 2.4vh;
     padding: 1.6vh 0vh 0vh 1.8vh;
@@ -92,7 +86,7 @@
     color: #858585;
     margin-right: 2vh;
     text-align: center;
-    padding-top: 0.3vh;
+    padding-top: 1.3%;
     box-sizing: border-box;
 }
 
@@ -106,7 +100,7 @@
     font-size: 1.8vh;
     color: #46ce69;
     text-align: center;
-    padding-top: 0.3vh;
+    padding-top: 1.3%;
     box-sizing: border-box;
     transition: 0.25s;
 }
