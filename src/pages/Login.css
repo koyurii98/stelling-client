@@ -51,13 +51,15 @@
     box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
     border: solid 0.2px #f2f2f2;
     background-color: #ffffff;
+    transition: 0.25s;
 }
 .login-form button.google:focus{ 	
     border: none;
     outline:none;
     }
 .login-form .google:hover {
-    box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+    box-shadow: 0 4px 7px 0 rgb(0 0 0 / 20%);
+    transition: 0.25s;
 }
 
 .login-form .kakao {  
@@ -68,13 +70,15 @@
     box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
     border: solid 0.2px #fbe300;
     background-color: #fbe300;
+    transition: 0.25s;
 }
 .login-form button.kakao:focus{ 	
     border: none;
     outline:none;
     }
 .login-form .kakao:hover {
-    box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+    box-shadow: 0 4px 7px 0 rgb(0 0 0 / 20%);
+    transition: 0.25s;
 }
 
 .login-form .google img {
