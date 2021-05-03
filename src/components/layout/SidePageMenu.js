@@ -1,16 +1,27 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { List,ListItem } from '@material-ui/core';
 import { useHistory } from 'react-router';
+import { requestGet } from '../../utils/requestHelper';
+import { SERVER_URL } from "../../env_config";
+import { AppContext } from "../../context/index";
+import moment from 'moment';
 
 const SidePageMenu = (props) => {
+  const { modal, dispatchLoadMask, user, openAlert } = useContext(AppContext);
   const { test, item, menuTit, sidePageBtn } = props;
-  const pageList = item.pageList;
+  const [ pageList, setPageList ] = useState(item.pages);
   const history = useHistory();
 
   const addPage = useCallback(() =>{
-    console.log("Add");
-    history.push('/write')
-  },[history]);
+    history.push({
+      pathname:'/write',
+      state: { item},
+    })
+  },[history, item]);
+
+  useEffect(()=>{
+    setPageList(item.pages);
+  },[item]);
 
   return(
      <div className={test}>
@@ -20,15 +31,15 @@ const SidePageMenu = (props) => {
       <div className="sidePageMenu">
         <List component="nav" aria-label="secondary mailbox folder" style={{padding:0}}>
           {
-            pageList && pageList.map((menuItem,i)=>{
+            pageList && pageList.map((data,i)=>{
               return <ListItem
                   key={i}
                   button
                   style={{height:"2.8vw"}}
                 >
                 <div className="SidePageMenu-text">
-                  <span>{menuItem.title}</span>
-                  <span className="SidePageMenu-text-date">{menuItem.date}</span>
+                  <span>{data.title}</span>
+                  <span className="SidePageMenu-text-date">{moment(data.createdAt).format('YYYY-MM-DD')}</span>
                 </div>
               </ListItem>
             })

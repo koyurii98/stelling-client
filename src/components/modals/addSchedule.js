@@ -13,7 +13,7 @@ const Mypage = props => {
         일정내용
 			</ModalBody>
 			<ModalFooter>
-        푸터~~
+        일정추가 버튼영역
 			</ModalFooter>
 		</Modal>
 	);

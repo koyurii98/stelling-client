@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { MODAL_OPEN } from "../../reducer/modal";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { useHistory } from 'react-router-dom';
+import SelectInput from "@material-ui/core/Select/SelectInput";
 
 const Base = props => {
 	const history = useHistory();
@@ -179,9 +180,11 @@ const Base = props => {
 			</div>
 			<div className="base-layout">
 				<div className="sideMenu">
-					<div className="sideMenu-Logo">
-						<img src="../img/stelling_logo.png" alt="logo" />
-					</div>
+					<Link to="/">
+						<div className="sideMenu-Logo">
+							<img src="../img/stelling_logo.png" alt="logo" />
+						</div>
+					</Link>
 					<div className="sideMenu-Profile">
 						<div className="sideMenu-Profile-fr" onClick={onClickMy}>
 							<img src={user?.data?.profile ? user.data.profile : "../img/user.png"} className="sideMenu-Profile-img" alt="profile" />

@@ -6,7 +6,6 @@ import TodoList from './../components/TodoList';
 const Home = () => {
   return(
     <div className="Home-Layout">
-      
       <div className="Home-Layout-row">
         <WeekCalendar/>
         <TodoList/>
