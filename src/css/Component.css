@@ -2,17 +2,20 @@
 
 .color-Btn {
 	border-radius: 20px;
-	background-color: #c7ffc37a;
 	color: #46ce69;
+    background-color: #60e38140;
 	justify-content: center;
 	align-items: center;
 	display: flex;
 	font-weight: 500;
 	cursor: pointer;
 	padding-bottom: 0.12vw;
+	transition: 0.25s;
 }
 .color-Btn:hover {
-	background-color: #c6f5c38f;
+	transition: 0.25s;
+    background-color: #64d882;
+    color: #fff;
 }
 
 .addbtn {
@@ -285,12 +288,10 @@
   font-size: 2vh;
 }
 .profile-name .input-name {
-  background: #eee;
   border: 0;
   width: 28vh;
   height: 4vh;
   margin-top: 1vh;
-  border-radius: 0.8vh;
   padding-left: 1vh;
   padding-top: 0.4vh;
   font-size: 1.8vh;
