@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Privacy from './privacy';
-import Test from './test';
 import Mypage from './mypage'
+import AddSchedule from './addSchedule'
 import { AppContext } from '../../context/index';
 
 const Modal = props => {
@@ -10,9 +10,9 @@ const Modal = props => {
     case 'privacy' : 
       return <Privacy/> ;
     case 'mypage' : 
-    return <Mypage/> ;
-    case 'test':
-      return <Test/>
+      return <Mypage/> ;
+    case 'addSchedule' : 
+      return <AddSchedule/> ;
     default :
       return;
   }

@@ -21,6 +21,7 @@ const Base = props => {
 	const [groups, setGroups] = useState([]);
 	const [edit, setEdit] = useState(false);
 	const [selectGroup, setSelectGroup] = useState(0);
+	const [sidePageBtn, setSidePageBtn] = useState('sidePageMenu-Btn tit-Close')
 
 	const groupInit = useCallback(async () => {
 		try {
@@ -47,10 +48,12 @@ const Base = props => {
 			setSelectedIndex(idx);
 			if (selectedIndex === idx && test === "sidePageMenu-open") {
 				setTest("sidePageMenu-close");
+				setSidePageBtn("sidePageMenu-Btn tit-Close")
 				setTimeout(() => setMenuTit("sidePageMenu-tit tit-Close"), 500);
 			} else {
 				setTest("sidePageMenu-open");
 				setMenuTit("sidePageMenu-tit tit-Open");
+				setSidePageBtn("sidePageMenu-Btn tit-Open")
 				setItem(data);
 			}
 		},
@@ -207,7 +210,7 @@ const Base = props => {
 						<span>{edit ? "과목 저장" : "과목 편집"}</span>
 					</div>
 				</div>
-				<SidePageMenu item={item} test={test} menuTit={menuTit} />
+				<SidePageMenu item={item} test={test} menuTit={menuTit} sidePageBtn={sidePageBtn} />
 				<div className="contents">{props.children}</div>
 			</div>
 		</div>

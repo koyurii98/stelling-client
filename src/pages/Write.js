@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import '../css/Write.css'
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { Editor } from '@toast-ui/react-editor';
 
-const Write = () => {
-  const editorRef = React.createRef();
-  const handleClick = () => {
-    this.editorRef.current.getInstance().exec('Bold');
-  };
+import 'tui-chart/dist/tui-chart.css';
+import chart from '@toast-ui/editor-plugin-chart';
+import 'highlight.js/styles/github.css';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell';
+import uml from '@toast-ui/editor-plugin-uml';
 
-  const handleFocus = () => {
-    console.log('focus!!');
-  };
+const Write = () => {
+  const editorRef = useRef(null);
+  
+  const onChange = useCallback(() => {
+    if (!editorRef.current) return
+    const instance = editorRef.current.getInstance()
+    console.log(instance);
+  }, [ editorRef])
 
   return(
     <div id="wrap">
@@ -35,12 +43,15 @@ const Write = () => {
           <Editor
             previewStyle="vertical"
             height="400px"
-            initialEditType="markdown"
+            initialEditType="wysiwyg"
             initialValue="hello"
             ref={editorRef}
-            onFocus={handleFocus}
+            onChange={onChange}
+            usageStatistics={true}
+            useCommandShortcut={true}
+            plugins={[chart, codeSyntaxHighlight, colorSyntax, tableMergedCell, uml]}
           />
-          <button onClick={handleClick}>make bold</button>
+          <button>make bold</button>
         </div>
       </div>
     </div>

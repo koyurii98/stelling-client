@@ -3,7 +3,7 @@ import { List,ListItem } from '@material-ui/core';
 import { useHistory } from 'react-router';
 
 const SidePageMenu = (props) => {
-  const { test, item, menuTit } = props;
+  const { test, item, menuTit, sidePageBtn } = props;
   const pageList = item.pageList;
   const history = useHistory();
 
@@ -17,7 +17,7 @@ const SidePageMenu = (props) => {
       <div className={menuTit}>
         <span>{item.title}</span>
       </div>
-      <div>
+      <div className="sidePageMenu">
         <List component="nav" aria-label="secondary mailbox folder" style={{padding:0}}>
           {
             pageList && pageList.map((menuItem,i)=>{
@@ -34,9 +34,9 @@ const SidePageMenu = (props) => {
             })
           }
         </List>
-        {/* <div className="sideMenu-Btn" onClick={addPage}>
+        <div className={sidePageBtn} onClick={addPage}>
           <span>페이지 추가</span>
-        </div> */}
+        </div> 
       </div>
     </div>
   )

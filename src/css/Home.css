@@ -38,7 +38,7 @@
   width: 64.4vw;
   max-height: 28.4vw;
   margin-right: 0.8vw;
-  overflow:hidden;
+  overflow:scroll;
 }
 .Home-Calendar-Calendar{
   min-height: 23vh;
