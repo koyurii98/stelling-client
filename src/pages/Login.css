@@ -104,6 +104,10 @@
     text-decoration: underline;
 }
 
+.login-form .privacy .pri_detail:hover {
+    cursor: pointer;
+}
+
 /**** 로그인 폼 css 끝 ****/
 
 
