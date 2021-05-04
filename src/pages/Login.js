@@ -6,7 +6,7 @@ import "./Login.css";
 import { MODAL_OPEN } from "../reducer/modal";
 
 const Login = () => {
-	const { userLogin, openAlert, dispatchLoadMask, dispatchModal } = useContext(AppContext);
+	const { openAlert, dispatchLoadMask, dispatchModal } = useContext(AppContext);
 
 	const oAuthLogin = useCallback(w => {
 		if (w === "google") {
@@ -31,13 +31,14 @@ const Login = () => {
 				}
 
 				if (res?.result) {
-					userLogin(res?.data, res?.token?.toString());
+					window.localStorage.setItem("stelling", res.token.toString());
+					window.location.href = "/";
 				}
 			} catch (err) {
 				openAlert(err.message);
 			}
 		},
-		[openAlert, dispatchLoadMask, userLogin],
+		[openAlert, dispatchLoadMask],
 	);
 
 	useEffect(() => {

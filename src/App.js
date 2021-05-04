@@ -11,13 +11,17 @@ import LoadMask from "./components/LoadMask";
 import { MODAL_OPEN } from "./reducer/modal";
 
 function App() {
-	const { user, dispatchModal } = useContext(AppContext);
+	const { user, dispatchModal, userCheck } = useContext(AppContext);
 
 	useEffect(() => {
 		if (user.token && !user.data.name) {
 			dispatchModal({ type: MODAL_OPEN, name: "mypage", edit: false });
 		}
 	}, [dispatchModal, user]);
+
+	useEffect(() => {
+		userCheck();
+	}, [userCheck]);
 
 	return (
 		<div className="App">

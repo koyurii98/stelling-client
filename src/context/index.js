@@ -6,6 +6,8 @@ import { UserReducer, initialUserState, USER_LOGIN, USER_LOGOUT } from "../reduc
 import LoadMask from "../components/LoadMask";
 import Alert from "../components/Alert";
 import Modal from "../components/modals";
+import { requestGet } from "../utils/requestHelper";
+import { SERVER_URL } from "../env_config";
 
 export const AppContext = createContext({});
 
@@ -49,7 +51,7 @@ export const AppProvider = props => {
 	const userLogin = useCallback(
 		(data, token) => {
 			window.localStorage.setItem("stelling", token);
-			dispatchUser({ type: USER_LOGIN, data: data, token: token });
+			dispatchUser({ type: USER_LOGIN, data, token });
 		},
 		[dispatchUser],
 	);
@@ -58,6 +60,27 @@ export const AppProvider = props => {
 		window.localStorage.removeItem("stelling");
 		dispatchUser({ type: USER_LOGOUT });
 	}, [dispatchUser]);
+
+	const userCheck = useCallback( async () => {
+		try {
+			const token = window.localStorage.getItem("stelling");
+
+			if(token) {
+				const { res, err } = await requestGet(`${SERVER_URL}user/token?reissue=${true}`, {}, null, token.toString());
+
+				if(err) {
+					throw new Error(err);
+				}
+
+				if(res?.result) {
+					userLogin(res.data, res.token.toString());
+				}
+			}
+ 		} catch(err) {
+			window.localStorage.removeItem("stelling");
+			openAlert(err.message);
+		}
+	}, [openAlert, userLogin]);
 
 	// 모든 컨텍스트 값.
 	const values = {
@@ -69,6 +92,7 @@ export const AppProvider = props => {
 		dispatchLoadMask,
 		userLogin,
 		userLogout,
+		userCheck,
 		user,
 		alert,
 		modal,
