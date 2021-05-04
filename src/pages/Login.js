@@ -50,7 +50,11 @@ const Login = () => {
 			const parse = decodeURIComponent(token);
 			userAuth(parse);
 		}
-	}, [userAuth]);
+
+		if(state === "failed") {
+			openAlert("로그인에 실패하였습니다. 다시 시도해주세요.");
+		}
+	}, [userAuth, openAlert]);
 
 	return (
 		<div className="containter">
