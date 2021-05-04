@@ -73,7 +73,11 @@ export const AppProvider = props => {
 				}
 
 				if(res?.result) {
-					userLogin(res.data, res.token.toString());
+					if(res.token) {
+						userLogin(res.data, res.token.toString());
+					} else {
+						throw new Error("token is null.");
+					}
 				}
 			}
  		} catch(err) {
