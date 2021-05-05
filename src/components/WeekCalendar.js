@@ -27,7 +27,7 @@ const WeekCalendar = () => {
       <div className="Home-Calendar box">
       <Calendar
         defaultView="month"
-        height="900px"
+        height="28.4vw"
         calendars={[
           {
             id: '0',

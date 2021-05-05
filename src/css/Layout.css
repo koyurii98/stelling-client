@@ -136,6 +136,7 @@
 	cursor: pointer;
 	transition: 0.25s;
 }
+.sideMenu-Btn:hover,
 .sidePageMenu-Btn:hover {
 	transition: 0.25s;
     background-color: #64d882;

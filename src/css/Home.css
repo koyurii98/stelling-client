@@ -38,10 +38,23 @@
   width: 64.4vw;
   max-height: 28.4vw;
   margin-right: 0.8vw;
-  overflow:scroll;
+  overflow:hidden;
 }
 .Home-Calendar-Calendar{
   min-height: 23vh;
+}
+.tui-full-calendar-week-container {
+  height: 100%;
+  min-height: unset;
+}
+.tui-full-calendar-layout {
+  height: 28.4vw;
+}
+.tui-full-calendar-layout {
+  height: 28.4vw;
+}
+.tui-full-calendar-vlayout-area{
+  height: 26.4vw;
 }
 
 /* 투두리스트 영역 */
