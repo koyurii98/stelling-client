@@ -7,8 +7,7 @@ import { AppContext } from "../../context/index";
 import moment from 'moment';
 
 const SidePageMenu = (props) => {
-  const { modal, dispatchLoadMask, user, openAlert } = useContext(AppContext);
-  const { test, item, menuTit, sidePageBtn } = props;
+  const { sideSwit, item, menuTit, sidePageBtn } = props;
   const [ pageList, setPageList ] = useState(item.pages);
   const history = useHistory();
 
@@ -19,12 +18,19 @@ const SidePageMenu = (props) => {
     })
   },[history, item]);
 
+  const moveView = useCallback((data) =>{
+    history.push({
+      pathname:`/view/${data.id}`,
+      state: {data, item},
+    })
+  },[history, item])
+
   useEffect(()=>{
     setPageList(item.pages);
   },[item]);
 
   return(
-     <div className={test}>
+     <div className={sideSwit}>
       <div className={menuTit}>
         <span>{item.title}</span>
       </div>
@@ -36,6 +42,7 @@ const SidePageMenu = (props) => {
                   key={i}
                   button
                   style={{height:"2.8vw"}}
+                  onClick={()=>moveView(data)}
                 >
                 <div className="SidePageMenu-text">
                   <span>{data.title}</span>

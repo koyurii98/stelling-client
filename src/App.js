@@ -36,7 +36,7 @@ function App() {
 							<Login />
 						)}
 					</Route>{" "}
-					<Route path="/view">
+					<Route path="/view/:id">
 						<Base>
 							<View />
 						</Base>

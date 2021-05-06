@@ -39,11 +39,14 @@ const Write = () => {
     if(err){
       openAlert(err.message,true);
     }
-    if(res){
-      console.log(res.data);
-      // setPageList(pageList.concat(res.data));
+    if(res.data){
+      const data = res.data;
       openAlert("글 작성이 완료되었습니다.");
-      // history.push(`/view?id=${red.data.id}`);
+      setTimeout(() => {
+        history.push({
+          pathname:`/view/${data.id}`,
+          state: { data, item },})
+      }, 1000); 
     }
   },[editorRef, title, dispatchLoadMask, user]);
 
@@ -69,10 +72,11 @@ const Write = () => {
             previewStyle="vertical"
             height="100%"
             initialEditType="wysiwyg"
-            initialValue="hello"
+            // initialValue="hello"
             ref={editorRef}
             usageStatistics={true}
             useCommandShortcut={true}
+            placeholder="내용을 입력해주세요."
             plugins={[chart, codeSyntaxHighlight, colorSyntax, tableMergedCell, uml]}
             style={{width:"100%"}}
           />

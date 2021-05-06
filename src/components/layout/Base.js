@@ -15,7 +15,7 @@ import SelectInput from "@material-ui/core/Select/SelectInput";
 const Base = props => {
 	const history = useHistory();
 	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal } = useContext(AppContext);
-	const [test, setTest] = useState("");
+	const [ sideSwit, setSideSwit] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState("");
 	const [item, setItem] = useState([]);
 	const [menuTit, setMenuTit] = useState("sidePageMenu-tit tit-Close");
@@ -47,18 +47,18 @@ const Base = props => {
 	const handleListItemClick = useCallback(
 		(data, idx) => {
 			setSelectedIndex(idx);
-			if (selectedIndex === idx && test === "sidePageMenu-open") {
-				setTest("sidePageMenu-close");
-				setSidePageBtn("sidePageMenu-Btn tit-Close")
+			if (selectedIndex === idx && sideSwit === "sidePageMenu-open") {
+				setSideSwit("sidePageMenu-close");
+				setTimeout(() =>setSidePageBtn("sidePageMenu-Btn tit-Close"), 500);
 				setTimeout(() => setMenuTit("sidePageMenu-tit tit-Close"), 500);
 			} else {
-				setTest("sidePageMenu-open");
+				setSideSwit("sidePageMenu-open");
 				setMenuTit("sidePageMenu-tit tit-Open");
 				setSidePageBtn("sidePageMenu-Btn tit-Open")
 				setItem(data);
 			}
 		},
-		[test, selectedIndex],
+		[sideSwit, selectedIndex],
 	);
 
 	const onClickLogout = useCallback(async () => {
@@ -213,7 +213,7 @@ const Base = props => {
 						<span>{edit ? "과목 저장" : "과목 편집"}</span>
 					</div>
 				</div>
-				<SidePageMenu item={item} test={test} menuTit={menuTit} sidePageBtn={sidePageBtn} />
+				<SidePageMenu item={item} sideSwit={sideSwit} menuTit={menuTit} sidePageBtn={sidePageBtn} />
 				<div className="contents">{props.children}</div>
 			</div>
 		</div>

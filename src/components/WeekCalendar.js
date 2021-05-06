@@ -26,7 +26,6 @@ const WeekCalendar = () => {
       </div>
       <div className="Home-Calendar box">
       <Calendar
-        defaultView="month"
         height="28.4vw"
         calendars={[
           {
@@ -44,9 +43,7 @@ const WeekCalendar = () => {
             tooltip: 'Seoul'
           },
         ]}
-        month= {{
-          visibleWeeksCount: 2  // visible week count in monthly
-        }}
+        taskView={false}
         useDetailPopup={false}
         useCreationPopup={false}
         onBeforeCreateSchedule={createSchedule}
