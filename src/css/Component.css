@@ -56,6 +56,7 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	cursor: pointer;
 }
 
 .Btn-color-green {
@@ -81,6 +82,63 @@
     color:#fff;
 }
 
+
+/* 일정추가 modal */
+.schedule_tit {
+	border:none;
+	border-bottom:solid 0.3vh #ddd;
+	font-size: 2.4vh;
+	outline:none;
+	transition: 0.25s;
+	width:100%;
+	margin-top:2vh;
+}
+.schedule_tit:focus {
+	border-bottom:solid 0.3vh #64d882;
+	transition: 0.25s;
+}
+.schedule_tit::placeholder {
+	color:#bbb;
+}
+.schedule_sub {
+	border: none;
+    font-size: 1.8vh;
+    outline: none;
+    background-color: #eee;
+    width: 100%;
+    margin-top: 2vh;
+    height: 15vh;
+    border-radius: 0.5vh;
+	padding:1vh;
+	box-sizing: border-box;
+	resize: none;
+	font-family: 'NotoSansKr';
+	transition: 0.25s;
+	border-bottom:solid 0.3vh #eee;
+}
+.schedule_sub:focus {
+	border-bottom:solid 0.3vh #64d882;
+	transition: 0.25s;
+}
+.time {
+	margin-top:2vh;
+	font-size: 1.8vh;
+}
+.time .start, .time .fin {
+	font-size: 1.8vh;
+    border: none;
+	outline:none;
+	appearance:none;
+}
+.time .start > option, .time .fin > option {
+}
+
+.date_now {
+	font-size: 1.5vh;
+    margin-right: 1vh;
+	color: #999;
+	margin-bottom:1vh;
+}
 /*spinner*/
 
 .spinner-box {
