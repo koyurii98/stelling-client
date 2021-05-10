@@ -38,7 +38,7 @@ const Mypage = props => {
 			}
 			if (res.data) {
 				closeModal();
-				dispatchUser({type:USER_LOGIN, data:res.data});
+				dispatchUser({ type:USER_LOGIN, data: res.data, token });
 				openAlert("프로필등록이 완료되었습니다.");
 			}
 		}
