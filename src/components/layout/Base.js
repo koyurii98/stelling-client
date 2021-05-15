@@ -173,7 +173,7 @@ const Base = props => {
 			<div className="header">
 				<div className="header-Icons">
 					<Link to="/">
-						<HomeIcon className="header-Icon" style={{ fontSize: "1.3vw" }} />
+						<HomeIcon className="header-Icon" style={{ fontSize: "1.3vw", top: "0.15vw", position: "relative"}} />
 					</Link>
 					<PowerSettingsNewIcon className="header-Icon" style={{ fontSize: "1.3vw" }} onClick={onClickLogout} />
 				</div>

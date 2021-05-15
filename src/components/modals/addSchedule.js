@@ -4,6 +4,7 @@ import { Modal, ModalHeader, ModalFooter, ModalBody } from "../Modal";
 
 const Mypage = props => {
 	const { modal, closeModal, user, openAlert, dispatchUser } = useContext(AppContext);
+
 	return (
 		<Modal className="modal-box">
 			<ModalHeader>
@@ -71,7 +72,7 @@ const Mypage = props => {
 		<textarea className="schedule_sub" placeholder="설명 추가"></textarea>
 			</ModalBody>
 			<ModalFooter>
-				<div className="MA-Btn Btn-color-gray cancel">취소</div>
+				<div className="MA-Btn Btn-color-gray cancel" onClick={closeModal}>취소</div>
 				<div className="MA-Btn Btn-color-green add">저장</div>
 			</ModalFooter>
 		</Modal>
