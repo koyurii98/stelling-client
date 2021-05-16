@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const Mypage = props => {
 	const history = useHistory();
-	const { modal, closeModal, user, openAlert, dispatchUser, dispatchLoadMask, userLogout } = useContext(AppContext);
+	const { modal, closeModal, user, openAlert, dispatchUser, dispatchLoadMask, userLogout, openConfirmAlert, closeAlert } = useContext(AppContext);
 	const [myInfo, setMyInfo] = useState({ name: "", profile: null, preview: null });
 
 	useEffect(() => {
@@ -71,11 +71,16 @@ const Mypage = props => {
 			openAlert(err.message);
 		}
 		if(res){
-			closeModal();
+			closeAlert();
 			userLogout();
+			closeModal();
 			openAlert("회원탈퇴가 완료되었습니다.");
 		}
 	},[dispatchLoadMask, openAlert, closeModal, userLogout ]);
+
+	const alertDeleteUser = useCallback(()=>{
+		openConfirmAlert("회원 탈퇴시 회원정보 및 게시글이 모두 삭제됩니다. 탈퇴하시겠습니까?", deleteUser)
+	},[openConfirmAlert, deleteUser]);
 
 	return (
 		<Modal className="modal-box">
@@ -105,7 +110,7 @@ const Mypage = props => {
 			<ModalFooter>
 				
 				{modal.edit && (
-					<button className="MA-Btn Btn-color-red" onClick={deleteUser}>
+					<button className="MA-Btn Btn-color-red" onClick={alertDeleteUser}>
 						회원탈퇴
 					</button>
 				)}

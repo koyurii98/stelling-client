@@ -92,8 +92,8 @@
 
 .Btn-color-red:hover{
 	transition: 0.25s;
-	background-color: #ffa1a129;
-    color: #ff6b6b;
+	background-color: #ff6b6b;
+    color: #ffffff;
 }
 
 /* 일정추가 modal */

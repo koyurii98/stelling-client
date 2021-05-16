@@ -21,8 +21,8 @@ const Alert = props => {
         </div>
         <div className="Alert-Footer">
           {
-            alert.cencleAble ?
-              <button className="MA-Btn Btn-color-gray" onCick={()=>closeAlert()}>취소</button>:""
+            alert.cencleAble &&
+              <button className="MA-Btn Btn-color-gray" onClick={closeAlert}>취소</button>
           }
           <button className="MA-Btn Btn-color-green" onClick={alert.cencleAble ? alert.confirmFunc : onClickConfirm }>확인</button>
         </div>
