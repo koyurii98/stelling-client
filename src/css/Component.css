@@ -81,7 +81,20 @@
     background-color: #6e6e6ead;
     color:#fff;
 }
+.Btn-color-red{
+	position: relative;
+	transition: 0.25s;
+	background-color: #ffa1a129;
+    color: #ff6b6b;
+	float: left;
+	margin-right: 245px;
+}
 
+.Btn-color-red:hover{
+	transition: 0.25s;
+	background-color: #ffa1a129;
+    color: #ff6b6b;
+}
 
 /* 일정추가 modal */
 .schedule_tit {

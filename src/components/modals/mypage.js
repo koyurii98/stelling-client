@@ -1,12 +1,14 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context";
 import { Modal, ModalHeader, ModalFooter, ModalBody } from "../Modal";
-import { requestPut } from "../../utils/requestHelper";
+import { requestPut, requestDelete } from "../../utils/requestHelper";
 import { SERVER_URL } from "../../env_config";
 import { USER_LOGIN } from "../../reducer/user";
+import { useHistory } from 'react-router-dom';
 
 const Mypage = props => {
-	const { modal, closeModal, user, openAlert, dispatchUser } = useContext(AppContext);
+	const history = useHistory();
+	const { modal, closeModal, user, openAlert, dispatchUser, dispatchLoadMask, userLogout } = useContext(AppContext);
 	const [myInfo, setMyInfo] = useState({ name: "", profile: null, preview: null });
 
 	useEffect(() => {
@@ -62,6 +64,19 @@ const Mypage = props => {
 		[myInfo],
 	);
 
+	const deleteUser = useCallback(async(e)=>{
+		const token = window.localStorage.getItem("stelling");
+		const { res, err } = await requestDelete(`${SERVER_URL}user/`, {}, dispatchLoadMask, token);
+		if(err){
+			openAlert(err.message);
+		}
+		if(res){
+			closeModal();
+			userLogout();
+			openAlert("회원탈퇴가 완료되었습니다.");
+		}
+	},[dispatchLoadMask, openAlert, closeModal, userLogout ]);
+
 	return (
 		<Modal className="modal-box">
 			<ModalHeader>
@@ -88,6 +103,12 @@ const Mypage = props => {
 				</div>
 			</ModalBody>
 			<ModalFooter>
+				
+				{modal.edit && (
+					<button className="MA-Btn Btn-color-red" onClick={deleteUser}>
+						회원탈퇴
+					</button>
+				)}
 				{modal.edit && (
 					<button className="MA-Btn Btn-color-gray" onClick={closeModal}>
 						취소
