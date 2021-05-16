@@ -8,7 +8,7 @@ const Mypage = props => {
 	return (
 		<Modal className="modal-box">
 			<ModalHeader>
-        일정추가
+        		일정추가
 			</ModalHeader>
 			<ModalBody>
 			<div className="date_now">2021년 05월 07일</div>

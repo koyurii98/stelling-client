@@ -34,7 +34,7 @@
     display: block;
     width: 100%;
     height: 91%;
-    overflow: scroll;
+    /* overflow: scroll; */
     border-radius: 1vh;
     padding: 3vh;
     box-sizing: border-box;
@@ -99,11 +99,13 @@
     background-color: #64d882;
     color:#fff;
 }
+
 .view-tit {
     display: inline-block;
     color:#5c5c5c;
     font-weight:600;
     font-size: 2.6vh;
+    margin-bottom: 15px;
 }
 
 .view-date {
@@ -112,8 +114,10 @@
     font-size: 1.5vh;
     color:rgb(155, 155, 155);
     font-weight:500;
+    margin-bottom: 15px;
 }
 
 .view-text {
-    padding: 1.4vw 0 1.4vw 0;
+    height: 500px;
+    overflow: scroll;
 }
