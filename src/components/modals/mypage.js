@@ -4,10 +4,8 @@ import { Modal, ModalHeader, ModalFooter, ModalBody } from "../Modal";
 import { requestPut, requestDelete } from "../../utils/requestHelper";
 import { SERVER_URL } from "../../env_config";
 import { USER_LOGIN } from "../../reducer/user";
-import { useHistory } from 'react-router-dom';
 
 const Mypage = props => {
-	const history = useHistory();
 	const { modal, closeModal, user, openAlert, dispatchUser, dispatchLoadMask, userLogout, openConfirmAlert, closeAlert } = useContext(AppContext);
 	const [myInfo, setMyInfo] = useState({ name: "", profile: null, preview: null });
 
@@ -76,7 +74,7 @@ const Mypage = props => {
 			closeModal();
 			openAlert("회원탈퇴가 완료되었습니다.");
 		}
-	},[dispatchLoadMask, openAlert, closeModal, userLogout ]);
+	},[dispatchLoadMask, openAlert, closeModal, userLogout, closeAlert ]);
 
 	const alertDeleteUser = useCallback(()=>{
 		openConfirmAlert("회원 탈퇴시 회원정보 및 게시글이 모두 삭제됩니다. 탈퇴하시겠습니까?", deleteUser)

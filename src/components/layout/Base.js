@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import { MODAL_OPEN } from "../../reducer/modal";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { useHistory } from 'react-router-dom';
-import SelectInput from "@material-ui/core/Select/SelectInput";
 
 const Base = props => {
 	const history = useHistory();
@@ -126,6 +125,7 @@ const Base = props => {
 
 				setGroups(filterdItems);
 				closeAlert();
+				openAlert("삭제가 완료되었습니다.");
 			} catch (err) {
 				openAlert(err.message);
 			}
@@ -135,7 +135,7 @@ const Base = props => {
 
 	const groupDeleteAlert = useCallback((id)=>{
 		openConfirmAlert("그룹삭제시 그룹안의 게시글도 모두 삭제됩니다. 삭제하시겠습니까?", () => groupDelete(id))
-	},[openConfirmAlert])
+	},[openConfirmAlert, groupDelete])
 
 	const onChangeGroupValue = useCallback(
 		(e, id) => {

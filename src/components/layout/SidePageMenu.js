@@ -1,9 +1,6 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { List,ListItem } from '@material-ui/core';
 import { useHistory } from 'react-router';
-import { requestGet } from '../../utils/requestHelper';
-import { SERVER_URL } from "../../env_config";
-import { AppContext } from "../../context/index";
 import moment from 'moment';
 
 const SidePageMenu = (props) => {
