@@ -14,7 +14,7 @@ import SelectInput from "@material-ui/core/Select/SelectInput";
 
 const Base = props => {
 	const history = useHistory();
-	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal } = useContext(AppContext);
+	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal,  openConfirmAlert, closeAlert} = useContext(AppContext);
 	const [ sideSwit, setSideSwit] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState("");
 	const [item, setItem] = useState([]);
@@ -125,12 +125,17 @@ const Base = props => {
 				const filterdItems = groups.filter(value => value.id !== id);
 
 				setGroups(filterdItems);
+				closeAlert();
 			} catch (err) {
 				openAlert(err.message);
 			}
 		},
-		[openAlert, user, groups],
+		[openAlert, user, groups, closeAlert],
 	);
+
+	const groupDeleteAlert = useCallback((id)=>{
+		openConfirmAlert("그룹삭제시 그룹안의 게시글도 모두 삭제됩니다. 삭제하시겠습니까?", () => groupDelete(id))
+	},[openConfirmAlert])
 
 	const onChangeGroupValue = useCallback(
 		(e, id) => {
@@ -196,7 +201,7 @@ const Base = props => {
 								return (
 									<ListItem key={i} style={{ height: "2.8vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }} button={!edit} selected={selectedIndex === i} onClick={() => (edit ? null : handleListItemClick(data, i))}>
 										{edit ? <input className="sideMenu-edit-input" type="text" value={data.title} onClick={() => selectGroupItem(data.id)} onChange={e => onChangeGroupValue(e, data.id)} /> : <p>{data.title}</p>}
-										{edit && <CancelIcon onClick={() => groupDelete(data.id)} className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />}
+										{edit && <CancelIcon onClick={()=>groupDeleteAlert(data.id)}  className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />}
 									</ListItem>
 								);
 							})
