@@ -100,7 +100,7 @@
 .Home-TodoList-Item-cnt {
   font-size: 0.84vw;
 }
-.Home-TodoList-Item-cnt>input {
+.Home-TodoList-Item-cnt>input[type=checkbox] {
   transform : scale(1.2);
 }
 

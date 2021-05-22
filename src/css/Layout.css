@@ -108,6 +108,7 @@
 	justify-content: center;
 	align-items: center;
 	display: flex;
+	cursor: pointer;
 }
 .sideMenu-Btn {
 	position: absolute;

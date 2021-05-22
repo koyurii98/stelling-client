@@ -9,7 +9,6 @@
 	display: flex;
 	font-weight: 500;
 	cursor: pointer;
-	padding-bottom: 0.12vw;
 	transition: 0.25s;
 }
 .color-Btn:hover {
@@ -99,7 +98,7 @@
 /* 일정추가 modal */
 .schedule_tit {
 	border:none;
-	border-bottom:solid 0.3vh #ddd;
+	border-bottom:solid 0.3vh #eee;
 	font-size: 2.4vh;
 	outline:none;
 	transition: 0.25s;
@@ -110,24 +109,23 @@
 	border-bottom:solid 0.3vh #64d882;
 	transition: 0.25s;
 }
-.schedule_tit::placeholder {
+.schedule_tit::placeholder, .schedule_sub::placeholder {
 	color:#bbb;
 }
 .schedule_sub {
-	border: none;
+    border: solid 0.3vh #eee;
     font-size: 1.8vh;
     outline: none;
-    background-color: #eee;
+    background-color: #fff;
     width: 100%;
     margin-top: 2vh;
     height: 15vh;
     border-radius: 0.5vh;
-	padding:1vh;
-	box-sizing: border-box;
-	resize: none;
-	font-family: 'NotoSansKr';
-	transition: 0.25s;
-	border-bottom:solid 0.3vh #eee;
+    padding: 1vh;
+    box-sizing: border-box;
+    resize: none;
+    font-family: 'NotoSansKr';
+    transition: 0.25s;
 }
 .schedule_sub:focus {
 	border-bottom:solid 0.3vh #64d882;

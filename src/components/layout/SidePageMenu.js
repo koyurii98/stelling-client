@@ -50,7 +50,7 @@ const SidePageMenu = (props) => {
           }
         </List>
         <div className={sidePageBtn} onClick={addPage}>
-          <span>페이지 추가</span>
+          <span>글 작성하기</span>
         </div> 
       </div>
     </div>
