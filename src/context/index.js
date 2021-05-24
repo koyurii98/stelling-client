@@ -3,6 +3,7 @@ import { LoadMaskReducer } from "../reducer/loadmask";
 import { AlertReducer, initialAlertState, ALERT_OPEN, ALERT_CLOSE, ALERT_C_OPEN } from "../reducer/alert";
 import { ModalReducer, initialModalState, MODAL_CLOSE } from "../reducer/modal";
 import { UserReducer, initialUserState, USER_LOGIN, USER_LOGOUT } from "../reducer/user";
+import { initialSchedule, ScheduleReducer } from '../reducer/schedule';
 import LoadMask from "../components/LoadMask";
 import Alert from "../components/Alert";
 import Modal from "../components/modals";
@@ -16,6 +17,7 @@ export const AppProvider = props => {
 	const [alert, dispatchAlert] = useReducer(AlertReducer, initialAlertState);
 	const [modal, dispatchModal] = useReducer(ModalReducer, initialModalState);
 	const [user, dispatchUser] = useReducer(UserReducer, initialUserState);
+	const [schedule, dispatchSchedule] = useReducer(ScheduleReducer, initialSchedule);
 
 	// 기본 알러트.
 	const openAlert = useCallback(
@@ -94,19 +96,21 @@ export const AppProvider = props => {
 		dispatchModal,
 		closeModal,
 		dispatchLoadMask,
+		dispatchSchedule,
+		dispatchUser,
 		userLogin,
 		userLogout,
 		userCheck,
 		user,
 		alert,
 		modal,
-		dispatchUser,
+		schedule, 
 	};
 	return (
 		<AppContext.Provider value={values}>
 			{alert.show && <Alert />}
 			{loadMask && <LoadMask />}
-			{modal.show && <Modal show={modal.show} name={modal.name} />}
+			{modal.show && <Modal {...modal} />}
 			{props.children}
 		</AppContext.Provider>
 	);
