@@ -1,16 +1,17 @@
 import moment from "moment";
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useDebugValue, useState } from "react";
 import { AppContext } from "../../context";
 import { Modal, ModalHeader, ModalFooter, ModalBody } from "../Modal";
-import { requestPost } from "../../utils/requestHelper";
+import { requestDelete, requestPost, requestPut } from "../../utils/requestHelper";
 import { SERVER_URL } from "../../env_config";
 import 'moment/locale/ko';
-import { SCHEDULE_ADD } from "../../reducer/schedule";
+import { SCHEDULE_ADD, SCHEDULE_UPDATE, SCHEDULE_DELETE } from "../../reducer/schedule";
 
 const Mypage = props => {
 	const { modal, closeModal, user, openAlert, dispatchLoadMask, dispatchSchedule } = useContext(AppContext);
 	const { options, edit } = modal;
 	const [ values, setValues ] = useState({
+		id: options.id,
 		title: options.title,
 		day: moment(options.day).format("YYYY-MM-DD"),
 		start: moment(options.start).format("HH:mm"),
@@ -29,7 +30,6 @@ const Mypage = props => {
 			if(!values.title || !values.day || !values.start || !values.end) {
 				return openAlert("비어있는 내용이 있습니다.");
 			}
-
 			const { res, err } = await requestPost(`${SERVER_URL}schedule`, { ...values }, dispatchLoadMask, user.token)
 		
 			if(err) {
@@ -52,27 +52,43 @@ const Mypage = props => {
 			if(!values.title || !values.day || !values.start || !values.end) {
 				return openAlert("비어있는 내용이 있습니다.");
 			}
-
-			const { res, err } = await requestPost(`${SERVER_URL}schedule`, { ...values }, dispatchLoadMask, user.token)
+			const { res, err } = await requestPut(`${SERVER_URL}schedule`, { ...values }, dispatchLoadMask, user.token)
 		
 			if(err) {
 				throw new Error(err);
 			}
-
 			if(res?.result) {
-				console.log(res.data);
+				dispatchSchedule({ type: SCHEDULE_UPDATE, payload: { ...res.data } });
 			}
 		} catch(err) {
 			openAlert(err.message);
 		} finally {
 			closeModal();
 		}
-	}, []);
+	}, [values, openAlert, user, closeModal, dispatchLoadMask, dispatchSchedule]);
+
+	const deleteSchedule = useCallback( async()=>{
+		try{
+			const { res, err } = await requestDelete(`${SERVER_URL}schedule?id=${values.id}`, {}, dispatchLoadMask, user.token)
+
+			if(err){
+				throw new Error(err);
+			}
+			if(res?.result) {
+				dispatchSchedule({ type: SCHEDULE_DELETE, payload: {id: values.id} });
+				openAlert("스케줄 삭제가 완료되었습니다.");
+			}
+		} catch(err) {
+			openAlert(err.message);
+		} finally {
+			closeModal();
+		}
+	},[openAlert, closeModal,  dispatchLoadMask, user, values, dispatchSchedule]);
 
 	return (
 		<Modal className="modal-box">
 			<ModalHeader>
-        일정추가
+        		일정추가
 			</ModalHeader>
 			<ModalBody>
 				<div className="date_now">{moment(values.day).format("YYYY년 MM월 DD일 ddd")}</div>
@@ -84,8 +100,11 @@ const Mypage = props => {
 		<textarea className="schedule_sub" value={values.content} id="content" onChange={onChangeValues} placeholder="설명 추가"></textarea>
 			</ModalBody>
 			<ModalFooter>
+				{modal.edit &&
+					<div className="MA-Btn Btn-color-red" onClick={deleteSchedule}>삭제</div>
+				}
 				<div className="MA-Btn Btn-color-gray cancel" onClick={closeModal}>취소</div>
-				<div className="MA-Btn Btn-color-green add" onClick={createSchedule}>저장</div>
+				<div className="MA-Btn Btn-color-green add" onClick={ modal.edit ? updateSchedule : createSchedule }>{ edit ? "수정" : "저장" }</div>
 			</ModalFooter>
 		</Modal>
 	);

@@ -5,13 +5,13 @@ import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 import { MODAL_OPEN } from "../reducer/modal";
 import { AppContext } from '../context';
-import { requestGet } from '../utils/requestHelper';
+import { requestGet, requestPut } from '../utils/requestHelper';
 import { SERVER_URL } from '../env_config';
-import { SCHEDULE_INIT } from '../reducer/schedule';
+import { SCHEDULE_INIT, SCHEDULE_UPDATE } from '../reducer/schedule';
 import moment from 'moment';
 
 const WeekCalendar = () => {
-  const { user, dispatchModal, dispatchSchedule, openAlert, schedule } = useContext(AppContext);
+  const { user, dispatchModal, dispatchSchedule, dispatchLoadMask, openAlert, schedule, closeModal } = useContext(AppContext);
 
   const initSchedule = useCallback( async () => {
     try {
@@ -27,7 +27,7 @@ const WeekCalendar = () => {
     } catch(err) {
       openAlert(err.message);
     }
-  }, [dispatchSchedule, openAlert]);
+  }, [dispatchSchedule, openAlert, user]);
 
   useEffect(() => {
     initSchedule();
@@ -49,15 +49,16 @@ const WeekCalendar = () => {
 
   const detailSchedule = useCallback((e) => {
     const date = {
+      id:e.schedule.id,
       title: e.schedule.title,
       content: e.schedule.body,
       day: e.schedule.start._date,
       start: e.schedule.start._date,
       end: e.schedule.end._date,
     };
-
+    
     dispatchModal({ type: MODAL_OPEN, name:"addSchedule", edit: true, options: { ...date }});
-  }, []);
+  }, [dispatchModal]);
 
   const createSchedule = useCallback((e)=>{
     if(!e?.start?._date || !e?.end?._date) {
@@ -74,6 +75,31 @@ const WeekCalendar = () => {
 
     dispatchModal({ type: MODAL_OPEN, name:"addSchedule", edit: false, options: { ...date }});
   }, [dispatchModal]);
+
+  const moveUpdateSchedule = useCallback(async(e) => {
+    console.log(e);
+    const changeDate = {
+      id:e.schedule.id,
+      title:e.schedule.title,
+      day:moment(e.changes.start?e.changes.start._date:e.start._date).format("YYYY-MM-DD"),
+      start:moment(e.changes.start?e.changes.start._date:e.start._date).format("HH:mm"),
+      end:moment(e.changes.end._date).format("HH:mm")
+    }
+    try {
+			const { res, err } = await requestPut(`${SERVER_URL}schedule`, { ...changeDate }, dispatchLoadMask, user.token)
+		
+			if(err) {
+				throw new Error(err);
+			}
+			if(res?.result) {
+				dispatchSchedule({ type: SCHEDULE_UPDATE, payload: { ...res.data } });
+			}
+		} catch(err) {
+			openAlert(err.message);
+		} finally {
+			closeModal();
+		}
+  },[dispatchSchedule, openAlert, closeModal, dispatchLoadMask, user]);
 
   return(
     <div>
@@ -104,7 +130,9 @@ const WeekCalendar = () => {
         useDetailPopup={false}
         useCreationPopup={false}
         onBeforeCreateSchedule={createSchedule}
+        onBeforeUpdateSchedule={moveUpdateSchedule}
         onClickSchedule={detailSchedule}
+        
       />
       </div>
     </div>

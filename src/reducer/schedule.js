@@ -17,13 +17,13 @@ export const ScheduleReducer = (state = initialSchedule, action) =>{
     case SCHEDULE_ADD:
       return {
         ...state,
-        data: state.data.concat({ ...action.payload })
+        data: state.data.concat({ ...action.payload }),
       };
     case SCHEDULE_UPDATE:
       return {
         ...state,
         data: state.data.map(value => {
-          if(action.payload.id) {
+          if(action.payload.id === value.id) {
             return {
               ...action.payload
             };
@@ -32,12 +32,12 @@ export const ScheduleReducer = (state = initialSchedule, action) =>{
           return {
             ...value
           };
-        })
+        }),
       };
     case SCHEDULE_DELETE:
       return {
         ...state,
-        data: state.data.filter(value => value.id !== action.payload.id)
+        data: state.data.filter(value => value.id !== action.payload.id),
       };
     default:
       return state;
