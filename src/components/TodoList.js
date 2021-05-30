@@ -191,8 +191,8 @@ const TodoList = () => {
 			</div>
 			<div className="Home-TodoList box">
 				<div className="Home-TodoList-list">
-					{
-						TodoListData[0] ? TodoListData.map((data, i) => {
+					{TodoListData[0] ? (
+						TodoListData.map((data, i) => {
 							return (
 								<div className="Home-TodoList-Item" key={i}>
 									{edit ? (
@@ -211,14 +211,20 @@ const TodoList = () => {
 								</div>
 							);
 						})
-						:
-						<div className="Home-TodoList-Item Home-TodoList-Item-cnt" style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",textAlign:"center"}}>&#128071;아래 버튼을 눌러<br/> 할일을 추가해보세요!</div>
-					}
-					{TodoListData.length < 10 && (
-						<div className="Home-TodoList-Btn addbtn" onClick={addTodo}>
-							Add TodoList +
+					) : (
+						<div className="Home-TodoList-Item Home-TodoList-Item-cnt" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+							우측 수정 버튼을 눌러
+							<br /> 할일을 추가해보세요!
 						</div>
 					)}
+					{TodoListData.length < 10 &&
+						(edit ? (
+							<div className="Home-TodoList-Btn addbtn" onClick={addTodo}>
+								Add TodoList +
+							</div>
+						) : (
+							<div></div>
+						))}
 				</div>
 			</div>
 		</div>

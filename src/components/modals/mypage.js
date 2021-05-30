@@ -10,12 +10,12 @@ const Mypage = props => {
 	const [myInfo, setMyInfo] = useState({ name: "", profile: null, preview: null });
 
 	useEffect(() => {
-		if(user?.data) {
+		if (user?.data) {
 			if (modal.edit) {
 				setMyInfo({
 					name: user.data.name,
 					profile: user.data.profile,
-					preview: user.data.profile
+					preview: user.data.profile,
 				});
 			}
 		}
@@ -38,22 +38,29 @@ const Mypage = props => {
 			}
 			if (res.data) {
 				closeModal();
-				dispatchUser({ type:USER_LOGIN, data: res.data, token });
+				dispatchUser({ type: USER_LOGIN, data: res.data, token });
 				openAlert("프로필등록이 완료되었습니다.");
 			}
 		}
-	}, [openAlert, myInfo, closeModal, dispatchUser ]);
+	}, [openAlert, myInfo, closeModal, dispatchUser]);
 
-	const addUpdateProfile = useCallback((e)=>{
-		if(!e.target.files || !e.target.files[0]) {
-			return openAlert("선택된 파일이 없습니다.");
-		}
+	const addUpdateProfile = useCallback(
+		e => {
+			if (!e.target.files || !e.target.files[0]) {
+				return openAlert("선택된 파일이 없습니다.");
+			}
 
-		const file = e.target.files[0];
-		const preview = URL.createObjectURL(file);
+			if (!/image/.test(e.target.files[0].type)) {
+				return openAlert("이미지 파일만 업로드 할 수 있습니다.");
+			}
 
-		setMyInfo({ ...myInfo, profile: file, preview });
-	},[myInfo, openAlert]);
+			const file = e.target.files[0];
+			const preview = URL.createObjectURL(file);
+
+			setMyInfo({ ...myInfo, profile: file, preview });
+		},
+		[myInfo, openAlert],
+	);
 
 	const onChange = useCallback(
 		e => {
@@ -62,23 +69,26 @@ const Mypage = props => {
 		[myInfo],
 	);
 
-	const deleteUser = useCallback(async(e)=>{
-		const token = window.localStorage.getItem("stelling");
-		const { res, err } = await requestDelete(`${SERVER_URL}user/`, {}, dispatchLoadMask, token);
-		if(err){
-			openAlert(err.message);
-		}
-		if(res){
-			closeAlert();
-			userLogout();
-			closeModal();
-			openAlert("회원탈퇴가 완료되었습니다.");
-		}
-	},[dispatchLoadMask, openAlert, closeModal, userLogout, closeAlert ]);
+	const deleteUser = useCallback(
+		async e => {
+			const token = window.localStorage.getItem("stelling");
+			const { res, err } = await requestDelete(`${SERVER_URL}user/`, {}, dispatchLoadMask, token);
+			if (err) {
+				openAlert(err.message);
+			}
+			if (res) {
+				closeAlert();
+				userLogout();
+				closeModal();
+				openAlert("회원탈퇴가 완료되었습니다.");
+			}
+		},
+		[dispatchLoadMask, openAlert, closeModal, userLogout, closeAlert],
+	);
 
-	const alertDeleteUser = useCallback(()=>{
-		openConfirmAlert("회원 탈퇴시 회원정보 및 게시글이 모두 삭제됩니다. 탈퇴하시겠습니까?", deleteUser)
-	},[openConfirmAlert, deleteUser]);
+	const alertDeleteUser = useCallback(() => {
+		openConfirmAlert("회원 탈퇴시 회원정보 및 게시글이 모두 삭제됩니다. 탈퇴하시겠습니까?", deleteUser);
+	}, [openConfirmAlert, deleteUser]);
 
 	return (
 		<Modal className="modal-box">
@@ -106,7 +116,6 @@ const Mypage = props => {
 				</div>
 			</ModalBody>
 			<ModalFooter>
-				
 				{modal.edit && (
 					<button className="MA-Btn Btn-color-red" onClick={alertDeleteUser}>
 						회원탈퇴

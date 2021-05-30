@@ -9,19 +9,19 @@ import { AppContext } from "../../context/index";
 import { Link } from "react-router-dom";
 import { MODAL_OPEN } from "../../reducer/modal";
 import CancelIcon from "@material-ui/icons/Cancel";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 const Base = props => {
 	const history = useHistory();
-	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal,  openConfirmAlert, closeAlert} = useContext(AppContext);
-	const [ sideSwit, setSideSwit] = useState("");
+	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal, openConfirmAlert, closeAlert } = useContext(AppContext);
+	const [sideSwit, setSideSwit] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState("");
 	const [item, setItem] = useState([]);
 	const [menuTit, setMenuTit] = useState("sidePageMenu-tit tit-Close");
 	const [groups, setGroups] = useState([]);
 	const [edit, setEdit] = useState(false);
 	const [selectGroup, setSelectGroup] = useState(0);
-	const [sidePageBtn, setSidePageBtn] = useState('sidePageMenu-Btn tit-Close')
+	const [sidePageBtn, setSidePageBtn] = useState("sidePageMenu-Btn tit-Close");
 
 	const groupInit = useCallback(async () => {
 		try {
@@ -48,12 +48,12 @@ const Base = props => {
 			setSelectedIndex(idx);
 			if (selectedIndex === idx && sideSwit === "sidePageMenu-open") {
 				setSideSwit("sidePageMenu-close");
-				setTimeout(() =>setSidePageBtn("sidePageMenu-Btn tit-Close"), 500);
+				setTimeout(() => setSidePageBtn("sidePageMenu-Btn tit-Close"), 500);
 				setTimeout(() => setMenuTit("sidePageMenu-tit tit-Close"), 500);
 			} else {
 				setSideSwit("sidePageMenu-open");
 				setMenuTit("sidePageMenu-tit tit-Open");
-				setSidePageBtn("sidePageMenu-Btn tit-Open")
+				setSidePageBtn("sidePageMenu-Btn tit-Open");
 				setItem(data);
 			}
 		},
@@ -61,17 +61,19 @@ const Base = props => {
 	);
 
 	const onClickLogout = useCallback(async () => {
-		const token = window.localStorage.getItem("stelling");
-		const { res, err } = await requestPost(SERVER_URL + "user/logout", {}, dispatchLoadMask, token);
+		const token = user?.token || window.localStorage.getItem("stelling");
+
+		const { res, err } = await requestPost(SERVER_URL + "user/logout", { userId: user.data.id }, dispatchLoadMask, token);
+
 		if (err) {
 			openAlert(err.message, true);
 		}
 		if (res) {
 			openAlert("로그아웃 되었습니다.");
 			userLogout();
-			history.replace("/");
+			return history.replace("/");
 		}
-	}, [dispatchLoadMask, history, userLogout, openAlert]);
+	}, [dispatchLoadMask, history, userLogout, openAlert, user]);
 
 	const onClickMy = useCallback(async () => {
 		dispatchModal({ type: MODAL_OPEN, name: "mypage", edit: true });
@@ -133,9 +135,12 @@ const Base = props => {
 		[openAlert, user, groups, closeAlert],
 	);
 
-	const groupDeleteAlert = useCallback((id)=>{
-		openConfirmAlert("그룹삭제시 그룹안의 게시글도 모두 삭제됩니다. 삭제하시겠습니까?", () => groupDelete(id))
-	},[openConfirmAlert, groupDelete])
+	const groupDeleteAlert = useCallback(
+		id => {
+			openConfirmAlert("그룹삭제시 그룹안의 게시글도 모두 삭제됩니다. 삭제하시겠습니까?", () => groupDelete(id));
+		},
+		[openConfirmAlert, groupDelete],
+	);
 
 	const onChangeGroupValue = useCallback(
 		(e, id) => {
@@ -178,7 +183,7 @@ const Base = props => {
 			<div className="header">
 				<div className="header-Icons">
 					<Link to="/">
-						<HomeIcon className="header-Icon" style={{ fontSize: "1.3vw", top: "0.15vw", position: "relative"}} />
+						<HomeIcon className="header-Icon" style={{ fontSize: "1.3vw", top: "0.15vw", position: "relative" }} />
 					</Link>
 					<PowerSettingsNewIcon className="header-Icon" style={{ fontSize: "1.3vw" }} onClick={onClickLogout} />
 				</div>
@@ -196,18 +201,21 @@ const Base = props => {
 						</div>
 					</div>
 					<List className="sideMenu-Menu" component="nav" aria-label="secondary mailbox folder">
-						{
-							groups[0] ? groups.map((data, i) => {
+						{groups[0] ? (
+							groups.map((data, i) => {
 								return (
 									<ListItem key={i} style={{ height: "2.8vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }} button={!edit} selected={selectedIndex === i} onClick={() => (edit ? null : handleListItemClick(data, i))}>
 										{edit ? <input className="sideMenu-edit-input" type="text" value={data.title} onClick={() => selectGroupItem(data.id)} onChange={e => onChangeGroupValue(e, data.id)} /> : <p>{data.title}</p>}
-										{edit && <CancelIcon onClick={()=>groupDeleteAlert(data.id)}  className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />}
+										{edit && <CancelIcon onClick={() => groupDeleteAlert(data.id)} className="Home-TodoList-Icon" style={{ fontSize: "15px", color: "#afafaf" }} />}
 									</ListItem>
 								);
 							})
-							:
-							<ListItem style={{display:"flex", justifyContent:"center", alignItems:"center", textAlign:"center", color:"#5e5e5e", fontSize:"0.9vw"}}>&#128071;아래 버튼을 눌러<br/> 할일을 추가해보세요!</ListItem>
-						}
+						) : (
+							<ListItem style={{ display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", color: "#5e5e5e", fontSize: "0.9vw" }}>
+								&#128071;아래 버튼을 눌러
+								<br /> 할일을 추가해보세요!
+							</ListItem>
+						)}
 					</List>
 					{edit && (
 						<div className="Home-TodoList-Btn addbtn" onClick={groupAdd}>
