@@ -56,15 +56,14 @@
     transition: 0.25s;
     display: inline-block;
     width: 11vh;
-    height: 3.6vh;
     border: 0;
-    border-radius: 3vh;
+    border-radius: 4vh;
     background-color: #60e38140;
     font-size: 1.8vh;
     color: #46ce69;
     margin-right: 2vh;
     text-align: center;
-    padding-top: 0.16vw;
+    padding: 0.2vw 0 0.36vw 0;
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -72,14 +71,13 @@
 .btns .delete {
     display: inline-block;
     width: 11vh;
-    height: 3.6vh;
     border: 0;
-    border-radius: 3vh;
+    border-radius: 4vh;
     background-color: #eb545423;
     font-size: 1.8vh;
     color: #ee5b5b;
     text-align: center;
-    padding-top: 0.16vw;
+    padding: 0.2vw 0 0.36vw 0;
     box-sizing: border-box;
     transition: 0.25s;
     cursor: pointer;

@@ -1,5 +1,7 @@
 import moment from "moment";
 import React, { useCallback, useContext, useDebugValue, useState } from "react";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import TodayIcon from "@material-ui/icons/Today";
 import { AppContext } from "../../context";
 import { Modal, ModalHeader, ModalFooter, ModalBody } from "../Modal";
 import { requestDelete, requestPost, requestPut } from "../../utils/requestHelper";
@@ -91,11 +93,17 @@ const Mypage = props => {
         		일정추가
 			</ModalHeader>
 			<ModalBody>
-				<div className="date_now">{moment(values.day).format("YYYY년 MM월 DD일 ddd")}</div>
-       	<input className="schedule_tit" value={values.title} id="title" onChange={onChangeValues} placeholder="제목 입력"></input>
-				<div className="time">
-					{values.start} - {values.end}
+				<div className="date_now_layout">
+			        <TodayIcon style={{ fontSize: "1.2vw"}} />
+				    <div className="date_now">{moment(values.day).format("YYYY년 MM월 DD일 ddd")}</div>
 				</div>
+				<div className="date_layout">
+			    	<AccessTimeIcon style={{ fontSize: "1.2vw"}} />
+					<div className="time">
+					{values.start} - {values.end}
+				    </div>
+				</div>
+       	<input className="schedule_tit" value={values.title} id="title" onChange={onChangeValues} placeholder="제목 입력"></input>
 
 		<textarea className="schedule_sub" value={values.content} id="content" onChange={onChangeValues} placeholder="설명 추가"></textarea>
 			</ModalBody>

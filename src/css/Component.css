@@ -103,7 +103,9 @@
 	outline:none;
 	transition: 0.25s;
 	width:100%;
-	margin-top:2vh;
+    margin: 3vh 0 2vh 0;
+	padding: 0 0 0.4vh 0.5vh;
+    box-sizing: border-box;
 }
 .schedule_tit:focus {
 	border-bottom:solid 0.3vh #64d882;
@@ -117,9 +119,9 @@
     font-size: 1.8vh;
     outline: none;
     background-color: #fff;
-    width: 100%;
+    width: 100% !important;
     margin-top: 2vh;
-    height: 15vh;
+    height: 15vh !important;
     border-radius: 0.5vh;
     padding: 1vh;
     box-sizing: border-box;
@@ -132,8 +134,13 @@
 	transition: 0.25s;
 }
 .time {
-	margin-top:2vh;
+	display: inline-block;
 	font-size: 1.8vh;
+	margin-left: 1vh;
+	bottom: 0.3vw;
+    position: relative;
+	color: #222;
+    font-weight: 300;
 }
 .time .start, .time .fin {
 	font-size: 1.8vh;
@@ -145,11 +152,19 @@
 }
 
 .date_now {
-	font-size: 1.5vh;
-    margin-right: 1vh;
-	color: #999;
+	display: inline-block;
+	font-size: 1.8vh;
+    margin-left: 1vh;
 	margin-bottom:1vh;
+	bottom: 0.3vw;
+	color: #222;
+    font-weight: 300;
+    position: relative;
 }
+.date_now_layout {
+	margin-top:1vh;
+}
+
 /*spinner*/
 
 .spinner-box {
@@ -274,7 +289,7 @@
 	background-color: #ffff;
 	border-radius: 7px;
 	box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.363);
-	width: 500px;
+    width: 32vw;
 	max-height: 700px;
 	z-index: 100;
 	animation-name: animateModal;

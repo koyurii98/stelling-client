@@ -54,7 +54,11 @@
   height: 28.4vw;
 }
 .tui-full-calendar-vlayout-area{
-  height: 26.4vw;
+  height: 26.4vw !important;
+}
+
+.tui-view-47 {
+  height:25vw !important;
 }
 
 /* 투두리스트 영역 */
@@ -101,7 +105,8 @@
   font-size: 0.84vw;
 }
 .Home-TodoList-Item-cnt>input[type=checkbox] {
-  transform : scale(1.2);
+  height: 0.8vw;
+  width: 0.8vw;
 }
 
 .Home-TodoList-Item-ctn{
@@ -112,6 +117,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  bottom: 0.08vw;
 }
 .Home-TodoList-Btn {
   margin-left: 25%;
