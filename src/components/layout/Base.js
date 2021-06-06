@@ -226,7 +226,7 @@ const Base = props => {
 						<span>{edit ? "과목 저장" : "과목 편집"}</span>
 					</div>
 				</div>
-				<SidePageMenu item={item} sideSwit={sideSwit} menuTit={menuTit} sidePageBtn={sidePageBtn} />
+				<SidePageMenu item={item} sideSwit={sideSwit} menuTit={menuTit} sidePageBtn={sidePageBtn} setSidePageBtn={setSidePageBtn} setMenuTit={setMenuTit} setSideSwit={setSideSwit}/>
 				<div className="contents">{props.children}</div>
 			</div>
 		</div>

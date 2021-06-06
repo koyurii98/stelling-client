@@ -12,6 +12,7 @@ import { SCHEDULE_ADD, SCHEDULE_UPDATE, SCHEDULE_DELETE } from "../../reducer/sc
 const Mypage = props => {
 	const { modal, closeModal, user, openAlert, dispatchLoadMask, dispatchSchedule } = useContext(AppContext);
 	const { options, edit } = modal;
+	
 	const [ values, setValues ] = useState({
 		id: options.id,
 		title: options.title,

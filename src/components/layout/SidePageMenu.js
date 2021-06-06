@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import moment from 'moment';
 
 const SidePageMenu = (props) => {
-  const { sideSwit, item, menuTit, sidePageBtn } = props;
+  const { sideSwit, item, menuTit, sidePageBtn, setSidePageBtn, setMenuTit, setSideSwit} = props;
   const [ pageList, setPageList ] = useState(item.pages);
   const history = useHistory();
 
@@ -26,9 +26,15 @@ const SidePageMenu = (props) => {
     setPageList(item.pages);
   },[item]);
 
+  const closeMenu = useCallback(()=>{
+    setSideSwit("sidePageMenu-close");
+    setTimeout(() => setSidePageBtn("sidePageMenu-Btn tit-Close"), 500);
+    setTimeout(() => setMenuTit("sidePageMenu-tit tit-Close"), 500);
+  }, [ setSidePageBtn, setMenuTit, setSideSwit ])
+
   return(
      <div className={sideSwit}>
-      <div className={menuTit}>
+      <div className={menuTit} onClick={closeMenu}>
         <span>{item.title}</span>
       </div>
       <div className="sidePageMenu">

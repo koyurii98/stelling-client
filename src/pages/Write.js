@@ -87,7 +87,6 @@ const Write = () => {
             <p className="write-tit">{edit?"글 수정":"글 작성"}</p>
             <div className="subject-name">{item.title}</div>
           </div>
-
           <div className="btns">
             <p className="cancel" onClick={
               ()=>{
@@ -103,7 +102,7 @@ const Write = () => {
             height="100%"
             initialEditType="wysiwyg"
             initialValue={viewData && viewData.content}
-            ref={editorRef }
+            ref={editorRef}
             usageStatistics={true}
             useCommandShortcut={true}
             placeholder="내용을 입력해주세요."
