@@ -50,6 +50,7 @@
 .tui-full-calendar-layout {
   height: 28.4vw;
 }
+
 .tui-full-calendar-layout {
   height: 28.4vw;
 }
@@ -57,8 +58,8 @@
   height: 26.4vw !important;
 }
 
-.tui-view-47 {
-  height:25vw !important;
+.tui-full-calendar-vlayout-area>div:nth-of-type(3){
+  height: calc(100% - 30px) !important;
 }
 
 /* 투두리스트 영역 */

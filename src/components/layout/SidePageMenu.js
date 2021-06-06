@@ -38,7 +38,7 @@ const SidePageMenu = (props) => {
         <span>{item.title}</span>
       </div>
       <div className="sidePageMenu">
-        <List component="nav" aria-label="secondary mailbox folder" style={{padding:0}}>
+        <List component="nav" aria-label="secondary mailbox folder" style={{padding:0, overflow:"scroll", height:"82vh"}}>
           {
             pageList && pageList.map((data,i)=>{
               return <ListItem

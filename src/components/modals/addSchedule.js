@@ -121,7 +121,7 @@ const Mypage = props => {
 				<div className="date_now_layout">
 			    <ColorLensIcon style={{ fontSize: "1.2vw"}} />
 					<div className="time">
-						<input style={{border:"none", background:"none"}} type="color" value={values.color} onChange={(e)=>onChangeColor(e)}></input>
+						<input style={{border:"none", background:"none", padding:0}} type="color" value={values.color} onChange={(e)=>onChangeColor(e)}></input>
 				  </div>
 				</div>
        	<input className="schedule_tit" value={values.title} id="title" onChange={onChangeValues} placeholder="제목 입력"></input>
