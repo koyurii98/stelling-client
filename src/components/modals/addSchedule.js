@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useCallback, useContext, useDebugValue, useState } from "react";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import TodayIcon from "@material-ui/icons/Today";
+import ColorLensIcon from '@material-ui/icons/ColorLens';
 import { AppContext } from "../../context";
 import { Modal, ModalHeader, ModalFooter, ModalBody } from "../Modal";
 import { requestDelete, requestPost, requestPut } from "../../utils/requestHelper";
@@ -20,6 +21,7 @@ const Mypage = props => {
 		start: moment(options.start).format("HH:mm"),
 		end: moment(options.end).format("HH:mm"),
 		content: options.content,
+		bgColor:options.bgColor,
 	});	
 
 	const onChangeValues = useCallback(e => {
@@ -30,7 +32,7 @@ const Mypage = props => {
 
 	const createSchedule = useCallback( async () => {
 		try {
-			if(!values.title || !values.day || !values.start || !values.end) {
+			if(!values.title || !values.day || !values.start || !values.end ) {
 				return openAlert("비어있는 내용이 있습니다.");
 			}
 			const { res, err } = await requestPost(`${SERVER_URL}schedule`, { ...values }, dispatchLoadMask, user.token)
@@ -88,10 +90,22 @@ const Mypage = props => {
 		}
 	},[openAlert, closeModal,  dispatchLoadMask, user, values, dispatchSchedule]);
 
+	const onChangeStartTime = useCallback((e)=>{
+		setValues({...values, start:e.target.value});
+	},[values])
+
+	const onChangeEndTime = useCallback((e)=>{
+		setValues({...values, end:e.target.value});
+	},[values])
+
+	const onChangeColor = useCallback((e)=>{
+		setValues({...values, bgColor:e.target.value});
+	}, [values]);
+
 	return (
 		<Modal className="modal-box">
 			<ModalHeader>
-        		일정추가
+        	일정 { edit ? "수정" : "추가" }
 			</ModalHeader>
 			<ModalBody>
 				<div className="date_now_layout">
@@ -101,12 +115,17 @@ const Mypage = props => {
 				<div className="date_layout">
 			    	<AccessTimeIcon style={{ fontSize: "1.2vw"}} />
 					<div className="time">
-					{values.start} - {values.end}
-				    </div>
+						<input type="time" onChange={(e)=>onChangeStartTime(e)} value={values.start}></input> - <input type="time" value={values.end} onChange={(e)=>onChangeEndTime(e)}></input>
+				  </div>
+				</div>
+				<div className="date_now_layout">
+			    <ColorLensIcon style={{ fontSize: "1.2vw"}} />
+					<div className="time">
+						<input style={{border:"none", background:"none"}} type="color" onChange={(e)=>onChangeColor(e)}></input>
+				  </div>
 				</div>
        	<input className="schedule_tit" value={values.title} id="title" onChange={onChangeValues} placeholder="제목 입력"></input>
-
-		<textarea className="schedule_sub" value={values.content} id="content" onChange={onChangeValues} placeholder="설명 추가"></textarea>
+			<textarea className="schedule_sub" value={values.content} id="content" onChange={onChangeValues} placeholder="설명 추가"></textarea>
 			</ModalBody>
 			<ModalFooter>
 				{modal.edit &&

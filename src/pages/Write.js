@@ -19,7 +19,7 @@ import { AppContext } from '../context/index';
 import { SERVER_URL } from "../env_config";
 
 const Write = () => {
-	const { user, openAlert, dispatchLoadMask } = useContext(AppContext);
+	const { user, openAlert, dispatchLoadMask, openConfirmAlert, closeAlert } = useContext(AppContext);
   const [ title , setTitle ] = useState("");
   const editorRef = useRef(null);
   const history = useHistory();
@@ -78,6 +78,17 @@ const Write = () => {
     }
   },[editorRef, title, dispatchLoadMask, user, history, item, openAlert, viewData, edit]);
 
+  const cancelWirte = useCallback((viewData, item)=>{
+    const cancelTrue = ()=>{
+      history.push("/");  
+      closeAlert();
+    }
+    const cancelEditTrue = ()=>{
+      history.push({pathname:`/view/${viewData.id}`, state: { data: viewData, item }})
+      closeAlert();
+    }
+		openConfirmAlert(`글 ${edit? "수정" : "작성" } 취소시 ${edit? "수정" : "작성" }한 글은 저장되지 않습니다. 취소하시겠습니까?`, () => { edit? cancelEditTrue() :cancelTrue() });
+  },[openConfirmAlert])
 
   return(
     <div id="wrap">
@@ -90,7 +101,7 @@ const Write = () => {
           <div className="btns">
             <p className="cancel" onClick={
               ()=>{
-                edit ? history.push({pathname:`/view/${viewData.id}`, state: { data:viewData, item }}): history.push("/")}}>{ edit ? "수정취소" : "작성취소" }</p>
+                edit ? cancelWirte(viewData, item) : cancelWirte() }}>{ edit ? "수정취소" : "작성취소" }</p>
             <p className="write-ok" onClick={addUpdateContent}>{ edit ? "수정완료" : "작성완료" }</p>
           </div>
         </div>

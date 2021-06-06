@@ -40,7 +40,7 @@ const WeekCalendar = () => {
         body: data.content,
         calendarId: "99",
         category: "time",
-        bgColor: "yellow",
+        bgColor: data.bgColor,
         start: moment(`${data.day} ${data.start}`).format("YYYY-MM-DD HH:mm"),
         end: moment(`${data.day} ${data.end}`).format("YYYY-MM-DD HH:mm"),
       }
