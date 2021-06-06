@@ -146,14 +146,19 @@ const Write = () => {
 						ref={editorRef}
 						usageStatistics={true}
 						useCommandShortcut={true}
-						placeholder="내용을 입력해주세요."
+						placeholder={"내용을 입력해주세요."}
 						plugins={[chart, codeSyntaxHighlight, colorSyntax, tableMergedCell, uml]}
 						style={{ width: "100%" }}
 						hooks={{
 							addImageBlobHook: async (file, callback) => {
-								const image = await iamgeUploader(file);
-								callback(image, "page image");
-								return false;
+								try {
+									const image = await iamgeUploader(file);
+									callback(image, "page image");
+								} catch (err) {
+									openAlert("이미지 업로드 중 문제가 발생했습니다. 홈으로 돌아간 후 다시 시도해주세요.");
+								} finally {
+									return false;
+								}
 							},
 						}}
 					/>
