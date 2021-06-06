@@ -91,7 +91,6 @@ const Write = () => {
 	const iamgeUploader = useCallback(
 		async file => {
 			try {
-				console.log(file);
 				if (!/image/.test(file.type)) {
 					throw new Error("이미지만 업로드 가능합니다.");
 				}
