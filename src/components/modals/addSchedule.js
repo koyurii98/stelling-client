@@ -99,7 +99,6 @@ const Mypage = props => {
 	},[values])
 
 	const onChangeColor = useCallback((e)=>{
-		console.log(e);
 		setValues({...values, color:e.target.value});
 	}, [values]);
 

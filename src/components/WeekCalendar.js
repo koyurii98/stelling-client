@@ -82,7 +82,6 @@ const WeekCalendar = () => {
   }, [dispatchModal]);
 
   const moveUpdateSchedule = useCallback(async(e) => {
-    console.log(e);
     const changeDate = {
       id:e.schedule.id,
       title:e.schedule.title,

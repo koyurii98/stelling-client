@@ -17,7 +17,7 @@ const Alert = props => {
           {alert.err?"오류":"알림"}
         </div>
         <div className="Alert-Body">
-          <p>{alert.content}</p>
+          <p dangerouslySetInnerHTML={{__html:alert.content}}></p>
         </div>
         <div className="Alert-Footer">
           {

@@ -19,7 +19,7 @@ import { AppContext } from "../context/index";
 import { SERVER_URL } from "../env_config";
 
 const Write = () => {
-	const { user, openAlert, dispatchLoadMask } = useContext(AppContext);
+	const { user, openAlert, dispatchLoadMask, closeAlert, openConfirmAlert } = useContext(AppContext);
 	const [title, setTitle] = useState("");
 	const editorRef = useRef(null);
 	const history = useHistory();
@@ -113,6 +113,18 @@ const Write = () => {
 		[openAlert, user, dispatchLoadMask],
 	);
 
+	const cancelWrite = useCallback((viewData, item)=>{
+		const alertWrite = ()=>{
+			closeAlert();
+			history.push("/");
+		}
+		const alertEdit = ()=>{
+			closeAlert();
+			history.push({ pathname: `/view/${viewData.id}`, state: { data: viewData, item } });
+		}
+		openConfirmAlert(`${edit?"수정":"작성"} 취소시 작성중이던 글은 모두 사라지게됩니다. </br> ${edit?"수정":"작성"}을 취소하시겠습니까?`,edit?alertEdit:alertWrite)
+	},[openConfirmAlert, closeAlert]);
+
 	return (
 		<div id="wrap">
 			<div id="content">
@@ -124,10 +136,7 @@ const Write = () => {
 					<div className="btns">
 						<p
 							className="cancel"
-							onClick={() => {
-								edit ? history.push({ pathname: `/view/${viewData.id}`, state: { data: viewData, item } }) : history.push("/");
-							}}
-						>
+							onClick={() => { edit ? cancelWrite(viewData, item) : cancelWrite() }}>
 							{edit ? "수정취소" : "작성취소"}
 						</p>
 						<p className="write-ok" onClick={addUpdateContent}>
