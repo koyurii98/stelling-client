@@ -40,7 +40,9 @@ const WeekCalendar = () => {
         body: data.content,
         calendarId: "99",
         category: "time",
-        bgColor: data.bgColor,
+        bgColor: data.color,
+        color:"white",
+        borderColor:data.color,
         start: moment(`${data.day} ${data.start}`).format("YYYY-MM-DD HH:mm"),
         end: moment(`${data.day} ${data.end}`).format("YYYY-MM-DD HH:mm"),
       }
@@ -52,6 +54,7 @@ const WeekCalendar = () => {
       id:e.schedule.id,
       title: e.schedule.title,
       content: e.schedule.body,
+      color:e.schedule.bgColor,
       day: e.schedule.start._date,
       start: e.schedule.start._date,
       end: e.schedule.end._date,
@@ -68,6 +71,7 @@ const WeekCalendar = () => {
     const date = {
       title: "",
       content: "",
+      color:"#46ce69",
       start: e.start._date,
       end: e.end._date,
       day: e.start._date
@@ -81,12 +85,13 @@ const WeekCalendar = () => {
     const changeDate = {
       id:e.schedule.id,
       title:e.schedule.title,
+      color:e.schedule.bgColor,
       day:moment(e.changes.start?e.changes.start._date:e.start._date).format("YYYY-MM-DD"),
       start:moment(e.changes.start?e.changes.start._date:e.start._date).format("HH:mm"),
       end:moment(e.changes.end._date).format("HH:mm")
     }
     try {
-			const { res, err } = await requestPut(`${SERVER_URL}schedule`, { ...changeDate }, dispatchLoadMask, user.token)
+			const { res, err } = await requestPut(`${SERVER_URL}schedule`, { ...changeDate }, null , user.token)
 		
 			if(err) {
 				throw new Error(err);

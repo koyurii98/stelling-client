@@ -21,7 +21,7 @@ const Mypage = props => {
 		start: moment(options.start).format("HH:mm"),
 		end: moment(options.end).format("HH:mm"),
 		content: options.content,
-		bgColor:options.bgColor,
+		color:options.color,
 	});	
 
 	const onChangeValues = useCallback(e => {
@@ -99,7 +99,8 @@ const Mypage = props => {
 	},[values])
 
 	const onChangeColor = useCallback((e)=>{
-		setValues({...values, bgColor:e.target.value});
+		console.log(e);
+		setValues({...values, color:e.target.value});
 	}, [values]);
 
 	return (
@@ -121,7 +122,7 @@ const Mypage = props => {
 				<div className="date_now_layout">
 			    <ColorLensIcon style={{ fontSize: "1.2vw"}} />
 					<div className="time">
-						<input style={{border:"none", background:"none"}} type="color" onChange={(e)=>onChangeColor(e)}></input>
+						<input style={{border:"none", background:"none"}} type="color" value={values.color} onChange={(e)=>onChangeColor(e)}></input>
 				  </div>
 				</div>
        	<input className="schedule_tit" value={values.title} id="title" onChange={onChangeValues} placeholder="제목 입력"></input>
