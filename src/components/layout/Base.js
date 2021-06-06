@@ -218,6 +218,7 @@ const Base = props => {
 						)}
 					</List>
 					{edit && (
+						groups.length  < 11 &&
 						<div className="Home-TodoList-Btn addbtn" onClick={groupAdd}>
 							Add Group +
 						</div>
