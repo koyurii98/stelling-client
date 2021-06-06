@@ -43,6 +43,7 @@ const WeekCalendar = () => {
         bgColor: data.color,
         color:"white",
         borderColor:data.color,
+        dragBgColor:data.color,
         start: moment(`${data.day} ${data.start}`).format("YYYY-MM-DD HH:mm"),
         end: moment(`${data.day} ${data.end}`).format("YYYY-MM-DD HH:mm"),
       }
@@ -137,7 +138,6 @@ const WeekCalendar = () => {
         onBeforeCreateSchedule={createSchedule}
         onBeforeUpdateSchedule={moveUpdateSchedule}
         onClickSchedule={detailSchedule}
-        
       />
       </div>
     </div>
