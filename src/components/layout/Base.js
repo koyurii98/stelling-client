@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 
 const Base = props => {
 	const history = useHistory();
-	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal, openConfirmAlert, closeAlert, write } = useContext(AppContext);
+	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal, openConfirmAlert, closeAlert, write, writeFalse } = useContext(AppContext);
 	const [sideSwit, setSideSwit] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState("");
 	const [item, setItem] = useState([]);
@@ -59,6 +59,7 @@ const Base = props => {
 	);
 
 	const onClickLogout = useCallback(async () => {
+		closeAlert();
 		const token = user?.token || window.localStorage.getItem("stelling");
 
 		const { res, err } = await requestPost(SERVER_URL + "user/logout", { userId: user.data.id }, dispatchLoadMask, token);
@@ -184,23 +185,32 @@ const Base = props => {
 		setSelectGroup(id);
 	}, []);
 
+	const moveMain = useCallback(() =>{
+		if(write){
+			const Main=()=>{
+				closeAlert();
+				writeFalse();
+				return history.push("/");
+			}
+			openConfirmAlert("글 작성 중 페이지 이동시 작성 중이던 글은 저장되지 않습니다. 이동 하시겠습니까?", Main);
+		}else{
+			history.push("/");
+		}
+	},[history, closeAlert, writeFalse, openConfirmAlert]);
+
 	return (
 		<div className="base">
 			<div className="header">
 				<div className="header-Icons">
-					<Link to="/">
-						<HomeIcon className="header-Icon" style={{ fontSize: "1.3vw", top: "0.15vw", position: "relative" }} />
-					</Link>
-					<PowerSettingsNewIcon className="header-Icon" style={{ fontSize: "1.3vw" }} onClick={onClickLogout} />
+					<HomeIcon className="header-Icon" style={{ fontSize: "1.3vw", top: "0.15vw", position: "relative" }} onClick={moveMain} />
+					<PowerSettingsNewIcon className="header-Icon" style={{ fontSize: "1.3vw" }} onClick={()=>openConfirmAlert("로그아웃 하시겠습니까?" ,onClickLogout)} />
 				</div>
 			</div>
 			<div className="base-layout">
 				<div className="sideMenu">
-					<Link to="/">
-						<div className="sideMenu-Logo">
-							<img src="../img/stelling_logo.png" alt="logo" />
-						</div>
-					</Link>
+					<div className="sideMenu-Logo"  onClick={moveMain}>
+						<img src="../img/stelling_logo.png" alt="logo" />
+					</div>
 					<div className="sideMenu-Profile">
 						<div className="sideMenu-Profile-fr" onClick={onClickMy}>
 							<img src={user?.data?.profile ? user.data.profile : "../img/user.png"} className="sideMenu-Profile-img" alt="profile" />

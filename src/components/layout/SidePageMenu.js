@@ -4,25 +4,42 @@ import { useHistory } from 'react-router';
 import moment from 'moment';
 import { AppContext } from '../../context/index';
 const SidePageMenu = (props) => {
-  const { writeTrue } = useContext(AppContext);
+  const { writeTrue, writeFalse, write, openConfirmAlert, openAlert, closeAlert } = useContext(AppContext);
   const { sideSwit, item, setSideSwit, setSideMenuFlex } = props;
   const [ pageList, setPageList ] = useState(item.pages);
   const history = useHistory();
 
   const addPage = useCallback(() =>{
-    history.push({
-      pathname:'/write',
-      state: { item},
-    })
-    writeTrue();
+    if(write){
+      return openAlert("현재 작성 중인 글을 마무리하고 글 작성을 해주시길 바랍니다.");
+    }else{
+      history.push({
+        pathname:'/write',
+        state: { item},
+      })
+      writeTrue();
+    }
   },[history, item]);
 
   const moveView = useCallback((data) =>{
-    history.push({
-      pathname:`/view/${data.id}`,
-      state: {data, item},
-    })
-  },[history, item])
+    if(write){
+      const View = () =>{
+        closeAlert();
+        history.push({
+          pathname:`/view/${data.id}`,
+          state: {data, item},
+        });
+				writeFalse();
+      }
+      openConfirmAlert("글 작성 중 페이지 이동시 작성 중이던 글은 저장되지 않습니다. 이동 하시겠습니까?", View);
+    }else{
+      history.push({
+        pathname:`/view/${data.id}`,
+        state: {data, item},
+      });
+    }
+
+  },[history, item, writeFalse, openConfirmAlert, closeAlert]);
 
   useEffect(()=>{
     setPageList(item.pages);
@@ -45,7 +62,8 @@ const SidePageMenu = (props) => {
           pageList.length===0 ?
             <div className="sidePageBox">
               <span>✏️</span>
-              <span>아직 {item.title}에 작성한 글이 없네요! 새로운 글을 작성해보세요!</span>
+              <p>아직 {item.title}에 작성한 글이 없네요!</p>
+              <p>새로운 글을 작성해보세요!</p>
             </div> :
             <List component="nav" aria-label="secondary mailbox folder" style={{padding:0, overflow:"scroll", height:"82vh"}}>  
               {
