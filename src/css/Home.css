@@ -18,6 +18,23 @@
   margin-top: 0.8vw;
   align-items: center;
 }
+.Home-Header-box{
+  margin-right: 20px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Home-Header-box>button{
+  font-size: 14px;
+  background-color: white;
+  border: 1.2px solid rgb(207, 207, 207);
+  padding: 10px 5px 10px 5px;
+  border-radius:20px;
+  width: 60px;
+}
+
 .Home-box{
   box-shadow: 0px 0px 3px #dcdcdc;
   background-color: #ffff;

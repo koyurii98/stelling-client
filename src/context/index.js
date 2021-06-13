@@ -98,7 +98,7 @@ export const AppProvider = props => {
 		dispatchWrite({type:WRITE_FALSE})
 	},[dispatchWrite]);
 	// 모든 컨텍스트 값.
-	console.log(write);
+	
 	const values = {
 		openAlert,
 		openConfirmAlert,

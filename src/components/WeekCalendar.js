@@ -12,7 +12,7 @@ import moment from 'moment';
 
 const WeekCalendar = () => {
   const { user, dispatchModal, dispatchSchedule, dispatchLoadMask, openAlert, schedule, closeModal } = useContext(AppContext);
-
+  const calendarRef = React.createRef();
   const initSchedule = useCallback( async () => {
     try {
       const { res, err } = await requestGet(`${SERVER_URL}schedule`, {}, null, user.token);
@@ -106,13 +106,34 @@ const WeekCalendar = () => {
 		}
   },[dispatchSchedule, openAlert, closeModal, dispatchLoadMask, user]);
 
+  const clickPrev = useCallback(()=>{
+    const calendarInstance = calendarRef.current.getInstance();
+    calendarInstance.prev();
+  },[calendarRef]);
+
+  const clickThisWeek = useCallback(()=>{
+    const calendarInstance = calendarRef.current.getInstance();
+    calendarInstance.today();
+  },[calendarRef]);
+
+  const clickNext = useCallback(()=>{
+    const calendarInstance = calendarRef.current.getInstance();
+    calendarInstance.next();
+  },[calendarRef]);
+
   return(
     <div>
       <div className="Home-Header">
         <span>{user.data.name}'s Schedule</span>
+        <div className="Home-Header-box">
+          <button onClick={clickPrev}> &#60; 이전 </button>
+          <button onClick={clickThisWeek}> 이번주 </button>
+          <button onClick={clickNext}> 다음 &#62;	</button>
+        </div>
       </div>
       <div className="Home-Calendar box">
       <Calendar
+        ref={calendarRef}
         height="28.4vw"
         calendars={[
           {
