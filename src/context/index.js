@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useCallback } from "react";
 import { LoadMaskReducer } from "../reducer/loadmask";
+import { writeReducer, WRITE_FALSE, WRITE_TRUE } from "../reducer/write";
 import { AlertReducer, initialAlertState, ALERT_OPEN, ALERT_CLOSE, ALERT_C_OPEN } from "../reducer/alert";
 import { ModalReducer, initialModalState, MODAL_CLOSE } from "../reducer/modal";
 import { UserReducer, initialUserState, USER_LOGIN, USER_LOGOUT } from "../reducer/user";
@@ -18,6 +19,7 @@ export const AppProvider = props => {
 	const [modal, dispatchModal] = useReducer(ModalReducer, initialModalState);
 	const [user, dispatchUser] = useReducer(UserReducer, initialUserState);
 	const [schedule, dispatchSchedule] = useReducer(ScheduleReducer, initialSchedule);
+	const [write, dispatchWrite] = useReducer(writeReducer, false);
 
 	// 기본 알러트.
 	const openAlert = useCallback(
@@ -88,7 +90,15 @@ export const AppProvider = props => {
 		}
 	}, [openAlert, userLogin]);
 
+	const writeTrue = useCallback(()=>{
+		dispatchWrite({type:WRITE_TRUE})
+	},[dispatchWrite]);
+
+	const writeFalse = useCallback(()=>{
+		dispatchWrite({type:WRITE_FALSE})
+	},[dispatchWrite]);
 	// 모든 컨텍스트 값.
+	console.log(write);
 	const values = {
 		openAlert,
 		openConfirmAlert,
@@ -105,6 +115,9 @@ export const AppProvider = props => {
 		alert,
 		modal,
 		schedule, 
+		writeTrue,
+		write,
+		writeFalse,
 	};
 	return (
 		<AppContext.Provider value={values}>

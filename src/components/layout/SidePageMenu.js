@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { List,ListItem } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import moment from 'moment';
-
+import { AppContext } from '../../context/index';
 const SidePageMenu = (props) => {
-  const { sideSwit, item, menuTit, sidePageBtn, setSidePageBtn, setMenuTit, setSideSwit} = props;
+  const { writeTrue } = useContext(AppContext);
+  const { sideSwit, item, setSideSwit, setSideMenuFlex } = props;
   const [ pageList, setPageList ] = useState(item.pages);
   const history = useHistory();
 
@@ -13,6 +14,7 @@ const SidePageMenu = (props) => {
       pathname:'/write',
       state: { item},
     })
+    writeTrue();
   },[history, item]);
 
   const moveView = useCallback((data) =>{
@@ -28,13 +30,14 @@ const SidePageMenu = (props) => {
 
   const closeMenu = useCallback(()=>{
     setSideSwit("sidePageMenu-close");
-    setTimeout(() => setSidePageBtn("sidePageMenu-Btn tit-Close"), 500);
-    setTimeout(() => setMenuTit("sidePageMenu-tit tit-Close"), 500);
-  }, [ setSidePageBtn, setMenuTit, setSideSwit ])
+    setTimeout(() => {
+      setSideMenuFlex(false);
+    }, 500);
+  }, [ setSideSwit, setSideMenuFlex ])
 
   return(
      <div className={sideSwit}>
-      <div className={menuTit} onClick={closeMenu}>
+      <div className="sidePageMenu-tit" onClick={closeMenu}>
         <span>{item.title}</span>
       </div>
       <div className="sidePageMenu">
@@ -55,7 +58,7 @@ const SidePageMenu = (props) => {
             })
           }
         </List>
-        <div className={sidePageBtn} onClick={addPage}>
+        <div className="sidePageMenu-Btn" onClick={addPage}>
           <span>글 작성하기</span>
         </div> 
       </div>

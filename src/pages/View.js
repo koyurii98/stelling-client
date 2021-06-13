@@ -4,9 +4,10 @@ import { AppContext } from '../context/index';
 import moment from 'moment';
 import { requestDelete } from '../utils/requestHelper';
 import { SERVER_URL } from "../env_config";
+import { WRITE_TRUE } from '../reducer/write';
 
 const View = () => {
-	const { user, openAlert, dispatchLoadMask, openConfirmAlert, closeAlert } = useContext(AppContext);
+	const { user, openAlert, dispatchLoadMask, openConfirmAlert, closeAlert, writeTrue } = useContext(AppContext);
   const history = useHistory();
   const location = useLocation();
   const { data, item } = location.state;
@@ -35,7 +36,8 @@ const View = () => {
         pathname:`/write`,
         state: { edit, viewData:data, item }
       })
-  }, [history, data, item]);
+      writeTrue();
+  }, [history, data, item, writeTrue]);
 
   return(
     <div id="wrap">

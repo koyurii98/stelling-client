@@ -13,16 +13,14 @@ import { useHistory } from "react-router-dom";
 
 const Base = props => {
 	const history = useHistory();
-	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal, openConfirmAlert, closeAlert } = useContext(AppContext);
+	const { dispatchLoadMask, openAlert, userLogout, user, dispatchModal, openConfirmAlert, closeAlert, write } = useContext(AppContext);
 	const [sideSwit, setSideSwit] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState("");
 	const [item, setItem] = useState([]);
-	const [menuTit, setMenuTit] = useState("sidePageMenu-tit tit-Close");
 	const [groups, setGroups] = useState([]);
 	const [edit, setEdit] = useState(false);
 	const [selectGroup, setSelectGroup] = useState(0);
-	const [sidePageBtn, setSidePageBtn] = useState("sidePageMenu-Btn tit-Close");
-
+	const [ sideMenuFlex, setSideMenuFlex ] = useState(false);
 	const groupInit = useCallback(async () => {
 		try {
 			const { res, err } = await requestGet(`${SERVER_URL}group`, {}, dispatchLoadMask, user.token);
@@ -48,16 +46,16 @@ const Base = props => {
 			setSelectedIndex(idx);
 			if (selectedIndex === idx && sideSwit === "sidePageMenu-open") {
 				setSideSwit("sidePageMenu-close");
-				setTimeout(() => setSidePageBtn("sidePageMenu-Btn tit-Close"), 500);
-				setTimeout(() => setMenuTit("sidePageMenu-tit tit-Close"), 500);
+				setTimeout(() => {
+					setSideMenuFlex(false);
+				}, 500);
 			} else {
 				setSideSwit("sidePageMenu-open");
-				setMenuTit("sidePageMenu-tit tit-Open");
-				setSidePageBtn("sidePageMenu-Btn tit-Open");
+				setSideMenuFlex(true);
 				setItem(data);
 			}
 		},
-		[sideSwit, selectedIndex],
+		[sideSwit, selectedIndex, setSideMenuFlex],
 	);
 
 	const onClickLogout = useCallback(async () => {
@@ -163,6 +161,10 @@ const Base = props => {
 	);
 
 	const editBtnClick = useCallback(async () => {
+		if(write){
+			openAlert("글 작성 중에는 과목편집이 불가능합니다.");
+			return setEdit(false);
+		}
 		try {
 			if (edit) {
 				groupUpdate();
@@ -227,7 +229,10 @@ const Base = props => {
 						<span>{edit ? "과목 저장" : "과목 편집"}</span>
 					</div>
 				</div>
-				<SidePageMenu item={item} sideSwit={sideSwit} menuTit={menuTit} sidePageBtn={sidePageBtn} setSidePageBtn={setSidePageBtn} setMenuTit={setMenuTit} setSideSwit={setSideSwit}/>
+				{
+					sideMenuFlex && 
+						<SidePageMenu item={item} sideSwit={sideSwit} setSideSwit={setSideSwit} setSideMenuFlex={setSideMenuFlex} />
+				}
 				<div className="contents">{props.children}</div>
 			</div>
 		</div>

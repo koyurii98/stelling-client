@@ -128,6 +128,7 @@
 .sidePageMenu-Btn{
 	width: 100%;
 	height: 3.2vw;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: #46ce69;

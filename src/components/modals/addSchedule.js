@@ -11,7 +11,7 @@ import 'moment/locale/ko';
 import { SCHEDULE_ADD, SCHEDULE_UPDATE, SCHEDULE_DELETE } from "../../reducer/schedule";
 
 const Mypage = props => {
-	const { modal, closeModal, user, openAlert, dispatchLoadMask, dispatchSchedule } = useContext(AppContext);
+	const { modal, closeModal, user, openAlert, dispatchLoadMask, dispatchSchedule, openConfirmAlert , closeAlert } = useContext(AppContext);
 	const { options, edit } = modal;
 	
 	const [ values, setValues ] = useState({
@@ -35,7 +35,7 @@ const Mypage = props => {
 			if(!values.title || !values.day || !values.start || !values.end ) {
 				return openAlert("비어있는 내용이 있습니다.");
 			}
-			if(!moment(values.start).isAfter(values.end, 'time')){
+			if(moment(values.start).isBefore(values.end,'hour') && moment(values.start).isBefore(values.end, 'minute') ){
 				return openAlert("종료날짜가 시작날짜보다 빠릅니다.");
 			}
 			const { res, err } = await requestPost(`${SERVER_URL}schedule`, { ...values }, dispatchLoadMask, user.token)
@@ -46,6 +46,7 @@ const Mypage = props => {
 
 			if(res?.result) {
 				dispatchSchedule({ type: SCHEDULE_ADD, payload: res.data });
+				closeModal();
 				return openAlert("일정을 추가하였습니다.");
 			}
 		} catch(err) {
@@ -103,6 +104,13 @@ const Mypage = props => {
 		setValues({...values, color:e.target.value});
 	}, [values]);
 
+	const cancelSchedule = useCallback((e)=>{
+		const scheduleClose = () =>{
+			closeAlert();
+			closeModal();
+		}
+		openConfirmAlert(`${edit?"수정":"작성"} 취소시 작성중이던 스케줄이 저장되지 않습니다. </br> ${edit?"수정":"작성"} 취소하시겠습니까?`, scheduleClose)
+	}, [openConfirmAlert, closeModal, closeAlert])
 	return (
 		<Modal className="modal-box">
 			<ModalHeader>
@@ -132,7 +140,7 @@ const Mypage = props => {
 				{modal.edit &&
 					<div className="MA-Btn Btn-color-red" onClick={deleteSchedule}>삭제</div>
 				}
-				<div className="MA-Btn Btn-color-gray cancel" onClick={closeModal}>취소</div>
+				<div className="MA-Btn Btn-color-gray cancel" onClick={cancelSchedule}>취소</div>
 				<div className="MA-Btn Btn-color-green add" onClick={ modal.edit ? updateSchedule : createSchedule }>{ edit ? "수정" : "저장" }</div>
 			</ModalFooter>
 		</Modal>
