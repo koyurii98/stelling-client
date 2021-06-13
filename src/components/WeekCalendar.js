@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import Calendar from '@toast-ui/react-calendar';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import 'tui-calendar/dist/tui-calendar.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
@@ -126,9 +128,10 @@ const WeekCalendar = () => {
       <div className="Home-Header">
         <span>{user.data.name}'s Schedule</span>
         <div className="Home-Header-box">
-          <div className="Home-Header-btn color-Btn" onClick={clickPrev}> &#60; 이전 </div>
-          <div className="Home-Header-btn color-Btn" onClick={clickThisWeek}> 이번주 </div>
-          <div className="Home-Header-btn color-Btn" onClick={clickNext}> 다음 &#62;	</div>
+          
+          <div className="Home-Header-btn previewBtn" onClick={clickPrev}><ArrowBackIosIcon style={{ fontSize: "1.1vw"}}/></div>
+          <div className="Home-Header-btn nowBtn" onClick={clickThisWeek}>이번주 </div>
+          <div className="Home-Header-btn nextBtn" onClick={clickNext}><ArrowForwardIosIcon style={{ fontSize: "1.1vw"}}/></div>
         </div>
       </div>
       <div className="Home-Calendar box">
