@@ -206,7 +206,15 @@
 .tit-Close {
 	display: none;
 }
-
+.sidePageBox{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin-top: 200px;
+	color: rgb(182, 182, 182);
+	flex-direction: column;
+}
 .sidePageMenu-tit > span {
 	color: rgb(75, 75, 75);
 	font-weight: 600;

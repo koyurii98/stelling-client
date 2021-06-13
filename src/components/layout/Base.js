@@ -166,6 +166,10 @@ const Base = props => {
 			return setEdit(false);
 		}
 		try {
+			setSideSwit("sidePageMenu-close");
+			setTimeout(() => {
+				setSideMenuFlex(false);
+			}, 500);
 			if (edit) {
 				groupUpdate();
 			}
@@ -174,7 +178,7 @@ const Base = props => {
 		} finally {
 			setEdit(!edit);
 		}
-	}, [openAlert, edit, groupUpdate]);
+	}, [openAlert, edit, groupUpdate, setSideSwit, sideMenuFlex ]);
 
 	const selectGroupItem = useCallback(id => {
 		setSelectGroup(id);

@@ -41,23 +41,30 @@ const SidePageMenu = (props) => {
         <span>{item.title}</span>
       </div>
       <div className="sidePageMenu">
-        <List component="nav" aria-label="secondary mailbox folder" style={{padding:0, overflow:"scroll", height:"82vh"}}>
-          {
-            pageList && pageList.map((data,i)=>{
-              return <ListItem
-                  key={i}
-                  button
-                  style={{height:"2.8vw"}}
-                  onClick={()=>moveView(data)}
-                >
-                <div className="SidePageMenu-text">
-                  <span>{data.title}</span>
-                  <span className="SidePageMenu-text-date">{moment(data.createdAt).format('YYYY-MM-DD')}</span>
-                </div>
-              </ListItem>
-            })
-          }
-        </List>
+      {
+          pageList.length===0 ?
+            <div className="sidePageBox">
+              <span>✏️</span>
+              <span>아직 {item.title}에 작성한 글이 없네요! 새로운 글을 작성해보세요!</span>
+            </div> :
+            <List component="nav" aria-label="secondary mailbox folder" style={{padding:0, overflow:"scroll", height:"82vh"}}>  
+              {
+                pageList && pageList.map((data,i)=>{
+                  return <ListItem
+                      key={i}
+                      button
+                      style={{height:"2.8vw"}}
+                      onClick={()=>moveView(data)}
+                    >
+                    <div className="SidePageMenu-text">
+                      <span>{data.title}</span>
+                      <span className="SidePageMenu-text-date">{moment(data.createdAt).format('YYYY-MM-DD')}</span>
+                    </div>
+                  </ListItem>
+                })
+              }
+            </List>
+        }
         <div className="sidePageMenu-Btn" onClick={addPage}>
           <span>글 작성하기</span>
         </div> 

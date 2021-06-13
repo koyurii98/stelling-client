@@ -35,7 +35,7 @@ const Mypage = props => {
 			if(!values.title || !values.day || !values.start || !values.end ) {
 				return openAlert("비어있는 내용이 있습니다.");
 			}
-			if(moment(values.start).isBefore(values.end,'hour') && moment(values.start).isBefore(values.end, 'minute') ){
+			if(!moment(values.end).isAfter(values.start,'hour') ){
 				return openAlert("종료날짜가 시작날짜보다 빠릅니다.");
 			}
 			const { res, err } = await requestPost(`${SERVER_URL}schedule`, { ...values }, dispatchLoadMask, user.token)
