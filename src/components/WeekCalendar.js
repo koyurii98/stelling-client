@@ -126,9 +126,9 @@ const WeekCalendar = () => {
       <div className="Home-Header">
         <span>{user.data.name}'s Schedule</span>
         <div className="Home-Header-box">
-          <button onClick={clickPrev}> &#60; 이전 </button>
-          <button onClick={clickThisWeek}> 이번주 </button>
-          <button onClick={clickNext}> 다음 &#62;	</button>
+          <div className="Home-Header-btn color-Btn" onClick={clickPrev}> &#60; 이전 </div>
+          <div className="Home-Header-btn color-Btn" onClick={clickThisWeek}> 이번주 </div>
+          <div className="Home-Header-btn color-Btn" onClick={clickNext}> 다음 &#62;	</div>
         </div>
       </div>
       <div className="Home-Calendar box">

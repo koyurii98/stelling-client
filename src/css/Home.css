@@ -25,14 +25,9 @@
   align-items: center;
   justify-content: space-between;
 }
-
-.Home-Header-box>button{
-  font-size: 14px;
-  background-color: white;
-  border: 1.2px solid rgb(207, 207, 207);
-  padding: 10px 5px 10px 5px;
-  border-radius:20px;
-  width: 60px;
+.Home-Header-box>div{
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .Home-box{
