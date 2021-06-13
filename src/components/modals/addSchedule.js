@@ -35,6 +35,9 @@ const Mypage = props => {
 			if(!values.title || !values.day || !values.start || !values.end ) {
 				return openAlert("비어있는 내용이 있습니다.");
 			}
+			if(!moment(values.start).isAfter(values.end, 'time')){
+				return openAlert("종료날짜가 시작날짜보다 빠릅니다.");
+			}
 			const { res, err } = await requestPost(`${SERVER_URL}schedule`, { ...values }, dispatchLoadMask, user.token)
 		
 			if(err) {
@@ -47,9 +50,7 @@ const Mypage = props => {
 			}
 		} catch(err) {
 			openAlert(err.message);
-		} finally {
-			closeModal();
-		}
+		} 
 	}, [values, dispatchLoadMask, user, openAlert, closeModal, dispatchSchedule]);
 
 	const updateSchedule = useCallback( async () => {
