@@ -165,8 +165,6 @@ const Write = () => {
 									callback(image, "page image");
 								} catch (err) {
 									openAlert("이미지 업로드 중 문제가 발생했습니다. 홈으로 돌아간 후 다시 시도해주세요.");
-								} finally {
-									return false;
 								}
 							},
 						}}
