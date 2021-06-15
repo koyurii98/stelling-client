@@ -15,11 +15,11 @@ const SidePageMenu = (props) => {
     }else{
       history.push({
         pathname:'/write',
-        state: { item },
+        state: { item},
       })
       writeTrue();
     }
-  },[history, item, openAlert, writeTrue, write]);
+  },[history, item, write, writeTrue, openAlert]);
 
   const moveView = useCallback((data) =>{
     if(write){
