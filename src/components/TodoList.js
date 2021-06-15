@@ -213,7 +213,7 @@ const TodoList = () => {
 						})
 					) : (
 						<div className="Home-TodoList-Item Home-TodoList-Item-cnt" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-							우측 수정 버튼을 눌러
+							우측 수정 버튼을 눌러 &#128070;
 							<br /> 할일을 추가해보세요!
 						</div>
 					)}

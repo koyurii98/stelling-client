@@ -17,9 +17,10 @@ import { useHistory, useLocation } from "react-router";
 import { requestPost, requestPut } from "../utils/requestHelper";
 import { AppContext } from "../context/index";
 import { SERVER_URL } from "../env_config";
+import { WRITE_FALSE } from "../reducer/write";
 
 const Write = () => {
-	const { user, openAlert, dispatchLoadMask, closeAlert, openConfirmAlert } = useContext(AppContext);
+	const { user, openAlert, dispatchLoadMask, closeAlert, openConfirmAlert, writeFalse } = useContext(AppContext);
 	const [title, setTitle] = useState("");
 	const editorRef = useRef(null);
 	const history = useHistory();
@@ -54,6 +55,7 @@ const Write = () => {
 			if (res.data) {
 				const data = res.data;
 				openAlert("글 수정이 완료되었습니다.");
+				writeFalse();
 				setTimeout(() => {
 					history.push({
 						pathname: `/view/${data.id}`,
@@ -78,6 +80,7 @@ const Write = () => {
 			if (res.data) {
 				const data = res.data;
 				openAlert("글 작성이 완료되었습니다.");
+				writeFalse();
 				setTimeout(() => {
 					history.push({
 						pathname: `/view/${data.id}`,
@@ -117,10 +120,12 @@ const Write = () => {
 		const alertWrite = ()=>{
 			closeAlert();
 			history.push("/");
+			writeFalse();
 		}
 		const alertEdit = ()=>{
 			closeAlert();
 			history.push({ pathname: `/view/${viewData.id}`, state: { data: viewData, item } });
+			writeFalse();
 		}
 		openConfirmAlert(`${edit?"수정":"작성"} 취소시 작성중이던 글은 모두 사라지게됩니다. </br> ${edit?"수정":"작성"}을 취소하시겠습니까?`,edit?alertEdit:alertWrite)
 	},[openConfirmAlert, closeAlert]);

@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import Calendar from '@toast-ui/react-calendar';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import 'tui-calendar/dist/tui-calendar.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
@@ -12,7 +14,7 @@ import moment from 'moment';
 
 const WeekCalendar = () => {
   const { user, dispatchModal, dispatchSchedule, dispatchLoadMask, openAlert, schedule, closeModal } = useContext(AppContext);
-
+  const calendarRef = React.createRef();
   const initSchedule = useCallback( async () => {
     try {
       const { res, err } = await requestGet(`${SERVER_URL}schedule`, {}, null, user.token);
@@ -106,13 +108,35 @@ const WeekCalendar = () => {
 		}
   },[dispatchSchedule, openAlert, closeModal, dispatchLoadMask, user]);
 
+  const clickPrev = useCallback(()=>{
+    const calendarInstance = calendarRef.current.getInstance();
+    calendarInstance.prev();
+  },[calendarRef]);
+
+  const clickThisWeek = useCallback(()=>{
+    const calendarInstance = calendarRef.current.getInstance();
+    calendarInstance.today();
+  },[calendarRef]);
+
+  const clickNext = useCallback(()=>{
+    const calendarInstance = calendarRef.current.getInstance();
+    calendarInstance.next();
+  },[calendarRef]);
+
   return(
     <div>
       <div className="Home-Header">
         <span>{user.data.name}'s Schedule</span>
+        <div className="Home-Header-box">
+          
+          <div className="Home-Header-btn previewBtn" onClick={clickPrev}><ArrowBackIosIcon style={{ fontSize: "1.1vw"}}/></div>
+          <div className="Home-Header-btn nowBtn" onClick={clickThisWeek}>이번주 </div>
+          <div className="Home-Header-btn nextBtn" onClick={clickNext}><ArrowForwardIosIcon style={{ fontSize: "1.1vw"}}/></div>
+        </div>
       </div>
       <div className="Home-Calendar box">
       <Calendar
+        ref={calendarRef}
         height="28.4vw"
         calendars={[
           {
